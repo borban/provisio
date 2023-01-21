@@ -7,7 +7,7 @@
 DROP TABLE IF EXISTS provisio.RESERVATION;
 
 CREATE TABLE provisio.RESERVATION (
-  Reservation_Id timestamp NOT NULL,
+  Reservation_Id integer(10) NOT NULL,
   Customer_Id integer(10) NOT NULL,
   Hotel_Code integer(10) NOT NULL,
   Room_Id integer(10) NOT NULL,
@@ -18,10 +18,7 @@ CREATE TABLE provisio.RESERVATION (
   Amount_Due numeric(19,0) NOT NULL,
   Loyalty_Points_Earned integer(100) NOT NULL,
   PRIMARY KEY (Reservation_Id),
-  CONSTRAINT FK_Customer_ID FOREIGN KEY Customer(Customer_Id)
-  REFERENCES Customer(Customer_Id),
-  CONSTRAINT FK_Hotel_Code FOREIGN KEY Hotel(Hotel_Code)
-  REFERENCES Hotel(Hotel_Code),
-  CONSTRAINT FK_Room_ID FOREIGN KEY Room(Room_Id)
-  REFERENCES Room(Room_ID)
+  CONSTRAINT FK_Customer_ID FOREIGN KEY (Customer_Id) REFERENCES Customer(Customer_Id),
+  CONSTRAINT FK_Hotel_Code FOREIGN KEY(Hotel_Code) REFERENCES Hotel(Hotel_Code),
+  CONSTRAINT FK_Room_ID FOREIGN KEY(Room_Id) REFERENCES Room(Room_ID)
   );
