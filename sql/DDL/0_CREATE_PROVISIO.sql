@@ -10,3 +10,6 @@ CREATE USER 'provisio'@'localhost' IDENTIFIED BY 'provisio';
 GRANT ALL PRIVILEGES ON provisio.* TO 'provisio'@'localhost';
 
 FLUSH PRIVILEGES;
+
+SYSTEM mysql -u provisio -pprovisio;
+USE provisio;
