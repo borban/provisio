@@ -3,6 +3,8 @@
 	CSD-460 Capstone in Software Development
 */
 
+DROP TABLE IF EXISTS provisio.HOTEL;
+
 CREATE TABLE provisio.HOTEL (
   Hotel_Code int(10) NOT NULL,
   Name varchar(50) NOT NULL,

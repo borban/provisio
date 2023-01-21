@@ -5,6 +5,7 @@
 DROP DATABASE IF EXISTS `provisio`;
 CREATE DATABASE `provisio`;
 
+DROP USER 'provisio'@'localhost';
 CREATE USER 'provisio'@'localhost' IDENTIFIED BY 'provisio';
 GRANT ALL PRIVILEGES ON provisio.* TO 'provisio'@'localhost';
 
