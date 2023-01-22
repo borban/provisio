@@ -16,7 +16,7 @@ CREATE TABLE provisio.RESERVATION (
   Check_Out_Date date NOT NULL,
   Number_Of_Nights integer(2) NOT NULL,
   Number_Of_Guests integer(1) NOT NULL,
-  Amount_Due numeric(19,0) NOT NULL,
+  Amount_Due numeric(19,2) NOT NULL,
   Loyalty_Points_Earned integer(100) NOT NULL,
   PRIMARY KEY (Reservation_Id),
   CONSTRAINT FK_Customer_ID FOREIGN KEY (Customer_Id) REFERENCES Customer(Customer_Id),
