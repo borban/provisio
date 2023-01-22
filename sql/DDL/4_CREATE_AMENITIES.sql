@@ -3,12 +3,12 @@
 	CSD-460 Capstone in Software Development
 */
 
-DROP TABLE IF EXISTS provisio.AMENTITIES;
+DROP TABLE IF EXISTS provisio.AMENITIES;
 
-CREATE TABLE provisio.AMENTITIES (
-  Amentity_Id int(10) NOT NULL,
+CREATE TABLE provisio.AMENITIES (
+  Amenity_Id int(10) NOT NULL,
   Description varchar(100),
   Price numeric(19,2),
-  PRIMARY KEY (Amentity_Id),
-  KEY Amentity_Id_Key (Amentity_Id)
+  PRIMARY KEY (Amenity_Id),
+  KEY Amenity_Id_Key (Amenity_Id)
   );
