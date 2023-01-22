@@ -18,7 +18,7 @@ CREATE TABLE provisio.RESERVATION (
   Number_Of_Guests integer(1) NOT NULL,
   Amount_Due numeric(19,2) NOT NULL,
   Loyalty_Points_Earned integer(100) NOT NULL,
-  PRIMARY KEY (Reservation_Id),
+  PRIMARY KEY (Reservation_Id), KEY Reservation_Id_key (Reservation_Id)
   CONSTRAINT FK_Customer_ID FOREIGN KEY (Customer_Id) REFERENCES Customer(Customer_Id),
   CONSTRAINT FK_Hotel_Code FOREIGN KEY(Hotel_Code) REFERENCES Hotel(Hotel_Code),
   CONSTRAINT FK_Room_ID FOREIGN KEY(Room_Id) REFERENCES Room(Room_ID)
