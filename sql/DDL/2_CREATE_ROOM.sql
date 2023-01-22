@@ -10,5 +10,5 @@ CREATE TABLE provisio.ROOM (
   Room_Size varchar(50) NOT NULL,
   Hotel_Code int(10),
   PRIMARY KEY (Room_Id), KEY Room_Id_Key (Room_Id),
-  CONSTRAINT FK_Hotel_Code FOREIGN KEY (Hotel_Code) REFERENCES Hotel(Hotel_Code)
+  CONSTRAINT FK_Hotel_Code_Room FOREIGN KEY (Hotel_Code) REFERENCES Hotel(Hotel_Code)
   );
