@@ -7,10 +7,11 @@
 DROP TABLE IF EXISTS provisio.RESERVATION;
 
 CREATE TABLE provisio.RESERVATION (
-  Reservation_Id integer(10) NOT NULL,
+  Reservation_Id integer(10) NOT NULL AUTO_INCREMENT,
   Customer_Id integer(10) NOT NULL,
   Hotel_Code integer(10) NOT NULL,
   Room_Id integer(10) NOT NULL,
+  Res_Amenity_Id integer(10) NOT NULL,
   Check_In_Date date NOT NULL,
   Check_Out_Date date NOT NULL,
   Number_Of_Nights integer(2) NOT NULL,
@@ -21,4 +22,5 @@ CREATE TABLE provisio.RESERVATION (
   CONSTRAINT FK_Customer_ID FOREIGN KEY (Customer_Id) REFERENCES Customer(Customer_Id),
   CONSTRAINT FK_Hotel_Code FOREIGN KEY(Hotel_Code) REFERENCES Hotel(Hotel_Code),
   CONSTRAINT FK_Room_ID FOREIGN KEY(Room_Id) REFERENCES Room(Room_ID)
+  CONSTRAINT FK_Res_Amenity_ID FOREIGN KEY(Res_Amenity_ID) REFERENCES Reservation_Amenity (Res_Amenity_ID)	
   );
