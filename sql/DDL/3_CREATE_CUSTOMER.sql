@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS provisio.CUSTOMER;
 
 CREATE TABLE provisio.CUSTOMER (
   Customer_Id integer(10) NOT NULL,
-  Email varchar(50),
+  Email varchar(50) NOT NULL,
   First_Name varchar(255) NOT NULL,
   Last_Name varchar(255) NOT NULL,
   Password varchar(75) NOT NULL,
