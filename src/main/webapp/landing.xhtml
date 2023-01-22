@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <head>
+    </head>
+    <body>
+        <f:view>
+            <h:form id="mainForm">
+                <h:outputLabel for="enterName" value="Enter Name"/>
+                <h:inputText id="enterName" value="#{sayHelloPage.name}"/>
+                <h:commandButton value="Say Hello" action="#{sayHelloPage.sayHello}"/>
+            </h:form>
+        </f:view>
+    </body>
+</html>
