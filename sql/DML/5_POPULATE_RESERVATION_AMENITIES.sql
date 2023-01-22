@@ -2,4 +2,4 @@
 	Bellevue University
 	CSD-460 Capstone in Software Development
 */
-insert into RESERVATION_AMENTITIES (Res_Amentity_Id, Reservation_Id, Amentity_Id, Quantity) values (1,1,1,1);
+insert into RESERVATION_AMENITIES (Res_Amenity_Id, Reservation_Id, Amenity_Id, Quantity) values (1,1,1,1);
