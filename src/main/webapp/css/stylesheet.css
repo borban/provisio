@@ -1,0 +1,16 @@
+.provisioButton {
+	background-color: #ffffff;
+	width: 300px;
+	color: #623e2a;
+	border: none;
+	padding: 20px;
+	text-decoration: none;
+	display: block;
+	font-size: 20px;
+	text-align: center;
+	height: 15px;
+}
+
+.provisioButton:hover {
+	text-decoration: underline;
+}
