@@ -15,15 +15,15 @@
 <body>
 	<div id="landing_container">
 		<div class="landing-row">
-			<h:link styleClass="provisioButton">Book Now</h:link>
-			<h:link styleClass="provisioButton">Manage Reservations</h:link>
+			<h:link value="Book Now" styleClass="provisioButton" outcome="booking"></h:link>
+			<h:link value="Manage Reservations" styleClass="provisioButton" outcome="reservation-lookup"></h:link>
 		</div>
 		<br />
 		<p>WELCOME TO</p>
 		<p id="provisio_title">Provisio</p>
 		<p>Hotel Accomodations</p>
 		<br />
-		<h:link id="learn-more" styleClass="provisioButton">Learn More</h:link>
+		<h:link id="learn-more" value="Learn More" styleClass="provisioButton" outcome="about-us"></h:link>
 	</div>
 
 </body>
