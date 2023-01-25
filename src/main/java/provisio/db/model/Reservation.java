@@ -1,52 +1,54 @@
 package provisio.db.model;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 
 public class Reservation {
-	private Long reservationId;
-	private Long customerId;
-	private Long hotelCode;
-	private Long roomId;
-	private String checkInDate;
-	private String checkOutDate;
+	private Integer reservationId;
+	private Integer customerId;
+	private Integer hotelCode;
+	private Integer roomId;
+	private Date checkInDate;
+	private Date checkOutDate;
 	private String numberOfNights;
 	private String numberOfGuests;
 	private BigDecimal amountDue;
 	private String loyaltyPointsEarned;
-	public Long getReservationId() {
+	
+	public Integer getReservationId() {
 		return reservationId;
 	}
-	public void setReservationId(Long reservationId) {
+	public void setReservationId(Integer reservationId) {
 		this.reservationId = reservationId;
 	}
-	public Long getCustomerId() {
+	public Integer getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(Long customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
-	public Long getHotelCode() {
+	public Integer getHotelCode() {
 		return hotelCode;
 	}
-	public void setHotelCode(Long hotelCode) {
+	public void setHotelCode(Integer hotelCode) {
 		this.hotelCode = hotelCode;
 	}
-	public Long getRoomId() {
+	public Integer getRoomId() {
 		return roomId;
 	}
-	public void setRoomId(Long roomId) {
+	public void setRoomId(Integer roomId) {
 		this.roomId = roomId;
 	}
-	public String getCheckInDate() {
+	public Date getCheckInDate() {
 		return checkInDate;
 	}
-	public void setCheckInDate(String checkInDate) {
+	public void setCheckInDate(Date checkInDate) {
 		this.checkInDate = checkInDate;
 	}
-	public String getCheckOutDate() {
+	public Date getCheckOutDate() {
 		return checkOutDate;
 	}
-	public void setCheckOutDate(String checkOutDate) {
+	public void setCheckOutDate(Date checkOutDate) {
 		this.checkOutDate = checkOutDate;
 	}
 	public String getNumberOfNights() {
@@ -73,6 +75,5 @@ public class Reservation {
 	public void setLoyaltyPointsEarned(String loyaltyPointsEarned) {
 		this.loyaltyPointsEarned = loyaltyPointsEarned;
 	}
-	
 	
 }
