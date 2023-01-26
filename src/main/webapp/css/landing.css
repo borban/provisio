@@ -19,16 +19,22 @@ body {
 
 .landing-row {
 	column-count: 2;
-	column-gap: 200px;
+	column-gap: 125px;
+	display: flex;
 }
 
 p {
 	color: #ffffff;
-	font-size: 50px;
+	font-size: 25px;
+	margin: 0px;
 }
 
-#provisio_title{
+#provisio-title{
 	font-size: 100px;
+}
+
+#hotel-accomodations{
+	font-size: 38px;
 }
 
 #learn-more{
