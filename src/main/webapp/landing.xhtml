@@ -1,30 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
-<link rel="stylesheet" type="text/css" href="css/stylesheet.css"
-	media="all" />
-<link rel="stylesheet" type="text/css" href="css/landing.css"
-	media="all" />
-<title>Provisio</title>
-</head>
-<body>
-	<div id="landing_container">
+	<h:head>
+		<link rel="stylesheet" type="text/css" href="css/landing.css"
+			media="all" />
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css"
+			media="all" />
+		<title>Provisio</title>
+	</h:head>
+	<ui:include src="/WEB-INF/common/header.xhtml" />
+	<div id="landing-container">
 		<div class="landing-row">
-			<h:link value="Book Now" styleClass="provisioButton" outcome="booking"></h:link>
-			<h:link value="Manage Reservations" styleClass="provisioButton" outcome="reservation-lookup"></h:link>
+			<h:button value="Book Now" styleClass="button" outcome="booking"></h:button>
+			<h:button value="Manage Reservations" styleClass="button"
+				outcome="reservation-lookup"></h:button>
 		</div>
-		<br />
-		<p>WELCOME TO</p>
-		<p id="provisio_title">Provisio</p>
-		<p>Hotel Accomodations</p>
-		<br />
-		<h:link id="learn-more" value="Learn More" styleClass="provisioButton" outcome="about-us"></h:link>
+		<br /> WELCOME TO <br /> Provisio <br /> Hotel Accomodations <br />
+		<h:button id="learn-more" value="Learn More" styleClass="button"
+			outcome="about-us"></h:button>
 	</div>
-
-</body>
-</html>
+</ui:composition>

@@ -75,5 +75,13 @@ public class Reservation {
 	public void setLoyaltyPointsEarned(String loyaltyPointsEarned) {
 		this.loyaltyPointsEarned = loyaltyPointsEarned;
 	}
+	@Override
+	public String toString() {
+		return "Reservation [reservationId=" + reservationId + ", customerId=" + customerId + ", hotelCode=" + hotelCode
+				+ ", roomId=" + roomId + ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate
+				+ ", numberOfNights=" + numberOfNights + ", numberOfGuests=" + numberOfGuests + ", amountDue="
+				+ amountDue + ", loyaltyPointsEarned=" + loyaltyPointsEarned + "]";
+	}
+	
 	
 }

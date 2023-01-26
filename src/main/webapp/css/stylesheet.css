@@ -1,16 +1,184 @@
-.provisioButton {
+/*********** wrapper ***********/
+.wrapper {
+	width: 100%;
+	height: auto;
+	overflow-wrap: normal;
+	overflow-x: hidden;
+	margin: 0;
+}
+
+/*********** header, logo, & navigation ***********/
+#header {
+	top: 0;
+	margin: 0px 0px 0px 0px;
+	display: block;
+	background-color: white;
+	color: #0D0D0D;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	height: auto;
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+#header-logo a {
+	float: left;
+	width: 200px;
+	height: 101px;
+}
+
+#header-logo a:hover {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+#header-logo a:active {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+#header-logo img {
+	float: left;
+	width: 200px;
+	height: 101px
+}
+
+#navbar {
+	padding-right: 25px;
+	width: 98.5%;
+	height: 92px;
+	background-color: #ffffff;
+	font-size: 12pt;
+	float: right;
+}
+
+#navbar a {
+	margin: 20px 0px;
+	float: right;
+	display: block;
+	background-color: #f4f1ed;
+	color: #623e2a;
+	text-align: center;
+	padding: 15px 30px;
+	text-decoration: none;
+}
+
+#navbar a:hover {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+#navbar a:active {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+/*********** footer ***********/
+#footer {
+	background-color: #ffffff;
+	font-size: 12pt;
+	width: 100%;
+	height: 200px;
+	color: black;
+	text-align: center;
+	margin: 0;
+	display: block;
+	position: fixed;
+	bottom: 0;
+}
+
+#footer-content {
+	top: 50%;
+	bottom: 50%;
+	background-color: #ffffff;
+	display: grid;
+	justify-content: center;
+	grid-template-columns: auto auto auto;
+	grid-area: auto;
+	text-align: center;
+}
+
+.footer-column {
+	top: 50%;
+	bottom: 50%;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.footer-column p {
+	color: #000000;
+	font-weight: 400;
+	font-size: 20px;
+	text-align: center;
+}
+
+.footer-column a {
+	color: #000000;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.footer-column a:hover {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+.footer-column a:active {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+#footer-logo img {
+	margin-top: 20%;
+	width: 200px;
+	height: 101px;
+}
+
+/*********** body ***********/
+body {
+	margin: 0px;
+	font-family: Verdana, Arial;
+	background-color: #efebe5;
+	position: relative;
+}
+
+.center {
+	text-align: center;
+}
+
+/*********** buttons ***********/
+button {
 	background-color: #ffffff;
 	width: 300px;
 	color: #623e2a;
 	border: none;
-	padding: 20px;
-	text-decoration: none;
-	display: block;
-	font-size: 20px;
-	text-align: center;
-	height: 15px;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.provisioButton:hover {
-	text-decoration: underline;
+button:hover {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+.button:active {
+	background-color: #623e2a;
+	color: #f4f1ed;
+}
+
+.button {
+	background-color: #ffffff;
+	width: 300px;
+	color: #623e2a;
+	border: none;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.button:hover {
+	background-color: #623e2a;
+	color: #f4f1ed;
 }
