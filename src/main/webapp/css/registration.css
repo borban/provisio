@@ -1,0 +1,96 @@
+/*********** registration form ***********/
+#registration_container { 
+  margin-top: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  border: 0px;
+  overflow: hidden;
+  bottom: 0;
+  }
+#registration_container p {
+  font-size: 14px;
+  }
+#registration_container h2 {
+  text-align: center;
+  font-family: Verdana;
+  font-size: 35px;
+  color: #623e2a;
+  text-decoration: none;
+  padding: 0px 0px 20px 0px;
+  margin: 0px;
+  border: 0px;
+  }
+#registration_container table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border: 0px;
+  padding: 0px;
+  }
+#registration_container table td {
+  padding: .5em;
+  font-size: 18px;
+  }
+input {
+	background-color: d9d9d8;
+}
+/*********** password validation ***************/
+/* The message box is shown when the user clicks on the password field */
+#message {
+  text-align: center;
+  display:none;
+  background-color: #efebe5;
+  color: #000000;
+  position: relative;
+  padding: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 600px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 12px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "\2714";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "\2716";
+}
+  
+/*********** buttons ***********/
+button {
+    background-color: #ffffff;
+	width: 300px;
+	color: #623e2a;
+	border: none;
+	height: 30px;
+	margin-left: auto;
+    margin-right: auto;
+   }
+button:hover {
+    background-color:#623e2a;
+    color: #f4f1ed;
+   }
+button:active {
+    background-color:#623e2a;
+    color: #f4f1ed; 
+   }
