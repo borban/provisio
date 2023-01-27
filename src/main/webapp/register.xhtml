@@ -18,31 +18,32 @@
 				<table>
 					<tr>
 						<td><h:outputText value="First Name:" /></td>
-						<td><h:inputText id="firstname" value="#{Customer.firstName}"
-								required="true" /></td>
-						<td><h:message for="firstname" style="color:red" /></td>
+						<td><h:inputText id="firstname" value="#{Customer.firstName}" required="true" label="firstname"/></td>
+						<td><p:ajax event="keyup"  update="userNameMsg"/>
+					</p:inputText>
+					<p:message id="firstname" for="firstname"/> /></td>
 					</tr>
+		
 					<tr>
 						<td><h:outputText value="Last Name:" /></td>
-						<td><h:inputText id="lastname" value="#{Customer.lastName}"
-								required="true" /></td>
-						<td><h:message for="lastname" style="color:red" /></td>
+						<td><h:inputText id="lastname" value="#{Customer.lastName}" required="true" label="lastname"/></td>
+						<td><p:message id="lastNameMsg" for="lastname"/></td>
 					</tr>
 					<tr>
-						<td><h:outputText value="Enter Your email ID:" /></td>
-						<td><h:inputText id="email" value="#{Customer.email}"
-								required="true" /></td>
-						<td><h:message for="email" style="color:red" /></td>
+						<td><h:outputText value="Email:" /></td>
+						<td><h:inputText id="email" value="#{Customer.email}" required="true" label="email"/></td>
+						<td><p:message id="emailMsg" for="email"/></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Password :" /></td>
-						<td><h:inputSecret id="password" value="#{Customer.password}"
-								required="true" /></td>
-						<td><h:message for="password" style="color:red" /></td>
+						<td><h:inputSecret id="password" value="#{Customer.password}" required="true" label="password"/></td>
+						<td><f:validateRegex pattern = "((? = .*[a-z])(?=.*[A-Z]).{8,})" />
+							<p:ajax update="passwordMsg" event="keyup"/>
+		                        </p:password>
+		                        <p:message id="passwordMsg" for="password"/></td>
 					</tr>
 					<tr>
-						<td><h:commandButton value="Register"
-								action="#{customer.add}" /></td>
+						<td><h:commandButton value="Register" action="#{customer.add}" /></td>
 					</tr>
 				</table>
 
