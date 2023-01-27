@@ -1,54 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-	
-   <link rel="stylesheet" type="text/css" href="css/registration.css" media="all"/>
-	
-   <ui:define name="title">Provisio - Register</ui:define>
-
-    <ui:define name="content">
-        Provisio - Register
-        
-        <f:view>
-		<!-- Registration form -->
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<link rel="stylesheet" type="text/css" href="css/registration.css"
+		media="all" />
+	<ui:define name="title">Provisio - Register</ui:define>
+	<ui:define name="content">
+		<div class="container">
 			<h:form id="registerForm">
 				<table>
 					<tr>
 						<td><h:outputText value="First Name:" /></td>
-						<td><h:inputText id="firstname" value="#{Customer.firstName}" required="true" label="firstname"/></td>
-						<td><p:ajax event="keyup"  update="userNameMsg"/>
-					</p:inputText>
-					<p:message id="firstname" for="firstname"/> /></td>
+						<td><h:inputText id="firstname" value="#{registerBean.customer.firstName}"
+								required="true" label="firstname">
+								<f:ajax event="keyup" update="userNameMsg" />
+							</h:inputText></td>
+						<td><h:message id="firstnameMessage" for="firstname" /></td>
 					</tr>
-		
 					<tr>
 						<td><h:outputText value="Last Name:" /></td>
-						<td><h:inputText id="lastname" value="#{Customer.lastName}" required="true" label="lastname"/></td>
-						<td><p:message id="lastNameMsg" for="lastname"/></td>
+						<td><h:inputText id="lastname" value="#{registerBean.customer.lastName}"
+								required="true" label="lastname" /></td>
+						<td><h:message id="lastNameMsg" for="lastname" /></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Email:" /></td>
-						<td><h:inputText id="email" value="#{Customer.email}" required="true" label="email"/></td>
-						<td><p:message id="emailMsg" for="email"/></td>
+						<td><h:inputText id="email" value="#{registerBean.customer.email}"
+								required="true" label="email" /></td>
+						<td><h:message id="emailMsg" for="email" /></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Password :" /></td>
-						<td><h:inputSecret id="password" value="#{Customer.password}" required="true" label="password"/></td>
-						<td><f:validateRegex pattern = "((? = .*[a-z])(?=.*[A-Z]).{8,})" />
-							<p:ajax update="passwordMsg" event="keyup"/>
-		                        </p:password>
-		                        <p:message id="passwordMsg" for="password"/></td>
+						<td><h:inputSecret id="password" value="#{registerBean.customer.password}"
+								required="true" label="password">
+								<f:ajax update="passwordMsg" event="keyup" />
+							</h:inputSecret></td>
+						<td><h:message id="passwordMsg" for="password" /></td>
+
 					</tr>
 					<tr>
-						<td><h:commandButton value="Register" action="#{customer.add}" /></td>
+						<td><h:commandButton value="Register"
+								action="#{registerBean.add}" /></td>
 					</tr>
 				</table>
-
 			</h:form>
-        </f:view>
-	    
-    </ui:define>
+		</div>
+	</ui:define>
 </ui:composition>

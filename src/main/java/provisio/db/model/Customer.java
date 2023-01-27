@@ -14,9 +14,6 @@ import javax.naming.InitialContext; //A.R.
 import javax.naming.NamingException; //A.R.
 import javax.sql.DataSource; //A.R.
 
-@ManagedBean(name = "Customer") //A.R.
-@RequestScoped //A.R.
-
 public class Customer {
 	private Long customerId;
 	private String email;
@@ -25,13 +22,11 @@ public class Customer {
 	private String password;
 	private Long totalLoyaltyPoints;
 	private String memberStatus;
-	
-	/* added additional variables - A.R.*/
+	private String db_customerEmail = null;
+	private String db_customerPassword = null;
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
 	static final String USER = "provisio";
 	static final String PASS = "provisio";
-	private String db_customerEmail = null;
-	private String db_customerPassword = null;
 	
 	public Long getCustomerId() {
 		return customerId;
@@ -76,40 +71,7 @@ public class Customer {
 		this.memberStatus = memberStatus;
 	}
 	
-	/*********method to add customer via registration form to DB added by A.R. ****************/
-	public String add() {
-		int i = 0;
-		if (email != null) {
-			PreparedStatement ps = null;
-			Connection conn = null;
-			try {
-				conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				if (conn != null) {
-					String sql = "INSERT INTO CUSTOMER(First_Name, Last_Name, Email, Password) VALUES(?,?,?,?)";
-					ps = conn.prepareStatement(sql);
-					ps.setString(1, firstName);
-					ps.setString(2, lastName);
-					ps.setString(3, email);
-					ps.setString(4, password);
-					i = ps.executeUpdate();
-					System.out.println("Data Added Successfully");
-				}
-			}catch (Exception e) {
-				System.out.println(e);
-				} finally {
-					try {
-				conn.close();
-				ps.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-					}
-			}
-		}
-		if (i > 0) {
-			return "successful_Registration";
-		} else
-			return "unsuccessful_Registration";
-	}
+	
 	
 	/******************dbData validate login password added by A.R.**********************/
 	
@@ -154,5 +116,13 @@ public class Customer {
 		FacesContext.getCurrentInstance()
 		.getApplication().getNavigationHandler()
 		.handleNavigation(FacesContext.getCurrentInstance(), null, "/login.xhtml");
+	}
+	
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", email=" + email + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", password=" + password + ", totalLoyaltyPoints=" + totalLoyaltyPoints + ", memberStatus="
+				+ memberStatus + ", db_customerEmail=" + db_customerEmail + ", db_customerPassword="
+				+ db_customerPassword + "]";
 	}
 }
