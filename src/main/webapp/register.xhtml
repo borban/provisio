@@ -10,125 +10,42 @@
     <ui:define name="content">
         Provisio - Register
         
+        <f:view>
+        <h:form id = "registerForm">
+        
         <!-- Registration form -->
-		<div id="registration_container">
-			<h2>Register for an Account</h2>
-			<form method="post" action="registrationConfirmation.jsp">
-				<table>
-					<tr>
-						<td>First Name:</td>
-						<td><input type="text" name="First_Name" required="required" /></td>
-					</tr>
-					<tr>
-						<td>Last Name:</td>
-						<td><input type="text" name="Last_Name" required="required" /></td>
-					</tr>
-					<tr>
-						<td>Email:</td>
-						<td><input type="text" name="Email" required="required" /></td>
-					</tr>
-					<!--  Password Requirements 
-				    the password should be at least 8 characters in length 
-				    and include one uppercase and one lowercase letter (hint: use regular expression).
-				    Passwords should be hashed and/or encrypted using standard security practices 
-				    (use the Internet for ideas/code snippets; be sure to cite all external authors)-->
-					<tr>
-						<td>Password:</td>
-						<td><input type="password" id="password" name="Password"
-							pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
-							title="Must include at least one uppercase and lowercase letter, and at least 8 or more characters"
-							required="required" /></td>
-							<!-- Add the following to pattern for numbers:(?=.*\d)  -->
-					</tr>
-					<tr colspan='2' height='0'>
-						<td></td>
-					</tr>
-					<tr>
-						<!-- form buttons -->
-						<td colspan='2' height='50'>
-							<button type="submit">Register</button> <br></br> <br></br>
-							<button type="reset">Reset</button>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
-
-		<div id="message">
-			<h3>Password must contain the following:</h3>
-			<p id="letter" class="invalid">
-				A <b>lowercase</b> letter
-			</p>
-			<p id="capital" class="invalid">
-				An <b>uppercase</b> letter
-			</p>
-			<!--<p id="number" class="invalid">
-				A <b>number</b>
-			</p>-->
-			<p id="length" class="invalid">
-				Minimum <b>8 characters</b>
-			</p>
-		</div>
-		
-		<script>
-
-			var myInput = document.getElementById("password");
-			var letter = document.getElementById("letter");
-			var capital = document.getElementById("capital");
-			//var number = document.getElementById("number");
-			var length = document.getElementById("length");
-
-			// When the user clicks on the password field, show the message box
-			myInput.onfocus = function() {
-				document.getElementById("message").style.display = "block";
-			}
-
-			// When the user clicks outside of the password field, hide the message box
-			myInput.onblur = function() {
-				document.getElementById("message").style.display = "none";
-			}
-
-			// When the user starts to type something inside the password field
-			myInput.onkeyup = function() {
-				// Validate lowercase letters
-				var lowerCaseLetters = /[a-z]/g;
-				if (myInput.value.match(lowerCaseLetters)) {
-					letter.classList.remove("invalid");
-					letter.classList.add("valid");
-				} else {
-					letter.classList.remove("valid");
-					letter.classList.add("invalid");
-				}
-
-				// Validate capital letters
-				var upperCaseLetters = /[A-Z]/g;
-				if (myInput.value.match(upperCaseLetters)) {
-					capital.classList.remove("invalid");
-					capital.classList.add("valid");
-				} else {
-					capital.classList.remove("valid");
-					capital.classList.add("invalid");
-				}
-
-				/* Validate numbers
-				var numbers = /[0-9]/g;
-				if (myInput.value.match(numbers)) {
-					number.classList.remove("invalid");
-					number.classList.add("valid");
-				} else {
-					number.classList.remove("valid");
-					number.classList.add("invalid");
-				}*/
-
-				// Validate length
-				if (myInput.value.length >= 8) {
-					length.classList.remove("invalid");
-					length.classList.add("valid");
-				} else {
-					length.classList.remove("valid");
-					length.classList.add("invalid");
-				}
-			}
-		</script>        
+        <table>
+            <tr>
+                <td><h:outputText value="First Name:" /></td>
+                <td><h:inputText id="firstname" value="#{Customer.firstName}"
+                        required="true"/></td>
+                <td><h:message for="firstname" style="color:red" /></td>
+            </tr>
+            <tr>
+                <td><h:outputText value="Last Name:" /></td>
+                <td><h:inputText id="lastname" value="#{Customer.lastName}"
+                        required="true"/></td>
+                <td><h:message for="lastname" style="color:red" /></td>
+            </tr>
+            <tr>
+                <td><h:outputText value="Enter Your email ID:" /></td>
+                <td><h:inputText id="email" value="#{Customer.email}"
+                        required="true"/></td>
+                <td><h:message for="email" style="color:red" /></td>
+            </tr>
+            <tr>
+                <td><h:outputText value="Password :" /></td>
+                <td><h:inputSecret id="password" value="#{Customer.password}"
+                        required="true"/></td>
+                <td><h:message for="password" style="color:red" /></td>
+            </tr>
+            <tr>
+                <td><h:commandButton value="Register" action="#{Customer.add}" /></td>
+            </tr>
+        </table>
+        
+    </h:form>
+    </f:view>
+	    
     </ui:define>
 </ui:composition>
