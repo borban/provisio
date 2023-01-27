@@ -7,15 +7,6 @@
 	transform: translate(-50%, -50%);
 }
 
-/*********** wrapper ***********/
-.wrapper {
-	width: 100%;
-	height: auto;
-	overflow-wrap: normal;
-	overflow-x: hidden;
-	margin: 0;
-}
-
 /*********** header, logo, & navigation ***********/
 #header {
 	top: 0;
