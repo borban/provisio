@@ -3,46 +3,49 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" 
->
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+	
    <ui:define name="title">Provisio - Register</ui:define>
 
     <ui:define name="content">
         Provisio - Register
         
         <f:view>
-        <h:form id = "registerForm">
-        
-        <!-- Registration form -->
-        <table>
-            <tr>
-                <td><h:outputText value="First Name:" /></td>
-                <td><h:inputText id="firstname" value="#{Customer.firstName}"
-                        required="true"/></td>
-                <td><h:message for="firstname" style="color:red" /></td>
-            </tr>
-            <tr>
-                <td><h:outputText value="Last Name:" /></td>
-                <td><h:inputText id="lastname" value="#{Customer.lastName}"
-                        required="true"/></td>
-                <td><h:message for="lastname" style="color:red" /></td>
-            </tr>
-            <tr>
-                <td><h:outputText value="Enter Your email ID:" /></td>
-                <td><h:inputText id="email" value="#{Customer.email}"
-                        required="true"/></td>
-                <td><h:message for="email" style="color:red" /></td>
-            </tr>
-            <tr>
-                <td><h:outputText value="Password :" /></td>
-                <td><h:inputSecret id="password" value="#{Customer.password}"
-                        required="true"/></td>
-                <td><h:message for="password" style="color:red" /></td>
-            </tr>
-            <tr>
-                <td><h:commandButton value="Register" action="#{Customer.add}" /></td>
-            </tr>
-        </table>
+		<!-- Registration form -->
+			<h:form id="registerForm">
+				<table>
+					<tr>
+						<td><h:outputText value="First Name:" /></td>
+						<td><h:inputText id="firstname" value="#{Customer.firstName}"
+								required="true" /></td>
+						<td><h:message for="firstname" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Last Name:" /></td>
+						<td><h:inputText id="lastname" value="#{Customer.lastName}"
+								required="true" /></td>
+						<td><h:message for="lastname" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Enter Your email ID:" /></td>
+						<td><h:inputText id="email" value="#{Customer.email}"
+								required="true" /></td>
+						<td><h:message for="email" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Password :" /></td>
+						<td><h:inputSecret id="password" value="#{Customer.password}"
+								required="true" /></td>
+						<td><h:message for="password" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td><h:commandButton value="Register"
+								action="#{customer.add}" /></td>
+					</tr>
+				</table>
+
+			</h:form>
+        </f:view>
         
     </h:form>
     </f:view>
