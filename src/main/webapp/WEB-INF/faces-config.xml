@@ -4,5 +4,20 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+    
+    <navigation-rule>
+        <description>register new customer</description>
+        <from-view-id>/register.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{Customer.add}</from-action>
+            <from-outcome>successful_Registration</from-outcome>
+            <to-view-id>/successful_Registration.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{Customer.add}</from-action>
+            <from-outcome>unsuccessful_Registration</from-outcome>
+            <to-view-id>/unsuccess_Registration.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>
