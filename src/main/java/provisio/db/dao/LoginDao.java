@@ -15,6 +15,11 @@ public class LoginDao {
 	private Customer customerLogin = new Customer();
 	
 	public Customer getCustomerLogin(String username) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
 		if (username != null) {
 			PreparedStatement ps = null;
 			Connection conn = null;
@@ -23,10 +28,11 @@ public class LoginDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "SELECT Email, Password from CUSTOMER WHERE Email = '" + username + "'";
+					String sql = "SELECT First_Name, Email, Password from CUSTOMER WHERE Email = '" + username + "'";
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					rs.next();
+					customerLogin.setFirstName(rs.getString("First_Name") );
 					customerLogin.setEmail(rs.getString("Email")); ;
 					customerLogin.setPassword(rs.getString("Password"));
 				}

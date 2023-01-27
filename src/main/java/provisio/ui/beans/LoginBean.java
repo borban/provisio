@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import provisio.db.dao.LoginDao;
 import provisio.db.model.Customer;
 
-@ManagedBean(name="login", eager= true)
+@ManagedBean(name="loginBean", eager= true)
 @SessionScoped
 public class LoginBean {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
@@ -19,9 +19,10 @@ public class LoginBean {
 	public String login() {
 		Customer dbCustomerLogin = loginDao.getCustomerLogin(customer.getEmail());
 		if (customer.getEmail().equals(dbCustomerLogin.getEmail()) && customer.getPassword().equals(dbCustomerLogin.getPassword())) {
-			return "output";
+			customer.setFirstName(dbCustomerLogin.getFirstName());
+			return "member_welcome";
 		} else
-			return "invalid";
+			return "register";
 	}
 
 	public void logout() {
