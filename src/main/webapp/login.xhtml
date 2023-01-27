@@ -9,5 +9,32 @@
 
     <ui:define name="content">
         Provisio - Login
+        
+        <f:view>
+        <h:form id="loginForm">
+            <table frame="box">
+                <tr>
+                    <th>Login</th>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Email" /></td>
+                    <td><h:inputText id="inputEmail" value="#{Customer.email}"
+                            required="true"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Password" /></td>
+                    <td><h:inputSecret id="inputPassword" value="#{Customer.password}"
+                            required="true"/></td>
+                </tr>
+                <tr>
+                    <td><h:commandButton value="Log In" action="#{Customer.login}" /></td>
+                    <td><h:outputText value="Not a User" /> 
+                        <h:outputLink value="register.xhtml">Register for an Account</h:outputLink>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </f:view>
+   
     </ui:define>
 </ui:composition>
