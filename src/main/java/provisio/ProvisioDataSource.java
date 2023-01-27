@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import provisio.db.model.Customer;
 import provisio.db.model.Reservation;
 
 public class ProvisioDataSource {
@@ -40,22 +41,25 @@ public class ProvisioDataSource {
 	
 	/* Customer added by A.R. */
 	public List<Customer> getCustomer() {
-		List<Customer> customer = new ArrayList<>();
+		List<Customer> customers = new ArrayList<>();
 		Customer customer;
 		
 		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM RESERVATION");) {
+				ResultSet rs = stmt.executeQuery("SELECT * FROM CUSTOMER");) {
 			while (rs.next()) {
 				customer = new Customer();
-				customer.setCustomerId(rs.getInt("customerId"));
-				customer.setfirstName(rs.getString("firstName"));
-				customer.setlastName(rs.getString("lastName"));
-				customer.setpassword(rs.getString("password"));
+				customer.setCustomerId(rs.getLong("customerId"));
+				customer.setFirstName(rs.getString("firstName"));
+				customer.setLastName(rs.getString("lastName"));
+				customer.setPassword(rs.getString("password"));
 				
-				customer.add(customer);
+				customers.add(customer);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return customer;
+		return customers;
+	}
+	}
+
