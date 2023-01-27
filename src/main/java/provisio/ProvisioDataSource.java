@@ -37,4 +37,25 @@ public class ProvisioDataSource {
 		}
 		return reservations;
 	}
-}
+	
+	/* Customer added by A.R. */
+	public List<Customer> getCustomer() {
+		List<Customer> customer = new ArrayList<>();
+		Customer customer;
+		
+		try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM RESERVATION");) {
+			while (rs.next()) {
+				customer = new Customer();
+				customer.setCustomerId(rs.getInt("customerId"));
+				customer.setfirstName(rs.getString("firstName"));
+				customer.setlastName(rs.getString("lastName"));
+				customer.setpassword(rs.getString("password"));
+				
+				customer.add(customer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
