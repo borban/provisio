@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-	
-   <link rel="stylesheet" type="text/css" href="css/registration.css" media="all"/>
-	
-   <ui:define name="title">Provisio - Failed Register</ui:define>
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:define name="content">
-        Provisio - Failed Registration
-      
-      
-    <f:view>
-        <p>There is an error in registering.</p>
-        <h:outputLink value="register.xhtml">Back</h:outputLink>
-    </f:view>
-      
-    </ui:define>
+	<link rel="stylesheet" type="text/css" href="css/registration.css"
+		media="all" />
+
+	<ui:define name="title">Provisio - Failed Register</ui:define>
+
+	<ui:define name="content">
+		<div class="container">
+			<p>There is an error in registering.</p>
+			<h:outputLink value="register.xhtml">Back</h:outputLink>
+		</div>
+	</ui:define>
 </ui:composition>

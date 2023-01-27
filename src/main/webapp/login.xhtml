@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" 
->
-   <ui:define name="title">Provisio - Login</ui:define>
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="title">Provisio - Login</ui:define>
 
-    <ui:define name="content">
-        Provisio - Login
-        
-        <f:view>
-        <h:form id="loginForm">
-            <table frame="box">
-                <tr>
-                    <th>Login</th>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Email" /></td>
-                    <td><h:inputText id="inputEmail" value="#{Customer.email}"
-                            required="true"/></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Password" /></td>
-                    <td><h:inputSecret id="inputPassword" value="#{Customer.password}"
-                            required="true"/></td>
-                </tr>
-                <tr>
-                    <td><h:commandButton value="Log In" action="#{Customer.login}" /></td>
-                    <td><h:outputText value="Not a User" /> 
-                        <h:outputLink value="register.xhtml">Register for an Account</h:outputLink>
-                    </td>
-                </tr>
-            </table>
-        </h:form>
-    </f:view>
-   
-    </ui:define>
+	<ui:define name="content">
+		<div class="container">
+			<h:form id="loginForm">
+				<table frame="box">
+					<tr>
+						<th>Login</th>
+					</tr>
+					<tr>
+						<td><h:outputText value="Email" /></td>
+						<td><h:inputText id="inputEmail"
+								value="#{loginBean.customer.email}" required="true" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Password" /></td>
+						<td><h:inputSecret id="inputPassword"
+								value="#{loginBean.customer.password}" required="true" /></td>
+					</tr>
+					<tr>
+						<td><h:commandButton value="Log In"
+								action="#{loginBean.login}" /></td>
+						<td><h:outputText value="Not a User" /> <h:outputLink
+								value="register.xhtml">Register for an Account</h:outputLink></td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+	</ui:define>
 </ui:composition>

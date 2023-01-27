@@ -6,16 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import provisio.db.model.Customer;
 
+@ManagedBean(name="login", eager= true)
+@SessionScoped
 public class LoginBean {
 	private String db_customerEmail = null;
 	private String db_customerPassword = null;
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
 	static final String USER = "provisio";
 	static final String PASS = "provisio";
+	public Customer customer = new Customer();
 
 	public void dbData(String uName) {
 		if (uName != null) {
@@ -39,7 +44,7 @@ public class LoginBean {
 		}
 	}
 
-	public String login(Customer customer) {
+	public String login() {
 		dbData(db_customerEmail);
 		if (customer.getEmail().equals(db_customerEmail) && customer.getPassword().equals(db_customerPassword)) {
 			return "output";
@@ -52,4 +57,13 @@ public class LoginBean {
 		FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
 				.handleNavigation(FacesContext.getCurrentInstance(), null, "/login.xhtml");
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
 }
