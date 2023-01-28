@@ -4,17 +4,17 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<link rel="stylesheet" type="text/css" href="css/registration.css"
-		media="all" />
 	<ui:define name="title">Provisio - Register</ui:define>
 	<ui:define name="content">
 		<div class="container">
+		 <h2 style="color:#623e2a;" >Register for an Account</h2>
 			<h:form id="registerForm">
 				<table>
 					<tr>
 						<td><h:outputText value="First Name:" /></td>
 						<td><h:inputText id="firstname" value="#{registerBean.customer.firstName}"
-								required="true" label="firstname">
+								required="true" label="firstname"
+								title="Your first name is required">
 								<f:ajax event="keyup" update="userNameMsg" />
 							</h:inputText></td>
 						<td><h:message id="firstnameMessage" for="firstname" /></td>
@@ -22,26 +22,30 @@
 					<tr>
 						<td><h:outputText value="Last Name:" /></td>
 						<td><h:inputText id="lastname" value="#{registerBean.customer.lastName}"
-								required="true" label="lastname" /></td>
+								required="true" label="lastname" title="Your last name is required"/></td>
 						<td><h:message id="lastNameMsg" for="lastname" /></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Email:" /></td>
 						<td><h:inputText id="email" value="#{registerBean.customer.email}"
-								required="true" label="email" /></td>
+								required="true" label="email" 
+								title="Your email is required"/></td>
 						<td><h:message id="emailMsg" for="email" /></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Password :" /></td>
 						<td><h:inputSecret id="password" value="#{registerBean.customer.password}"
-								required="true" label="password">
+								required="true" label="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+								title="Must include at least one uppercase and lowercase letter, and at least 8 or more characters"
+								validatorMessage="Password must contain at least 8 characters, 1 uppercase letter, and 1 lowercase letter.">
 								<f:ajax update="passwordMsg" event="keyup" />
+								<f:validateRegex pattern="^(?=.*[a-z])(?=.*[A-Z]).{8,}$"/>
 							</h:inputSecret></td>
-						<td><h:message id="passwordMsg" for="password" /></td>
+						<td><h:message id="passwordMsg" for="password" style="color:red"/></td>
 
 					</tr>
 					<tr>
-						<td><h:commandButton value="Register"
+						<td colspan='2' height='50'><h:commandButton value="Register" style="color:black; height: 30px; width:300px; margin-top:20px;" 
 								action="#{registerBean.register}" /></td>
 					</tr>
 				</table>
