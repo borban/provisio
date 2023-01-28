@@ -8,31 +8,39 @@
 
 	<ui:define name="content">
 		<div class="container">
-			<h:form id="loginForm">
-				<table frame="box" style="padding: 20px;">
-					<tr>
-						<th><h2 style="color:#623e2a;">Login</h2></th>
-					</tr>
-					<tr>
-						<td><h:outputText value="Email" /></td>
-						<td><h:inputText id="inputEmail"
-								value="#{loginBean.customer.email}" required="true" title="Your email is required"/></td>
-					</tr>
-					<tr>
-						<td><h:outputText value="Password" /></td>
-						<td><h:inputSecret id="inputPassword"
-								value="#{loginBean.customer.password}" required="true" title="Your password is required"/></td>
-					</tr>
-					<tr>
-						<td colspan='2' height='50'><h:commandButton value="Log In"
-								action="#{loginBean.login}" style="color:black; height: 30px; width:300px; margin-top:20px;"/></td>			
-					</tr>
-					<tr>
-						<td colspan='2' height='50'><h:outputText value="Not a User: " /> <h:outputLink
-								value="register.xhtml">Register for an Account</h:outputLink></td>
-					</tr>
-				</table>
-			</h:form>
+			<h:panelGroup rendered="#{loginBean.customer.customerId == null}">
+				<h:form id="loginForm">
+					<table frame="box" style="padding: 20px;">
+						<tr>
+							<th><h2 style="color: #623e2a;">Login</h2></th>
+						</tr>
+						<tr>
+							<td><h:outputText value="Email" /></td>
+							<td><h:inputText id="inputEmail"
+									value="#{loginBean.customer.email}" required="true"
+									title="Your email is required" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Password" /></td>
+							<td><h:inputSecret id="inputPassword"
+									value="#{loginBean.customer.password}" required="true"
+									title="Your password is required" /></td>
+						</tr>
+						<tr>
+							<td colspan='2' height='50'><h:commandButton value="Log In"
+									action="#{loginBean.login}"
+									style="color:black; height: 30px; width:300px; margin-top:20px;" /></td>
+						</tr>
+						<tr>
+							<td colspan='2' height='50'><h:outputText
+									value="Not a User: " /> <h:outputLink value="register.xhtml">Register for an Account</h:outputLink></td>
+						</tr>
+					</table>
+				</h:form>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{loginBean.customer.customerId != null}">
+				<h1>Welcome #{loginBean.customer.firstName}</h1>
+			</h:panelGroup>
 		</div>
 	</ui:define>
 </ui:composition>

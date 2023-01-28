@@ -13,7 +13,7 @@ public class LoginDao {
 	static final String USER = "provisio";
 	static final String PASS = "provisio";
 	private Customer customerLogin = new Customer();
-	
+
 	public Customer getCustomerLogin(String username) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -28,19 +28,20 @@ public class LoginDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "SELECT First_Name, Email, Password from CUSTOMER WHERE Email = '" + username + "'";
+					String sql = "SELECT First_Name, Email, Password, Customer_Id from CUSTOMER WHERE Email = '" + username + "'";
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					rs.next();
-					customerLogin.setFirstName(rs.getString("First_Name") );
-					customerLogin.setEmail(rs.getString("Email")); ;
+					customerLogin.setFirstName(rs.getString("First_Name"));
+					customerLogin.setEmail(rs.getString("Email"));
 					customerLogin.setPassword(rs.getString("Password"));
+					customerLogin.setCustomerId(rs.getInt("Customer_Id"));
 				}
 			} catch (SQLException sqle) {
 				sqle.printStackTrace();
 			}
 		}
-		
+
 		return customerLogin;
 	}
 }
