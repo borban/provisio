@@ -11,9 +11,6 @@ import provisio.util.HashClass;
 @ManagedBean(name="loginBean", eager= true)
 @SessionScoped
 public class LoginBean {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
-	static final String USER = "provisio";
-	static final String PASS = "provisio";
 	public Customer customer = new Customer();
 	private LoginDao loginDao = new LoginDao();
 
