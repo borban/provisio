@@ -19,7 +19,7 @@ public class LoginBean {
 		if (isValidMember(dbCustomerLogin)) {
 			customer.setFirstName(dbCustomerLogin.getFirstName());
 			customer.setCustomerId(dbCustomerLogin.getCustomerId());
-			return "member_welcome";
+			return "login";
 		} else
 			return "login_error";
 	}
