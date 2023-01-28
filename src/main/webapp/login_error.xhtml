@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-	
-   <link rel="stylesheet" type="text/css" href="css/registration.css" media="all"/>
-	
-   <ui:define name="title">Provisio - Login Error</ui:define>
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:define name="content">
-        Provisio - Login Error
-      
-    <f:view>
-        <p>
-            <b>Sorry, either your username (email) or password is incorrect please try again</b>
-        </p>
-        <p>
-            <h:outputLink value="login.xhtml">Try Again</h:outputLink>
-        </p>
-    </f:view>
-      
-    </ui:define>
+	<link rel="stylesheet" type="text/css" href="css/registration.css"
+		media="all" />
+
+	<ui:define name="title">Provisio - Login Error</ui:define>
+
+	<ui:define name="content">
+		<div class="container">
+			<p>
+				<b>Sorry, either your username (email) or password is incorrect
+					please try again</b>
+			</p>
+			<p>
+				<h:outputLink value="login.xhtml">Try Again</h:outputLink>
+			</p>
+		</div>
+	</ui:define>
 </ui:composition>

@@ -31,11 +31,12 @@ public class LoginDao {
 					String sql = "SELECT First_Name, Email, Password, Customer_Id from CUSTOMER WHERE Email = '" + username + "'";
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
-					rs.next();
-					customerLogin.setFirstName(rs.getString("First_Name"));
-					customerLogin.setEmail(rs.getString("Email"));
-					customerLogin.setPassword(rs.getString("Password"));
-					customerLogin.setCustomerId(rs.getInt("Customer_Id"));
+					if(rs.next()) {
+						customerLogin.setFirstName(rs.getString("First_Name"));
+						customerLogin.setEmail(rs.getString("Email"));
+						customerLogin.setPassword(rs.getString("Password"));
+						customerLogin.setCustomerId(rs.getInt("Customer_Id"));
+					}
 				}
 			} catch (SQLException sqle) {
 				sqle.printStackTrace();

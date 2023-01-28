@@ -8,7 +8,7 @@ import provisio.db.dao.LoginDao;
 import provisio.db.model.Customer;
 import provisio.util.HashClass;
 
-@ManagedBean(name="loginBean", eager= true)
+@ManagedBean(name = "loginBean", eager = true)
 @SessionScoped
 public class LoginBean {
 	public Customer customer = new Customer();
@@ -16,18 +16,27 @@ public class LoginBean {
 
 	public String login() {
 		Customer dbCustomerLogin = loginDao.getCustomerLogin(customer.getEmail());
-		if (customer.getEmail().equals(dbCustomerLogin.getEmail()) && HashClass.hashValue(customer.getPassword()).equals(dbCustomerLogin.getPassword())) {
+		if (isValidMember(dbCustomerLogin)) {
 			customer.setFirstName(dbCustomerLogin.getFirstName());
 			customer.setCustomerId(dbCustomerLogin.getCustomerId());
 			return "member_welcome";
 		} else
-			return "register";
+			return "login_error";
 	}
 
 	public void logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
 				.handleNavigation(FacesContext.getCurrentInstance(), null, "/login.xhtml");
+	}
+
+	private boolean isValidMember(Customer dbCustomerLogin) {
+		if (dbCustomerLogin.getEmail() != null) {
+			return customer.getEmail().equals(dbCustomerLogin.getEmail())
+					&& HashClass.hashValue(customer.getPassword()).equals(dbCustomerLogin.getPassword());
+		}
+
+		return false;
 	}
 
 	public Customer getCustomer() {
@@ -37,5 +46,5 @@ public class LoginBean {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
+
 }

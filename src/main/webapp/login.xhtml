@@ -40,6 +40,11 @@
 			</h:panelGroup>
 			<h:panelGroup rendered="#{loginBean.customer.customerId != null}">
 				<h1>Welcome #{loginBean.customer.firstName}</h1>
+				<h:form>
+					<p>
+						<h:commandLink value="logout" action="#{loginBean.logout}" />
+					</p>
+				</h:form>
 			</h:panelGroup>
 		</div>
 	</ui:define>
