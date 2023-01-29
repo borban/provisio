@@ -13,13 +13,25 @@ public class RegisterBean {
 	private RegisterDao registerDao = new RegisterDao();
 
 	public String register() {
-		if(registerDao.addCustomer(customer)) {
+		Customer dbCustomerRegister = registerDao.getCustomerRegister(customer.getEmail());
+		if(!doesExist(dbCustomerRegister)) {
+			if (registerDao.addCustomer(customer)) {
 			return "successful_Registration";
-		}
-		else {
+			}
+			else {
 			return "unsuccessful_Registration";
 		}
+		}
+		return "unsuccessful_Registration";
 	}
+	
+	private boolean doesExist(Customer dbCustomerRegister) {
+		if (dbCustomerRegister.getEmail() != null) {
+			return customer.getEmail().equals(dbCustomerRegister.getEmail());
+		}
+		// TODO Auto-generated method stub
+		return false;
+		}
 
 	public Customer getCustomer() {
 		return customer;
