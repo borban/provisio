@@ -3,6 +3,8 @@ package provisio.db.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import provisio.db.model.Customer;
 import provisio.util.HashClass;
@@ -11,6 +13,7 @@ public class RegisterDao {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
 	static final String USER = "provisio";
 	static final String PASS = "provisio";
+	private Customer customerRegister = new Customer();
 	
 	public boolean addCustomer(Customer customer) {
 		try {
@@ -49,5 +52,36 @@ public class RegisterDao {
 		}
 		return i > 0;
 			
+	}
+	public Customer getCustomerRegister(String username) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		if (username != null) {
+			PreparedStatement ps = null;
+			Connection conn = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+					String sql = "SELECT First_Name, Email, Password, Customer_Id from CUSTOMER WHERE Email = '" + username + "'";
+					ps = conn.prepareStatement(sql);
+					rs = ps.executeQuery();
+					if(rs.next()) {
+						customerRegister.setFirstName(rs.getString("First_Name"));
+						customerRegister.setEmail(rs.getString("Email"));
+						customerRegister.setPassword(rs.getString("Password"));
+						customerRegister.setCustomerId(rs.getInt("Customer_Id"));
+					}
+				}
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+		}
+
+		return customerRegister;
 	}
 }
