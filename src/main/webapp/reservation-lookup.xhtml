@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" 
->
-   <ui:define name="title">Provisio - About Us</ui:define>
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="title">Provisio - Reservation Lookup</ui:define>
 
-    <ui:define name="content">
-        Provisio - About Us
-    </ui:define>
+	<ui:define name="content">
+		<div class="container">
+			<h:form id="reservationLookupForm">
+				<table frame="box" style="padding: 20px;">
+					<tr>
+						<th><h2 style="color: #623e2a;">Reservation Lookup</h2></th>
+					</tr>
+					<tr>
+						<td><h:outputText value="Reservation ID" /></td>
+						<td><h:inputText id="reservationLookupId"
+								value="#{reservationLookupBean.reservationId}" />
+						</td>
+					</tr>
+<!-- 					<tr> -->
+<!-- 						<td><h:outputText value="Last Name" /></td> -->
+<!-- 						<td><h:inputText id="reservationLookupLastName" -->
+<!-- 								value="#{reservationLookupBean.lastName}" /></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td><h:outputText value="Email Address" /></td> -->
+<!-- 						<td><h:inputText id="reservationLookupEmailAddress" -->
+<!-- 								value="#{reservationLookupBean.emailAddress}" /></td> -->
+<!-- 					</tr> -->
+					<tr>
+						<td colspan='2' height='50'><h:commandButton value="Search"
+								action="#{reservationLookupBean.search}"
+								style="color:black; height: 30px; width:300px; margin-top:20px;"/>
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+	</ui:define>
 </ui:composition>

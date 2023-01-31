@@ -182,3 +182,9 @@ button:hover {
 	background-color: #623e2a;
 	color: #f4f1ed;
 }
+
+.provisio-row-3{
+	column-count: 3;
+	column-gap: 125px;
+	display: flex;
+}
