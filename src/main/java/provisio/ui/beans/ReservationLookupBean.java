@@ -14,22 +14,23 @@ public class ReservationLookupBean {
 	public Integer reservationId;
 	public String lastName;
 	public String emailAddress;
-	public Reservation reservationResult = new Reservation();
-	public Hotel reservationHotel = new Hotel();
-	private ReservationLookupDao resLookupDao = new ReservationLookupDao();
-
+	
 	public ReservationLookupBean() {
 	}
 
 	public String search() {
 		if (reservationId != null) {
-			reservationResult = resLookupDao.lookupReservation(new Integer(getReservationId()), null, null);
-			reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
+			ReservationLookupDao resLookupDao = new ReservationLookupDao();
+			
+			Reservation reservationResult = resLookupDao.lookupReservation(new Integer(getReservationId()), null, null);
+			Hotel reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
 			Integer customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(reservationResult.getCustomerId());
+			String reservationRoomSize = resLookupDao.lookupRoomSize(reservationResult.getRoomId());
 			
 			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationResult", reservationResult);
 			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationHotel", reservationHotel);
 			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("customerTotalPoints", customerTotalPoints);
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationRoomSize", reservationRoomSize);
 			
 			return "reservation-summary?faces-redirect=true";
 		}
@@ -60,14 +61,6 @@ public class ReservationLookupBean {
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
-	}
-
-	public Reservation getReservationResult() {
-		return reservationResult;
-	}
-
-	public void setReservationResult(Reservation reservationResult) {
-		this.reservationResult = reservationResult;
 	}
 
 }

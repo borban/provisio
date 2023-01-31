@@ -31,7 +31,7 @@ public class ReservationLookupDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "SELECT Reservation_Id, Customer_Id, Hotel_Code, Room_Id, Number_Of_Nights, Number_Of_Guests, Amount_Due,Loyalty_Points_Earned FROM Reservation WHERE Reservation_Id = "
+					String sql = "SELECT Reservation_Id, Customer_Id, Hotel_Code, Room_Id, Number_Of_Nights, Number_Of_Guests, Amount_Due,Loyalty_Points_Earned, Check_In_Date, Check_Out_Date FROM Reservation WHERE Reservation_Id = "
 							+ reservationId;
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
@@ -44,6 +44,8 @@ public class ReservationLookupDao {
 						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
 						reservation.setLoyaltyPointsEarned(rs.getString("Loyalty_Points_Earned"));
+						reservation.setCheckInDate(rs.getDate("Check_In_Date"));
+						reservation.setCheckOutDate(rs.getDate("Check_Out_Date"));
 					}
 				}
 			} catch (SQLException sqle) {
@@ -109,6 +111,36 @@ public class ReservationLookupDao {
 					rs = ps.executeQuery();
 					if (rs.next()) {
 						return rs.getInt("Total_Loyalty_Points");
+					}
+				}
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+		}
+
+		return null;
+	}
+	
+	public String lookupRoomSize(Integer roomId) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		if (roomId != null) {
+			PreparedStatement ps = null;
+			Connection conn = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+					String sql = "SELECT Room_Size FROM Room WHERE Room_Id = "
+							+ roomId;
+					ps = conn.prepareStatement(sql);
+					rs = ps.executeQuery();
+					if (rs.next()) {
+						return rs.getString("Room_Size");
 					}
 				}
 			} catch (SQLException sqle) {

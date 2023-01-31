@@ -1,7 +1,5 @@
 package provisio.db.model;
 
-import java.math.BigDecimal;
-
 public class Hotel {
 	private Long hotelCode;
 	private String name;
@@ -52,6 +50,12 @@ public class Hotel {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	@Override
+	public String toString() {
+		return "Hotel [hotelCode=" + hotelCode + ", name=" + name + ", address=" + address + ", city=" + city
+				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + "]";
 	}
 	
 }
