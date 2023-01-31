@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import provisio.db.model.Hotel;
 import provisio.db.model.Reservation;
 
 public class ReservationLookupDao {
@@ -14,6 +15,7 @@ public class ReservationLookupDao {
 	static final String USER = "provisio";
 	static final String PASS = "provisio";
 	private Reservation reservation = new Reservation();
+	private Hotel reservationHotel = new Hotel();
 
 	public Reservation lookupReservation(Integer reservationId, String lastName, String emailAddress) {
 		try {
@@ -50,5 +52,70 @@ public class ReservationLookupDao {
 		}
 
 		return reservation;
+	}
+
+	public Hotel lookupHotel(Integer hotelCode) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		if (hotelCode != null) {
+			PreparedStatement ps = null;
+			Connection conn = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+					String sql = "SELECT Name, Address, City, State, Zip, Phone_Number FROM Hotel WHERE Hotel_Code = "
+							+ hotelCode;
+					ps = conn.prepareStatement(sql);
+					rs = ps.executeQuery();
+					if (rs.next()) {
+						reservationHotel.setName(rs.getString("Name"));
+						reservationHotel.setAddress(rs.getString("Address"));
+						reservationHotel.setCity(rs.getString("City"));
+						reservationHotel.setState(rs.getString("State"));
+						reservationHotel.setZip(rs.getString("Zip"));
+						reservationHotel.setPhoneNumber(rs.getString("Phone_Number"));
+					}
+				}
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+		}
+
+		return reservationHotel;
+	}
+	
+	public Integer lookupTotalLoyaltyPoints(Integer customerId) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		if (customerId != null) {
+			PreparedStatement ps = null;
+			Connection conn = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+					String sql = "SELECT Email, First_Name, Last_Name, Total_Loyalty_Points FROM Customer WHERE Customer_Id = "
+							+ customerId;
+					ps = conn.prepareStatement(sql);
+					rs = ps.executeQuery();
+					if (rs.next()) {
+						return rs.getInt("Total_Loyalty_Points");
+					}
+				}
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+		}
+
+		return null;
 	}
 }

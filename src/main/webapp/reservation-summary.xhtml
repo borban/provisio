@@ -15,7 +15,7 @@
 			<br />
 			<div class="provisio-row-3">
 				<h:panelGroup>
-					<table frame="box" style="padding: 20px;">
+					<table frame="box" style="padding: 20px; width: 300px;">
 						<tr>
 							<th><h:outputText style="color: #623e2a;"
 									value="Reservation" /></th>
@@ -47,66 +47,54 @@
 					</table>
 				</h:panelGroup>
 				<h:panelGroup>
-					<table frame="box" style="padding: 20px;">
+					<table frame="box" style="padding: 20px; width: 300px;">
 						<tr>
 							<th><h:outputText style="color: #623e2a;"
 									value="Hotel" /></th>
 						</tr>
 						<tr>
-							<td><h:outputText value="Check In Date: " /></td>
-							<td>#{flash.reservationResult.checkInDate}</td>
+							<td><h:outputText value="Name: " /></td>
+							<td>#{flash.reservationHotel.name}</td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Check Out Date: " /></td>
-							<td>#{flash.reservationResult.checkOutDate}</td>
+							<td><h:outputText value="Address: " /></td>
+							<td>#{flash.reservationHotel.address}</td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Number of Nights: " /></td>
-							<td>#{flash.reservationResult.numberOfNights}</td>
+							<td><h:outputText value="City: " /></td>
+							<td>#{flash.reservationHotel.city}</td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Number of Guests: " /></td>
-							<td>#{flash.reservationResult.numberOfGuests}</td>
+							<td><h:outputText value="State: " /></td>
+							<td>#{flash.reservationHotel.state}</td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Room Size: " /></td>
-							<td>#{flash.reservationResult.roomId}</td>
+							<td><h:outputText value="Zip: " /></td>
+							<td>#{flash.reservationHotel.zip}</td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Amount Due: " /></td>
-							<td>#{flash.reservationResult.amountDue}</td>
+							<td><h:outputText value="Phone: " /></td>
+							<td>#{flash.reservationHotel.phoneNumber}</td>
 						</tr>
 					</table>
 				</h:panelGroup>
 				<h:panelGroup>
-					<table frame="box" style="padding: 20px;">
+					<table frame="box" style="padding: 20px; width: 300px;">
 						<tr>
 							<th><h:outputText style="color: #623e2a;"
 									value="Customer" /></th>
 						</tr>
 						<tr>
-							<td><h:outputText value="Check In Date: " /></td>
-							<td>#{flash.reservationResult.checkInDate}</td>
+							<td><h:outputText value="Customer ID: " /></td>
+							<td>#{flash.reservationResult.customerId}</td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Check Out Date: " /></td>
-							<td>#{flash.reservationResult.checkOutDate}</td>
+							<td><h:outputText value="Loyalty Points Earned: " /></td>
+							<td>#{flash.reservationResult.loyaltyPointsEarned}</td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Number of Nights: " /></td>
-							<td>#{flash.reservationResult.numberOfNights}</td>
-						</tr>
-						<tr>
-							<td><h:outputText value="Number of Guests: " /></td>
-							<td>#{flash.reservationResult.numberOfGuests}</td>
-						</tr>
-						<tr>
-							<td><h:outputText value="Room Size: " /></td>
-							<td>#{flash.reservationResult.roomId}</td>
-						</tr>
-						<tr>
-							<td><h:outputText value="Amount Due: " /></td>
-							<td>#{flash.reservationResult.amountDue}</td>
+							<td><h:outputText value="Total Loyalty Points: " /></td>
+							<td>#{flash.customerTotalPoints}</td>
 						</tr>
 					</table>
 				</h:panelGroup>
