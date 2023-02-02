@@ -1,0 +1,21 @@
+img {
+	width: 50px;
+	height: auto;
+}
+
+#booking-gallery {
+	
+	justify-content: space-evenly;
+	gap: 10px;
+	grid-template-columns: auto auto auto;
+	margin: 1%;
+	
+}
+#gallery-item {
+	text-align: center;
+}
+
+
+#content-wrap {
+  padding-bottom: 2.5rem;   
+}
