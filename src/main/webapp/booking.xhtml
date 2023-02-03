@@ -8,6 +8,218 @@
 >
 	
    <ui:define name="title">Provisio - Booking</ui:define>
+	
+	
+    <h2>Book your Vacation</h2>
+
+
+        <h3>Room Accommodations</h3>
+		<div id="room-gallery">
+		</div>
+
+		<div id="rooms">
+			<div class="card">
+				<div class="card-content">
+					<figure>
+						<img class ="roomImg" src="images/Reservation_Room_Double_Full_Beds.jpg"
+							alt="Double Full Beds" />
+					</figure>
+					<div class="card-title">Double Full Beds</div>
+				</div>
+			</div>
+			<div class="card">
+
+				<div class="card-content">
+					<figure>
+						<img class ="roomImg" src="images/Reservation_Room_Double_Queen_Beds.jpg"
+							alt="Double Queen Beds" />
+					</figure>
+					<div class="card-title">Double Queen Beds</div>
+				</div>
+			</div>
+			<div class="card">
+
+				<div class="card-content">
+					<figure>
+						<img class ="roomImg" src="images/Reservation_Room_Queen_Suite.jpg"
+							alt="Queen Suite" />
+					</figure>
+					<div class="card-title">Queen Suite</div>
+				</div>
+			</div>
+			<div class="card">
+
+				<div class="card-content">
+					<figure>
+						<img class ="roomImg" src="images/Reservation_Room_King_Suite.jpg" alt="King Suite" />
+					</figure>
+					<div class="card-title">King Suite</div>
+				</div>
+			</div>
+		</div>
+		
+		<h4 style="color:#623e2a;text-align: center;">Pricing: 1-2 Guests: $115/night and 3-5 Guests: $150/night</h4>
+
+        <h3>Complimentary Amenities</h3>
+		<div id="amenity-gallery">
+			<div id="amenities">
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_1.jpg" />
+						</figure>
+						<div class="card-title">Toiletries</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_2.jpg" />
+						</figure>
+						<div class="card-title">Bath Tubs</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_3.jpg" />
+						</figure>
+						<div class="card-title">Robes</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_4.jpg" />
+						</figure>
+						<div class="card-title">Spa</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div id="amenities">
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_5.jpg" />
+						</figure>
+						<div class="card-title">Swimming Pool</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_6.jpg" />
+						</figure>
+						<div class="card-title">Fresh Towels</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_7.jpg" />
+						</figure>
+						<div class="card-title">Fitness Center</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_8.jpg" />
+						</figure>
+						<div class="card-title">Conference Rooms</div>
+					</div>
+				</div>
+			</div>
+
+            <h3>Add-on Amenities</h3>
+			<div id="amenities">
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_10.jpg" />
+						</figure>
+						<div class="card-title">WI-FI<br></br>$12.99 Flat Fee</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_11.jpg" />
+						</figure>
+						<div class="card-title">Breakfast<br></br>$8.99 Per Night</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="amenityImg" src="images/Amenities_12.jpg" />
+						</figure>
+						<div class="card-title">Parking<br></br>$19.99 Per Night</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				<a href="#header" class="top">Back to top</a>
+
+
+<!--
+			<h:form id="bookingForm">
+
+				<f:panel header="Booking Form" style="margin-bottom:10px;">
+					<h:panelGrid columns="2" cellpadding="5">
+						<f:outputLabel for="Location" value="Location: " />
+						<<f:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}" 
+							style="width:150px">
+							<f:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
+							<f:selectItem itemLabel="Select Location" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{BookingBean.hotel.Names}" />
+						</f:selectOneMenu>
+						
+						<f:outputLabel for="CheckInDate" value="Check-In Date: "/>
+						<f:datePicker id="CheckInDate" value="#{calendarView.date7}" showIcon="true"/>
+						
+						<f:outputLabel for="CheckOutDate" value="Check-In Date: "/>
+						<f:datePicker id="CheckOutDate" value="#{calendarView.date7}" showIcon="true"/>
+						
+						<f:outputLabel for="@next" value="Horizontal"/>
+						<f:spinner id="horizontal" value="#{spinnerView.number8}" buttons="horizontal" /> 
+						
+						<f:outputLabel for="Location" value="Location: " />
+						<f:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}"
+							style="width:150px">
+							<f:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
+							<f:selectItem itemLabel="Select Location" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{BookingBean.hotel.Names}" />
+						</f:selectOneMenu>
+
+					<f:selectManyCheckbox id="basic"
+						value="#{checkboxView.selectedOptions}">
+						<f:selectItem itemLabel="Option 1" itemValue="WI-FI $12.99 flat fee" />
+						<f:selectItem itemLabel="Option 2" itemValue="Breakfast $8.99 per night" />
+						<f:selectItem itemLabel="Option 3" itemValue="Parking $19.99 per night" />
+					</f:selectManyCheckbox>
+
+					<f:divider />
+					</h:panelGrid>
+
+					<f:commandButton value="Submit" update="msgs"
+						action="#{basicView.displayLocation}" icon="pi pi-check">
+				</f:panel>
+			</h:form>
+			-->
    
 
     <ui:define name="content">
