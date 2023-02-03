@@ -196,10 +196,10 @@
 						</h:selectOneMenu>
 						 
 						<h:outputLabel for="CheckInDate" value="Check-In Date: "/>
-						<p:datepicker id="CheckInDate" value="#{calendarView.date7}" showIcon="true"/>
+						<p:datePicker id="CheckInDate" value="#{reservationBean.reservation.checkInDate}" showIcon="true"/>
 						
-						<h:outputLabel for="CheckOutDate" value="Check-In Date: "/>
-						<p:datePicker id="CheckOutDate" value="#{calendarView.date7}" showIcon="true"/>
+						<h:outputLabel for="CheckOutDate" value="Check-Out Date: "/>
+						<p:datePicker id="CheckOutDate" value="#{reservationBean.reservation.checkOutDate}" showIcon="true"/>
 						
 						
 						
@@ -217,9 +217,6 @@
 					<p:divider />
 					</h:panelGrid>
 
-
-					<h:commandButton value="Submit" update="msgs"
-						action="#{reservationBean.reservation}" icon="pi pi-check" />
 				</h:panelGrid>
 				<a href="#header" class="top">Back to top</a>
 
