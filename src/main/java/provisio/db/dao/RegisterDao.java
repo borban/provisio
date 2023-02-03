@@ -31,12 +31,12 @@ public class RegisterDao {
 					String sql = "INSERT INTO CUSTOMER(Customer_Id, First_Name, Last_Name, Email, Password, Total_Loyalty_Points, Member_Status) VALUES(?,?,?,?,?,?,?)";
 					ps = conn.prepareStatement(sql);
 					ps.setInt(1, 0);
-					ps.setString(1, customer.getFirstName());
-					ps.setString(2, customer.getLastName());
-					ps.setString(3, customer.getEmail());
-					ps.setString(4, HashClass.hashValue(customer.getPassword()));
-					ps.setInt(5, 0);
-					ps.setString(6, "Active");
+					ps.setString(2, customer.getFirstName());
+					ps.setString(3, customer.getLastName());
+					ps.setString(4, customer.getEmail());
+					ps.setString(5, HashClass.hashValue(customer.getPassword()));
+					ps.setInt(6, 0);
+					ps.setString(7, "Active");
 					i = ps.executeUpdate();
 					System.out.println("Data Added Successfully");
 				}
