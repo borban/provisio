@@ -91,6 +91,80 @@
 			</div>
 		</div>	
 	   	</div>
+	   	<h2 style="color:#623e2a; text-align:left;">Add-on Amenities</h2>
+	   	<div>
+		<div id="amenity-gallery">
+		
+			<div class="amenity-gallery-item">
+				<img class ="amenity_img" src="images/Amenities_10.jpg" alt=""></img>
+				<h5 class="gallery-title">Wi-Fi</h5>
+				<h5 class="gallery-title">$12.99 Flat Fee</h5>
+				
+			</div>
+        
+			<div class="amenity-gallery-item">
+				<img class ="amenity_img" src="images/Amenities_11.jpg" alt=""></img>
+				<h5 class="gallery-title">Breakfast</h5>
+				<h5 class="gallery-title">$8.99 Per Night</h5>
+			</div>
+        
+			<div class="amenity-gallery-item">
+				<img class ="amenity_img" src="images/Amenities_12.jpg" alt=""></img>
+				<h5 class="gallery-title">Parking</h5>
+				<h5 class="gallery-title">$19.99 Per Night</h5>
+			</div>
+			
+			
+		</div>	
+	   	</div>
+		
+		
+			<h:form id="reservationForm">
+				<table>
+					<tr>
+						<td><h:outputText value="Location" /></td>
+						<td><h:selectOneMenu id="hotelCode" value="#{reservationBean.reservation.hotelCode}"
+								required="true" label="location"
+								title="Location is required">
+								<f:selectItems value="#{reservationBean.locationValue}" />
+								
+							</h:selectOneMenu></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Check In Date" /></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Check Out Date" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Number Of Guests" /></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td><h:outputText value="Room Size" /></td>
+						<td><h:selectOneMenu id="roomId" value="#{reservationBean.reservation.roomId}"
+								required="true" label="room"
+								title="Room Size is required">
+								<f:selectItems value="#{reservationBean.roomValue}" />
+								
+							</h:selectOneMenu></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td colspan='2' height='50'><h:commandButton value="Submit" style="color:black; height: 30px; width:300px; margin-top:20px;" 
+								action="#{reservationBean.reservation}" /></td>
+					</tr>
+				</table>
+			</h:form>
+		
+		
 		
 	</div>
     </ui:define>

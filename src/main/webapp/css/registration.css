@@ -1,5 +1,5 @@
 /*********** registration form ***********/
-#registration_container { 
+#reservation_container { 
   margin-top: 15%;
   margin-left: auto;
   margin-right: auto;
@@ -8,10 +8,10 @@
   overflow: hidden;
   bottom: 0;
   }
-#registration_container p {
+#reservation_container p {
   font-size: 14px;
   }
-#registration_container h2 {
+#reservation_container h2 {
   text-align: center;
   font-family: Verdana;
   font-size: 35px;
@@ -21,14 +21,14 @@
   margin: 0px;
   border: 0px;
   }
-#registration_container table {
+#reservation_container table {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
   border: 0px;
   padding: 0px;
   }
-#registration_container table td {
+#reservation_container table td {
   padding: .5em;
   font-size: 18px;
   }

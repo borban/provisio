@@ -28,8 +28,9 @@ public class RegisterDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "INSERT INTO CUSTOMER(First_Name, Last_Name, Email, Password, Total_Loyalty_Points, Member_Status) VALUES(?,?,?,?,?,?)";
+					String sql = "INSERT INTO CUSTOMER(Customer_Id, First_Name, Last_Name, Email, Password, Total_Loyalty_Points, Member_Status) VALUES(?,?,?,?,?,?,?)";
 					ps = conn.prepareStatement(sql);
+					ps.setInt(1, 0);
 					ps.setString(1, customer.getFirstName());
 					ps.setString(2, customer.getLastName());
 					ps.setString(3, customer.getEmail());

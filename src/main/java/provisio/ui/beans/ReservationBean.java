@@ -14,18 +14,19 @@ import provisio.db.model.Reservation;
 public class ReservationBean {
 	public Reservation res = new Reservation();
 	private ReservationDao resDao = new ReservationDao();
+	
 
 	public String reservation() {
 		Reservation dbCustomerReservation = resDao.getCustomerReservation(res.getReservationId());
 		if(!doesExist(dbCustomerReservation)) {
 			if (resDao.addReservation(res)) {
-			return "successful_Registration";
+			return "successful_Reservation";
 			}
 			else {
-			return "unsuccessful_Registration";
+			return "unsuccessful_Reservation";
 		}
 		}
-		return "unsuccessful_Registration";
+		return "unsuccessful_Reservation";
 	}
 	
 	private boolean doesExist(Reservation dbCustomerReservation) {
@@ -48,22 +49,36 @@ public class ReservationBean {
 		private static Map<String,Object> locationValue;
 		static{
 			locationValue = new LinkedHashMap<String,Object>();
-			locationValue.put("1", "Littleton, CO"); //label, value
-			locationValue.put("2", "Maplewood, NJ");
-			locationValue.put("3", "Wappingers Falls, NY");
-			locationValue.put("4", "Chatsworth, GA");
-			locationValue.put("5", "Fuquay Varina, NC");
-			locationValue.put("6", "Inman, SC");
-			locationValue.put("7", "Sebastian, FL");
-			locationValue.put("8", "New Philadelphia, OH");
-			locationValue.put("9", "Herndon, VA");
-			locationValue.put("10", "Atwater, CA");
-			locationValue.put("11", "Waldorf, MD");
-			locationValue.put("12", "Prior Lake, MN");
+			locationValue.put("Littleton, CO", 1); //label, value
+			locationValue.put("Maplewood, NJ", 2);
+			locationValue.put("Wappingers Falls, NY", 3);
+			locationValue.put("Chatsworth, GA", 4);
+			locationValue.put("Fuquay Varina, NC", 5);
+			locationValue.put("Inman, SC", 6);
+			locationValue.put("Sebastian, FL", 7);
+			locationValue.put("New Philadelphia, OH", 8);
+			locationValue.put("Herndon, VA", 9);
+			locationValue.put("Atwater, CA", 10);
+			locationValue.put("Waldorf, MD", 11);
+			locationValue.put("Prior Lake, MN", 12);
 		}
 		
 		public Map<String,Object> getLocationValue() {
 			return locationValue;
 		}
+		//Generate Room Map
+				private static Map<String,Object> roomValue;
+				static{
+					roomValue = new LinkedHashMap<String,Object>();
+					roomValue.put("Double Full Beds", 1); //label, value
+					roomValue.put("Queen Suite", 2);
+					roomValue.put("Double Queen Beds", 3);
+					roomValue.put("King Suite", 4);
+					
+				}
+				
+				public Map<String,Object> getRoomValue() {
+					return roomValue;
+				}
 
 }

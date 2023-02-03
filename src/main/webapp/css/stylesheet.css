@@ -4,8 +4,11 @@
 	top: 50%;
 	left: 50%;
 	margin-right: -50%;
+	padding-bottom: 200px;
 	transform: translate(-50%, -50%);
 }
+
+
 
 /*********** header, logo, & navigation ***********/
 #header {
@@ -86,6 +89,8 @@
 	display: block;
 	position: fixed;
 	bottom: 0;
+	
+	
 }
 
 #footer-content {
@@ -97,6 +102,7 @@
 	grid-template-columns: auto auto auto;
 	grid-area: auto;
 	text-align: center;
+	
 }
 
 .footer-column {
@@ -136,11 +142,14 @@
 }
 
 /*********** body ***********/
+
 body {
 	margin: 0px;
+	padding:0px;
 	font-family: Verdana, Arial;
 	background-color: #efebe5;
 	position: relative;
+	
 }
 
 .center {
@@ -193,4 +202,49 @@ button:hover {
 	column-count: 2;
 	column-gap: 50px;
 	display: flex;
+}
+
+.room_img {
+	width: 200px;
+	height: auto;
+}
+
+#room-gallery {
+	display: grid;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 10px;
+	grid-template-columns: auto auto auto auto;
+	margin: 3%;
+}
+.room-gallery-item {
+	text-align: center;
+}
+
+.amenity_img {
+	width: 250px;
+	height: auto;
+}
+
+#amenity-gallery {
+	display: grid;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 10px;
+	grid-template-columns: auto auto auto;
+	margin: 3%;
+	
+}
+.amenity-gallery-item {
+	text-align: center;
+}
+
+
+
+
+
+.gallery-title {
+	color:#623e2a;
+	font-size: 12px;
+	
 }
