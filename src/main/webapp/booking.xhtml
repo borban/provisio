@@ -4,7 +4,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets" 
-    
+    xmlns:p="http://primefaces.org/ui"
 >
 	
    <ui:define name="title">Provisio - Booking</ui:define>
@@ -178,215 +178,50 @@
 				</div>
 				</div>
 				</div>
-				<a href="#header" class="top">Back to top</a>
+				
 
 
-<!--
+			
 			<h:form id="bookingForm">
 
-				<f:panel header="Booking Form" style="margin-bottom:10px;">
+				<h:panelGrid header="Booking Form" style="margin-bottom:10px;">
 					<h:panelGrid columns="2" cellpadding="5">
-						<f:outputLabel for="Location" value="Location: " />
-						<<f:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}" 
+						<h:outputLabel for="Location" value="Location: " />
+						<h:selectOneMenu id="Location" value="#{reservationBean.reservation.hotelCode}" 
 							style="width:150px">
-							<f:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
+							
 							<f:selectItem itemLabel="Select Location" itemValue=""
 								noSelectionOption="true" />
-							<f:selectItems value="#{BookingBean.hotel.Names}" />
-						</f:selectOneMenu>
+							<f:selectItems value="#{reservationBean.locationValue}" />
+						</h:selectOneMenu>
+						 
+						<h:outputLabel for="CheckInDate" value="Check-In Date: "/>
+						<p:datepicker id="CheckInDate" value="#{calendarView.date7}" showIcon="true"/>
 						
-						<f:outputLabel for="CheckInDate" value="Check-In Date: "/>
-						<f:datePicker id="CheckInDate" value="#{calendarView.date7}" showIcon="true"/>
+						<h:outputLabel for="CheckOutDate" value="Check-In Date: "/>
+						<p:datePicker id="CheckOutDate" value="#{calendarView.date7}" showIcon="true"/>
 						
-						<f:outputLabel for="CheckOutDate" value="Check-In Date: "/>
-						<f:datePicker id="CheckOutDate" value="#{calendarView.date7}" showIcon="true"/>
 						
-						<f:outputLabel for="@next" value="Horizontal"/>
-						<f:spinner id="horizontal" value="#{spinnerView.number8}" buttons="horizontal" /> 
 						
-						<f:outputLabel for="Location" value="Location: " />
-						<f:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}"
-							style="width:150px">
-							<f:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
-							<f:selectItem itemLabel="Select Location" itemValue=""
-								noSelectionOption="true" />
-							<f:selectItems value="#{BookingBean.hotel.Names}" />
-						</f:selectOneMenu>
 
-					<f:selectManyCheckbox id="basic"
-						value="#{checkboxView.selectedOptions}">
-						<f:selectItem itemLabel="Option 1" itemValue="WI-FI $12.99 flat fee" />
-						<f:selectItem itemLabel="Option 2" itemValue="Breakfast $8.99 per night" />
-						<f:selectItem itemLabel="Option 3" itemValue="Parking $19.99 per night" />
-					</f:selectManyCheckbox>
+					<h:selectManyCheckbox id="basic"
+						value="#{reservationBean.resAmArray}">
+						<f:selectItem itemLabel="WI-FI $12.99 flat fee" itemValue="1" />
+						<f:selectItem itemLabel="Breakfast $8.99 per night" itemValue="2" />
+						<f:selectItem itemLabel="Parking $19.99 per night" itemValue="3" />
+					</h:selectManyCheckbox>
 
-					<f:divider />
+					<p:divider />
 					</h:panelGrid>
 
-					<f:commandButton value="Submit" update="msgs"
-						action="#{basicView.displayLocation}" icon="pi pi-check">
-				</f:panel>
+					<h:commandButton value="Submit" update="msgs"
+						action="#{reservationBean.reservation}" icon="pi pi-check" />
+				</h:panelGrid>
+				<a href="#header" class="top">Back to top</a>
 			</h:form>
-			-->
-
+			
+			
    
-<!--
-    <ui:define name="content">
-    <div class="container">
-		 <h1 style="color:#623e2a;" >Book Your Vacation</h1>
-		 <h2 style="color:#623e2a; text-align:left;">Room Accommodations</h2>
-		 <div>
-		 <div id="room-gallery">
-		
-			<div class="room-gallery-item">
-				<img class ="room_img" src="images/Reservation_Room_Double_Full_Beds.jpg" alt=""></img>
-				<h5 class="gallery-title">Double Full Beds</h5>
-				
-			</div>
-        
-			<div class="room-gallery-item">
-				<img class ="room_img" src="images/Reservation_Room_Queen_Suite.jpg" alt=""></img>
-				<h5 class="gallery-title">Queen Suite</h5>
-			</div>
-        
-			<div class="room-gallery-item">
-				<img class ="room_img" src="images/Reservation_Room_Double_Queen_Beds.jpg" alt=""></img>
-				<h5 class="gallery-title">Double Queen Beds</h5>
-			</div>
-			
-			<div class="room-gallery-item">
-				<img class ="room_img" src="images/Reservation_Room_King_Suite.jpg" alt=""></img>
-				<h5 class="gallery-title">King Suite</h5>
-			</div>
-			
-	   	</div>
-	   	</div>
-		<h3 style="color:#623e2a;">Pricing:</h3>
-		<h4 style="color:#623e2a;">1-2 Guests: $115/night</h4>
-		<h4 style="color:#623e2a;">3-5 Guests: $150/night</h4>
-		
-		<h2 style="color:#623e2a; text-align:left;">Amenities</h2>
-		<div>
-		<div id="amenity-gallery">
-		
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_1.jpg" alt=""></img>
-				<h5 class="gallery-title">Toiletries</h5>
-				
-			</div>
-        
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_2.jpg" alt=""></img>
-				<h5 class="gallery-title">Bath Tub</h5>
-			</div>
-        
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_3.jpg" alt=""></img>
-				<h5 class="gallery-title">Robes</h5>
-			</div>
-			
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_4.jpg" alt=""></img>
-				<h5 class="gallery-title">Spa</h5>
-			</div>
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_5.jpg" alt=""></img>
-				<h5 class="gallery-title">Swimming Pool</h5>
-			</div>
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_6.jpg" alt=""></img>
-				<h5 class="gallery-title">Fresh Towels</h5>
-			</div>
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_7.jpg" alt=""></img>
-				<h5 class="gallery-title">Fitness Center</h5>
-			</div>
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_8.jpg" alt=""></img>
-				<h5 class="gallery-title">Conference Rooms</h5>
-			</div>
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_9.jpg" alt=""></img>
-				<h5 class="gallery-title">Reception Room</h5>
-				<h5 class="gallery-title">(Contact Hotel to Reserve)</h5>
-			</div>
-		</div>	
-	   	</div>
-	   	<h2 style="color:#623e2a; text-align:left;">Add-on Amenities</h2>
-	   	<div>
-		<div id="amenity-gallery">
-		
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_10.jpg" alt=""></img>
-				<h5 class="gallery-title">Wi-Fi</h5>
-				<h5 class="gallery-title">$12.99 Flat Fee</h5>
-				
-			</div>
-        
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_11.jpg" alt=""></img>
-				<h5 class="gallery-title">Breakfast</h5>
-				<h5 class="gallery-title">$8.99 Per Night</h5>
-			</div>
-        
-			<div class="amenity-gallery-item">
-				<img class ="amenity_img" src="images/Amenities_12.jpg" alt=""></img>
-				<h5 class="gallery-title">Parking</h5>
-				<h5 class="gallery-title">$19.99 Per Night</h5>
-			</div>
-			
-			
-		</div>	
-	   	</div>
-		
-		
-			<h:form id="reservationForm">
-				<table>
-					<tr>
-						<td><h:outputText value="Location" /></td>
-						<td><h:selectOneMenu id="hotelCode" value="#{reservationBean.reservation.hotelCode}"
-								required="true" label="location"
-								title="Location is required">
-								<f:selectItems value="#{reservationBean.locationValue}" />
-								
-							</h:selectOneMenu></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><h:outputText value="Check In Date" /></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><h:outputText value="Check Out Date" /></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><h:outputText value="Number Of Guests" /></td>
-						<td></td>
-						<td></td>
 
-					</tr>
-					<tr>
-						<td><h:outputText value="Room Size" /></td>
-						<td><h:selectOneMenu id="roomId" value="#{reservationBean.reservation.roomId}"
-								required="true" label="room"
-								title="Room Size is required">
-								<f:selectItems value="#{reservationBean.roomValue}" />
-								
-							</h:selectOneMenu></td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td colspan='2' height='50'><h:commandButton value="Submit" style="color:black; height: 30px; width:300px; margin-top:20px;" 
-								action="#{reservationBean.reservation}" /></td>
-					</tr>
-				</table>
-			</h:form>
-		
-		
-		
-	</div> -->
     </ui:define>
 </ui:composition>

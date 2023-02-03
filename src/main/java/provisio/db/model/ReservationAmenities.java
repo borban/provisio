@@ -2,7 +2,7 @@ package provisio.db.model;
 
 public class ReservationAmenities {
 	private Long resAmenityId;
-	private Long amenityId;
+	private String amenityId;
 	private Long reservationId;
 	private Long quantity;
 	
@@ -12,10 +12,10 @@ public class ReservationAmenities {
 	public void setResAmenityId(Long resAmenityId) {
 		this.resAmenityId = resAmenityId;
 	}
-	public Long getAmenityId() {
+	public String getAmenityId() {
 		return amenityId;
 	}
-	public void setAmenityId(Long amenityId) {
+	public void setAmenityId(String amenityId) {
 		this.amenityId = amenityId;
 	}
 	public Long getReservationId() {

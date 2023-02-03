@@ -67,9 +67,6 @@ figure {
   box-sizing: border-box;
 }
 
-#amenityAdd-gallery {
-	margin-bottom: 300px;
-}
 
 
 #amenities {
@@ -96,8 +93,14 @@ figure {
 .top {
     margin-top: 5%;
     text-decoration: none;
+    text-align: center;
     padding: 10px;
     font-family: sans-serif;
     color: black;
     font-size: 20pt;
+    
+  }
+  
+  #bookingForm {
+  	margin-bottom: 300px;
   }

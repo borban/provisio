@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import provisio.db.model.Reservation;
+import provisio.db.model.ReservationAmenities;
 
 
 public class ReservationDao {
@@ -24,6 +25,7 @@ public class ReservationDao {
 		int i = 0;
 		if (res.getReservationId() != null) {
 			PreparedStatement ps = null;
+			
 			Connection conn = null;
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -42,7 +44,9 @@ public class ReservationDao {
 					ps.setBigDecimal(9, res.getAmountDue());
 					ps.setString(10, res.getLoyaltyPointsEarned());
 					i = ps.executeUpdate();
-					System.out.println("Data Added Successfully");
+					System.out.println("Reservation Added Successfully");
+					
+					
 				}
 			}catch (SQLException e) {
 				System.out.println(e);
@@ -58,6 +62,47 @@ public class ReservationDao {
 		return i > 0;
 			
 	}
+	
+	public boolean addReservationAmenities(ReservationAmenities resAm) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		int i = 0;
+		if (resAm.getReservationId() != null) {
+			
+			PreparedStatement ps1 = null;
+			Connection conn = null;
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+				}
+				String sql2 = "INSERT INTO RESERVATION_AMENTITIES(Reservation_Amenity_Id, Amenity_Id, Reservation_Id, Quanity) VALUES(?,?,?,?)";
+				ps1 = conn.prepareStatement(sql2);
+				ps1.setLong(1,resAm.getResAmenityId());
+				ps1.setString(2, resAm.getAmenityId());
+				ps1.setLong(3, resAm.getReservationId());
+				ps1.setLong(4, resAm.getQuantity());
+				i = ps1.executeUpdate();
+				System.out.println("Reservation_Amenities Added Successfully");
+			
+			}
+			catch (SQLException e) {
+				System.out.println(e);
+			}finally {
+				try {
+					conn.close();
+					ps1.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+	}
+	return i > 0;
+		
+	}
+	
 	public Reservation getCustomerReservation(int reservationId) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

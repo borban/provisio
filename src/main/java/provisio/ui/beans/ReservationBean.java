@@ -4,45 +4,60 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import provisio.db.dao.ReservationDao;
-import provisio.db.model.Reservation;
+import provisio.db.model.*;
 
 @ManagedBean(name = "reservationBean")
-@RequestScoped
+@SessionScoped
 public class ReservationBean {
-	public Reservation res = new Reservation();
-	private ReservationDao resDao = new ReservationDao();
+	public Reservation reservation = new Reservation();
+	private ReservationDao reservationDao = new ReservationDao();
+	public ReservationAmenities reservationAmenities = new ReservationAmenities();
+	public String[] resAmArray;
 	
-
 	public String reservation() {
-		Reservation dbCustomerReservation = resDao.getCustomerReservation(res.getReservationId());
-		if(!doesExist(dbCustomerReservation)) {
-			if (resDao.addReservation(res)) {
-			return "successful_Reservation";
+		for(int i = 0; i < resAmArray.length; i++) {
+			reservationAmenities.setAmenityId(resAmArray[i]);
 			}
-			else {
-			return "unsuccessful_Reservation";
+		if(reservationDao.addReservation(getReservation())) {
+			System.out.println("Reservation Added");
+		}else {
+			System.out.println("Reservation insert failed");
+			return "Reservation insert failed";
 		}
+		if(reservationDao.addReservationAmenities(getReservationAmenities())) {
+			System.out.println("Reservation_Amenities Added");
+		}else {
+			System.out.println("Reservation_Amenities insert failed");
+			return "Reservation_Amenities insert failed";
 		}
-		return "unsuccessful_Reservation";
+		System.out.println("Successful Reservation");
+		return "Successful Reservation";
 	}
 	
-	private boolean doesExist(Reservation dbCustomerReservation) {
-		if (dbCustomerReservation.getReservationId() != 0) {
-			return res.getReservationId().equals(dbCustomerReservation.getReservationId());
-		}
-		// TODO Auto-generated method stub
-		return false;
-		}
-
+	public String[] getResAmArray() {
+		return resAmArray;
+	}
+	public void setResAmArray(String[] resAmArray) {
+		this.resAmArray= resAmArray;
+	}
 	public Reservation getReservation() {
-		return res;
+		return reservation;
 	}
 
 	public void setReservation(Reservation res) {
-		this.res = res;
+		this.reservation = res;
+	}
+	
+	
+	
+	public ReservationAmenities getReservationAmenities() {
+		return reservationAmenities;
+	} 
+	public void setReservationAmenities(ReservationAmenities resAm) {
+		this.reservationAmenities = resAm;
 	}
 	
 	//Generate Locations Map
