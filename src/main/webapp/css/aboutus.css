@@ -1,0 +1,45 @@
+.main-nav{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 20px;
+    
+}
+
+.main-nav img{
+    max-width: 100px;
+    height: auto;
+}
+
+.main-nav ul{
+    display: flex;
+    flex-direction: row;
+    background-color: #f4f1ed;
+    list-style: none;
+   
+    justify-content: space-around;
+    padding: 0px 10px;
+
+}
+
+.main-nav a{
+    text-decoration: none;
+    color: #623e2a;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+main{
+    padding: 80px;
+    background-color: #f4f1ed;
+}
+
+footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
