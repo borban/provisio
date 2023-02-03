@@ -19,3 +19,113 @@ img {
 #content-wrap {
   padding-bottom: 2.5rem;   
 }
+
+
+
+
+
+
+
+
+h2 {
+	margin-top: 8%; 
+	text-align: center;
+	color: #623e2a;
+}
+
+h3 {
+	margin-top: 2%;
+	margin-left: 5%;
+}
+
+.card {
+    background-color: #efebe5;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: fit-content;
+    margin:5px;
+}
+
+.card-title {
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Oswald', Verdana, Arial, sans-serif;
+    text-align: center;
+    font-size: 12pt;
+    color: black;
+}
+
+.card-content {
+    padding: 2px 2px;
+
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+}
+
+.roomImg {
+    width: 300px;
+    height: auto;
+    display: flex;
+    margin: auto;
+    text-align: center;
+    align-content: center;
+}
+
+
+figure {
+    text-align: center;
+}
+
+#rooms {
+	margin-left: auto;
+	margin-right: auto;
+    background-color:#efebe5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-area: auto;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#amenity-gallery {
+	margin-bottom: 500px;
+}
+
+
+#amenities {
+    margin-left: auto;
+	margin-right: auto;
+    background-color:#efebe5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-area: auto;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.amenityImg {
+    width: 300px;
+    height: auto;
+    display: flex;
+    text-align: center;
+    align-content: center;
+}
+
+.top {
+    margin-top: 5%;
+    text-decoration: none;
+    padding: 10px;
+    font-family: sans-serif;
+    color: black;
+    font-size: 20pt;
+  }
