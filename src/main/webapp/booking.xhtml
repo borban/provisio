@@ -184,48 +184,48 @@
 <!--
 			<h:form id="bookingForm">
 
-				<f:panel header="Booking Form" style="margin-bottom:10px;">
+				<p:panel header="Booking Form" style="margin-bottom:10px;">
 					<h:panelGrid columns="2" cellpadding="5">
-						<f:outputLabel for="Location" value="Location: " />
-						<<f:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}" 
+						<p:outputLabel for="Location" value="Location: " />
+						<p:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}" 
 							style="width:150px">
-							<f:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
+							<p:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
 							<f:selectItem itemLabel="Select Location" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{BookingBean.hotel.Names}" />
-						</f:selectOneMenu>
+						</p:selectOneMenu>
 						
-						<f:outputLabel for="CheckInDate" value="Check-In Date: "/>
-						<f:datePicker id="CheckInDate" value="#{calendarView.date7}" showIcon="true"/>
+						<p:outputLabel for="CheckInDate" value="Check-In Date: "/>
+						<p:datePicker id="CheckInDate" value="#{calendarView.date7}" showIcon="true"/>
 						
-						<f:outputLabel for="CheckOutDate" value="Check-In Date: "/>
-						<f:datePicker id="CheckOutDate" value="#{calendarView.date7}" showIcon="true"/>
+						<p:outputLabel for="CheckOutDate" value="Check-In Date: "/>
+						<p:datePicker id="CheckOutDate" value="#{calendarView.date7}" showIcon="true"/>
 						
-						<f:outputLabel for="@next" value="Horizontal"/>
-						<f:spinner id="horizontal" value="#{spinnerView.number8}" buttons="horizontal" /> 
+						<p:outputLabel for="@next" value="Horizontal"/>
+						<p:spinner id="horizontal" value="#{spinnerView.number8}" buttons="horizontal" /> 
 						
-						<f:outputLabel for="Location" value="Location: " />
-						<f:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}"
+						<p:outputLabel for="Location" value="Location: " />
+						<p:selectOneMenu id="Location" value="#{BookingBean.hotel.Name}"
 							style="width:150px">
-							<f:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
+							<p:ajax listener="#{BookingBean.hotel.onNameChange}" update="Location" />
 							<f:selectItem itemLabel="Select Location" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{BookingBean.hotel.Names}" />
-						</f:selectOneMenu>
+						</p:selectOneMenu>
 
-					<f:selectManyCheckbox id="basic"
+					<p:selectManyCheckbox id="basic"
 						value="#{checkboxView.selectedOptions}">
 						<f:selectItem itemLabel="Option 1" itemValue="WI-FI $12.99 flat fee" />
 						<f:selectItem itemLabel="Option 2" itemValue="Breakfast $8.99 per night" />
 						<f:selectItem itemLabel="Option 3" itemValue="Parking $19.99 per night" />
-					</f:selectManyCheckbox>
+					</p:selectManyCheckbox>
 
 					<f:divider />
 					</h:panelGrid>
 
-					<f:commandButton value="Submit" update="msgs"
+					<p:commandButton value="Submit" update="msgs"
 						action="#{basicView.displayLocation}" icon="pi pi-check">
-				</f:panel>
+				</p:panel>
 			</h:form>
 			-->
 
