@@ -16,7 +16,7 @@ import provisio.db.dao.ReservationDao;
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
 
-@ManagedBean(name = "reservationBean")
+@ManagedBean(name = "reservationBean", eager=true)
 @ViewScoped
 public class ReservationBean {
 	public Reservation reservation = new Reservation();
@@ -28,6 +28,7 @@ public class ReservationBean {
 	private static Map<String, Object> locationValue;
 	private static Map<String, Object> roomValue;
 	private static Map<String, Object> numOfGuestsValue;
+	public String reservationEmail;
 
 	public String bookReservation() {
 		setupReservation();
@@ -182,4 +183,11 @@ public class ReservationBean {
 		this.reservationCheckOutDate = reservationCheckOutDate;
 	}
 
+	public String getReservationEmail() {
+		return reservationEmail;
+	}
+
+	public void setReservationEmail(String reservationEmail) {
+		this.reservationEmail = reservationEmail;
+	}
 }

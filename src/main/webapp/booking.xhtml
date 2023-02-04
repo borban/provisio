@@ -204,53 +204,66 @@
 					<td><h:outputLabel for="Location" value="Location: " /></td>
 					<td><h:selectOneMenu id="Location"
 							value="#{reservationBean.reservation.hotelCode}"
-							style="width:150px">
+							style="width:150px" required="true">
 							<f:selectItem itemLabel="Select Location" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.locationValue}" />
 						</h:selectOneMenu></td>
+						<td><h:message id="locationMsg" for="Location" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="CheckInDate" value="Check-In Date: " /></td>
-					<td><p:datePicker id="CheckInDate"
-							value="#{reservationBean.reservationCheckInDate}" showIcon="true" /></td>
+					<td><h:outputLabel for="CheckInDatePicker" value="Check-In Date: " /></td>
+					<td><p:datePicker id="CheckInDatePicker"
+							value="#{reservationBean.reservationCheckInDate}" showIcon="true" required="true"/></td>
+							<td><h:message id="checkInDateMsg" for="CheckInDatePicker" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="CheckOutDate" value="Check-Out Date: " /></td>
-					<td><p:datePicker id="CheckOutDate"
+					<td><h:outputLabel for="CheckOutDatePicker" value="Check-Out Date: " /></td>
+					<td><p:datePicker id="CheckOutDatePicker"
 							value="#{reservationBean.reservationCheckOutDate}"
-							showIcon="true" /></td>
+							showIcon="true" required="true"/></td>
+							<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="numberOfGuests" value="Number of Guests: " /></td>
+					<td><h:outputLabel for="numberOfGuests"
+							value="Number of Guests: " /></td>
 					<td><h:selectOneMenu id="numberOfGuests"
 							value="#{reservationBean.reservation.numberOfGuests}"
-							style="width:150px">
+							style="width:150px" required="true">
 							<f:selectItem itemLabel="Select Number of Guests" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.numOfGuestsValue}" />
 						</h:selectOneMenu></td>
+						<td><h:message id="numberOfGuestsMsg" for="numberOfGuests" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
 					<td><h:selectOneMenu id="roomSizeSelection"
-							value="#{reservationBean.reservation.roomId}"
-							style="width:150px">
+							value="#{reservationBean.reservation.roomId}" style="width:150px" required="true">
 							<f:selectItem itemLabel="Select Room Size" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.roomValue}" />
 						</h:selectOneMenu></td>
+						<td><h:message id="roomSizeSelectionMsg" for="roomSizeSelection" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="AddOnAmenities"
+					<td><h:outputLabel for="addOnAemnities"
 							value="Add On Amenities: " /></td>
-					<td><h:selectManyCheckbox id="basic"
+					<td><h:selectManyCheckbox id="addOnAemnities"
 							value="#{reservationBean.resAmArray}">
 							<br></br>
 							<f:selectItem itemLabel="WI-FI $12.99 flat fee" itemValue="1" />
 							<f:selectItem itemLabel="Breakfast $8.99 per night" itemValue="2" />
 							<f:selectItem itemLabel="Parking $19.99 per night" itemValue="3" />
 						</h:selectManyCheckbox></td>
+						<td><h:message id="addOnAemnitiesMsg" for="addOnAemnities" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Email:" /></td>
+					<td><h:inputText id="reservationEmail"
+							value="#{reservationBean.reservationEmail}" required="true"
+							label="reservationEmail" title="Your email is required" /></td>
+					<td><h:message id="reservationEmailMsg" for="reservationEmail" /></td>
 				</tr>
 				<tr>
 					<td height='50'><h:commandButton value="Book Reservation"
