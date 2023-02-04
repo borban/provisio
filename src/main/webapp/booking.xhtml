@@ -239,14 +239,10 @@
 				<tr>
 					<td><h:outputLabel for="numberOfNights"
 							value="Number of Nights: " /></td>
-					<td><h:selectOneMenu id="numberOfNights"
-							value="#{reservationBean.reservation.numberOfNights}"
-							style="width:150px" required="true">
-							<f:selectItem itemLabel="Select Number of Nights" itemValue=""
-								noSelectionOption="true" />
-							<f:selectItems value="#{reservationBean.numOfNightsValue}" />
-						</h:selectOneMenu></td>
-						<td><h:message id="numberOfNightsMsg" for="numberOfNights" /></td>
+					<td><h:inputText id="numOfNightsInput"
+							value="#{reservationBean.reservation.numberOfNights}" required="true"
+							label="numOfNightsInput" title="Your email is required" /></td>
+					<td><h:message id="numOfNightsInputMsg" for="numOfNightsInput" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
@@ -259,16 +255,16 @@
 						<td><h:message id="roomSizeSelectionMsg" for="roomSizeSelection" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="addOnAemnities"
+					<td><h:outputLabel for="addOnAmenities"
 							value="Add On Amenities: " /></td>
-					<td><h:selectManyCheckbox id="addOnAemnities"
+					<td><h:selectManyCheckbox id="addOnAmenities"
 							value="#{reservationBean.resAmArray}">
 							<br></br>
 							<f:selectItem itemLabel="WI-FI $12.99 flat fee" itemValue="1" />
 							<f:selectItem itemLabel="Breakfast $8.99 per night" itemValue="2" />
 							<f:selectItem itemLabel="Parking $19.99 per night" itemValue="3" />
 						</h:selectManyCheckbox></td>
-						<td><h:message id="addOnAemnitiesMsg" for="addOnAemnities" /></td>
+						<td><h:message id="addOnAmenitiesMsg" for="addOnAmenities" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Email:" /></td>
