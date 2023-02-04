@@ -150,4 +150,31 @@ public class ReservationLookupDao {
 
 		return null;
 	}
+	
+	public Integer lookupLastInsertedReservation() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+			PreparedStatement ps = null;
+			Connection conn = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+					String sql = "SELECT Reservation_Id FROM Reservation ORDER BY Reservation_Id DESC LIMIT 1";
+					ps = conn.prepareStatement(sql);
+					rs = ps.executeQuery();
+					if (rs.next()) {
+						return rs.getInt("Reservation_Id");
+					}
+				}
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+
+		return null;
+	}
 }

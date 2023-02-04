@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import provisio.db.model.Reservation;
 import provisio.db.model.ReservationAmenities;
@@ -25,7 +26,6 @@ public class ReservationDao {
 		int i = 0;
 		if (res.getReservationId() == null) {
 			PreparedStatement ps = null;
-			
 			Connection conn = null;
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -44,8 +44,6 @@ public class ReservationDao {
 					ps.setString(9, res.getLoyaltyPointsEarned());
 					i = ps.executeUpdate();
 					System.out.println("Reservation Added Successfully");
-					
-					
 				}
 			}catch (SQLException e) {
 				System.out.println(e);

@@ -10,8 +10,10 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import provisio.db.dao.ReservationDao;
+import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
 
 @ManagedBean(name = "reservationBean")
@@ -29,23 +31,27 @@ public class ReservationBean {
 
 	public String bookReservation() {
 		setupReservation();
-//		for (int i = 0; i < resAmArray.length; i++) {
-//			reservationAmenities.setAmenityId(resAmArray[i]);
-//		}
 		if (reservationDao.addReservation(getReservation())) {
-			System.out.println("Reservation Added");
+			setupDataForSummaryPage();
+			return "reservation-summary?faces-redirect=true";
 		} else {
 			System.out.println("Reservation insert failed");
-			return "Reservation insert failed";
+			return "";
 		}
-//		if (reservationDao.addReservationAmenities(getReservationAmenities())) {
-//			System.out.println("Reservation_Amenities Added");
-//		} else {
-//			System.out.println("Reservation_Amenities insert failed");
-//			return "Reservation_Amenities insert failed";
-//		}
-		System.out.println("Successful Reservation");
-		return "reservation-summary";
+	}
+
+	private void setupDataForSummaryPage() {
+		ReservationLookupDao resLookupDao = new ReservationLookupDao();
+		Integer reservationId = resLookupDao.lookupLastInsertedReservation();
+		Reservation reservationResult = resLookupDao.lookupReservation(new Integer(reservationId), null, null);
+		Hotel reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
+		Integer customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(reservationResult.getCustomerId());
+		String reservationRoomSize = resLookupDao.lookupRoomSize(reservationResult.getRoomId());
+		
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationResult", reservationResult);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationHotel", reservationHotel);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("customerTotalPoints", customerTotalPoints);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationRoomSize", reservationRoomSize);
 	}
 
 	private void setupReservation()
