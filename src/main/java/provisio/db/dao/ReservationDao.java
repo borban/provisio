@@ -23,26 +23,25 @@ public class ReservationDao {
 			e1.printStackTrace();
 		}
 		int i = 0;
-		if (res.getReservationId() != null) {
+		if (res.getReservationId() == null) {
 			PreparedStatement ps = null;
 			
 			Connection conn = null;
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "INSERT INTO RESERVATION(Reservation_Id, Customer_Id, Hotel_Code, Room_Id, Check_In_Date, Check_Out_Date, Number_Of_Nights"
-							+"Number_Of_Guests, Amount_Due, Loyalty_Points_Earned) VALUES(?,?,?,?,?,?,?,?,?,?)";
+					String sql = "INSERT INTO RESERVATION(Customer_Id, Hotel_Code, Room_Id, Check_In_Date, Check_Out_Date, Number_Of_Nights,"
+							+"Number_Of_Guests, Amount_Due, Loyalty_Points_Earned) VALUES(?,?,?,?,?,?,?,?,?)";
 					ps = conn.prepareStatement(sql);
-					ps.setInt(1,0);
-					ps.setInt(2, 0);
-					ps.setInt(3, res.getHotelCode());
-					ps.setInt(4, res.getRoomId());
-					ps.setDate(5, res.getCheckInDate());
-					ps.setDate(6, res.getCheckOutDate());
-					ps.setString(7, res.getNumberOfNights());
-					ps.setString(8, res.getNumberOfGuests());
-					ps.setBigDecimal(9, res.getAmountDue());
-					ps.setString(10, res.getLoyaltyPointsEarned());
+					ps.setInt(1, res.getCustomerId());
+					ps.setInt(2, res.getHotelCode());
+					ps.setInt(3, res.getRoomId());
+					ps.setDate(4, res.getCheckInDate());
+					ps.setDate(5, res.getCheckOutDate());
+					ps.setString(6, res.getNumberOfNights());
+					ps.setString(7, res.getNumberOfGuests());
+					ps.setBigDecimal(8, res.getAmountDue());
+					ps.setString(9, res.getLoyaltyPointsEarned());
 					i = ps.executeUpdate();
 					System.out.println("Reservation Added Successfully");
 					

@@ -11,7 +11,7 @@
 	<ui:define name="content">
 		<link rel="stylesheet" type="text/css" href="css/booking.css" />
 		<div id="top"></div>
-		
+
 		<div id="book-your-vacation">
 			<h1>Book your Vacation</h1>
 		</div>
@@ -213,14 +213,33 @@
 				<tr>
 					<td><h:outputLabel for="CheckInDate" value="Check-In Date: " /></td>
 					<td><p:datePicker id="CheckInDate"
-							value="#{reservationBean.reservation.checkInDate}"
-							showIcon="true" /></td>
+							value="#{reservationBean.reservationCheckInDate}" showIcon="true" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="CheckOutDate" value="Check-Out Date: " /></td>
 					<td><p:datePicker id="CheckOutDate"
-							value="#{reservationBean.reservation.checkOutDate}"
+							value="#{reservationBean.reservationCheckOutDate}"
 							showIcon="true" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="numberOfGuests" value="Number of Guests: " /></td>
+					<td><h:selectOneMenu id="numberOfGuests"
+							value="#{reservationBean.reservation.numberOfGuests}"
+							style="width:150px">
+							<f:selectItem itemLabel="Select Number of Guests" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{reservationBean.numOfGuestsValue}" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
+					<td><h:selectOneMenu id="roomSizeSelection"
+							value="#{reservationBean.reservation.roomId}"
+							style="width:150px">
+							<f:selectItem itemLabel="Select Room Size" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{reservationBean.roomValue}" />
+						</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="AddOnAmenities"
@@ -234,8 +253,7 @@
 						</h:selectManyCheckbox></td>
 				</tr>
 				<tr>
-					<td height='50'><h:commandButton
-							value="Book Reservation"
+					<td height='50'><h:commandButton value="Book Reservation"
 							action="#{reservationBean.bookReservation}"
 							style="color:black; height: 30px; width:300px; margin-top:20px;" /></td>
 				</tr>
