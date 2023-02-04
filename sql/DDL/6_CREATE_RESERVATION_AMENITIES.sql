@@ -6,7 +6,7 @@
 DROP TABLE IF EXISTS provisio.RESERVATION_AMENITIES;
 
 CREATE TABLE provisio.RESERVATION_AMENITIES (
-  Res_Amenity_Id integer(10) NOT NULL,
+  Res_Amenity_Id integer(10) NOT NULL AUTO_INCREMENT,
   Amenity_Id integer(10) NOT NULL,
   Reservation_Id integer(10) NOT NULL,
   Quantity integer(1),

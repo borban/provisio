@@ -41,6 +41,10 @@ public class ReservationBean {
 	private String BREAKFAST_DESCRIPTION = "Breakfast";
 	private String PARKING_DESCRIPTION = "Parking";
 
+	public ReservationBean() {
+
+	}
+
 	public String bookReservation() {
 		setupReservation();
 		if (reservationDao.addReservation(getReservation())) {
@@ -59,8 +63,7 @@ public class ReservationBean {
 		Hotel reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
 		Integer customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(reservationResult.getCustomerId());
 		String reservationRoomSize = resLookupDao.lookupRoomSize(reservationResult.getRoomId());
-		List<ReservationAmenity> reservationAmenities = resLookupDao
-				.lookupReservationAmenities(reservationId);
+		List<ReservationAmenity> reservationAmenities = resLookupDao.lookupReservationAmenities(reservationId);
 		List<String> resAmDescriptions = new ArrayList<>();
 
 		for (ReservationAmenity resAmenity : reservationAmenities) {
