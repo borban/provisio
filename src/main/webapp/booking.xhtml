@@ -1,73 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" 
-    xmlns:p="http://primefaces.org/ui"
->
-	
-   <ui:define name="title">Provisio - Booking</ui:define>
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="content">
-        Provisio - Booking
+	<ui:define name="title">Provisio - Booking</ui:define>
 
-		<link rel="stylesheet" type="text/css" href="css/booking.css"/>
-        <div id="top"></div>
-       <!-- <p:messages id="messages" autoUpdate="true" closable="true" />-->
-                    <!--<p:dataScroller value="#{customerBean.allRoomTypes()}" rowIndexVar="rid" var="roomtype" chunkSize="10">  -->
-        <div id ="book-your-vacation"><h1>Book your Vacation</h1></div>
+	<ui:define name="content">
+		<link rel="stylesheet" type="text/css" href="css/booking.css" />
+		<div id="top"></div>
+		
+		<div id="book-your-vacation">
+			<h1>Book your Vacation</h1>
+		</div>
 
 
-        <div class ="gallery-title"><h4>Room Accommodations</h4></div>
+		<div class="gallery-title">
+			<h4>Room Accommodations</h4>
+		</div>
 		<div id="room-gallery">
-		<div id="rooms">
-		
-			<div class="card">
-				<div class="card-content">
-					<figure>
-						<img class ="roomImg" src="images/Reservation_Room_Double_Full_Beds.jpg"
-							alt="Double Full Beds" />
-					</figure>
-					<div class="card-title">Double Full Beds</div>
-				</div>
-			</div>
-			
-			<div class="card">
-				<div class="card-content">
-					<figure>
-						<img class ="roomImg" src="images/Reservation_Room_Double_Queen_Beds.jpg"
-							alt="Double Queen Beds" />
-					</figure>
-					<div class="card-title">Double Queen Beds</div>
-				</div>
-			</div>
-			
-			<div class="card">
-				<div class="card-content">
-					<figure>
-						<img class ="roomImg" src="images/Reservation_Room_Queen_Suite.jpg"
-							alt="Queen Suite" />
-					</figure>
-					<div class="card-title">Queen Suite</div>
-				</div>
-			</div>
-			
-			<div class="card">
-				<div class="card-content">
-					<figure>
-						<img class ="roomImg" src="images/Reservation_Room_King_Suite.jpg" alt="King Suite" />
-					</figure>
-					<div class="card-title">King Suite</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		
-		<h4 style="color:#623e2a;text-align: center;">Pricing: 1-2 Guests: $115/night and 3-5 Guests: $150/night</h4>
+			<div id="rooms">
 
-        <div class ="gallery-title"><h4>Complimentary Amenities</h4></div>
-		<div class ="amenity-gallery">
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="roomImg"
+								src="images/Reservation_Room_Double_Full_Beds.jpg"
+								alt="Double Full Beds" />
+						</figure>
+						<div class="card-title">Double Full Beds</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="roomImg"
+								src="images/Reservation_Room_Double_Queen_Beds.jpg"
+								alt="Double Queen Beds" />
+						</figure>
+						<div class="card-title">Double Queen Beds</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="roomImg"
+								src="images/Reservation_Room_Queen_Suite.jpg" alt="Queen Suite" />
+						</figure>
+						<div class="card-title">Queen Suite</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-content">
+						<figure>
+							<img class="roomImg" src="images/Reservation_Room_King_Suite.jpg"
+								alt="King Suite" />
+						</figure>
+						<div class="card-title">King Suite</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h4 style="color: #623e2a; text-align: center;">Pricing: 1-2
+			Guests: $115/night and 3-5 Guests: $150/night</h4>
+
+		<div class="gallery-title">
+			<h4>Complimentary Amenities</h4>
+		</div>
+		<div class="amenity-gallery">
 			<div id="amenities">
 
 				<div class="card">
@@ -105,12 +111,12 @@
 						<div class="card-title">Spa</div>
 					</div>
 				</div>
-				</div>
-				</div>
-			
+			</div>
+		</div>
 
 
-          <div class="amenity-gallery">
+
+		<div class="amenity-gallery">
 			<div id="amenities">
 
 				<div class="card">
@@ -149,17 +155,21 @@
 					</div>
 				</div>
 			</div>
-			</div>
-			
-            <div class ="gallery-title"><h4>Add-on Amenities</h4></div>
-            <div id="amenityAdd-gallery">
+		</div>
+
+		<div class="gallery-title">
+			<h4>Add-on Amenities</h4>
+		</div>
+		<div id="amenityAdd-gallery">
 			<div id="amenities">
 				<div class="card">
 					<div class="card-content">
 						<figure>
 							<img class="amenityImg" src="images/Amenities_10.jpg" />
 						</figure>
-						<div class="card-title">WI-FI<br></br>$12.99 Flat Fee</div>
+						<div class="card-title">
+							WI-FI<br></br>$12.99 Flat Fee
+						</div>
 					</div>
 				</div>
 				<div class="card">
@@ -167,7 +177,9 @@
 						<figure>
 							<img class="amenityImg" src="images/Amenities_11.jpg" />
 						</figure>
-						<div class="card-title">Breakfast<br></br>$8.99 Per Night</div>
+						<div class="card-title">
+							Breakfast<br></br>$8.99 Per Night
+						</div>
 					</div>
 				</div>
 				<div class="card">
@@ -175,54 +187,59 @@
 						<figure>
 							<img class="amenityImg" src="images/Amenities_12.jpg" />
 						</figure>
-						<div class="card-title">Parking<br></br>$19.99 Per Night</div>
+						<div class="card-title">
+							Parking<br></br>$19.99 Per Night
+						</div>
 					</div>
 				</div>
-				</div>
-				</div>
+			</div>
+		</div>
 
-
-
-        <div id="bookingFormTitle"><h4>Reservation Form</h4></div>
 		<h:form id="bookingForm">
-			<table>
-
+			<table frame="box" style="padding: 20px;">
 				<tr>
-					<td><h:outputLabel for="Location" value="Location: " />
-					<br></br><h:selectOneMenu id="Location"
+					<th><h2 style="color: #623e2a;">Reservation Form</h2></th>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="Location" value="Location: " /></td>
+					<td><h:selectOneMenu id="Location"
 							value="#{reservationBean.reservation.hotelCode}"
 							style="width:150px">
 							<f:selectItem itemLabel="Select Location" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.locationValue}" />
-						</h:selectOneMenu><br></br></td>
+						</h:selectOneMenu></td>
 				</tr>
-
 				<tr>
-					<td><h:outputLabel for="CheckInDate" value="Check-In Date: " />
-					<br></br><p:datePicker id="CheckInDate"
+					<td><h:outputLabel for="CheckInDate" value="Check-In Date: " /></td>
+					<td><p:datePicker id="CheckInDate"
 							value="#{reservationBean.reservation.checkInDate}"
-							showIcon="true" /><br></br></td>
+							showIcon="true" /></td>
 				</tr>
-
 				<tr>
-					<td><h:outputLabel for="CheckOutDate" value="Check-Out Date: " />
-					<br></br><p:datePicker id="CheckOutDate"
+					<td><h:outputLabel for="CheckOutDate" value="Check-Out Date: " /></td>
+					<td><p:datePicker id="CheckOutDate"
 							value="#{reservationBean.reservation.checkOutDate}"
-							showIcon="true" /><br></br></td>
+							showIcon="true" /></td>
 				</tr>
-
 				<tr>
-					<td>
-                            <h:outputLabel for="AddOnAmenities" value="Add On Amenities: " />				            	
-					        <h:selectManyCheckbox id="basic"
-							value="#{reservationBean.resAmArray}"><br></br>
+					<td><h:outputLabel for="AddOnAmenities"
+							value="Add On Amenities: " /></td>
+					<td><h:selectManyCheckbox id="basic"
+							value="#{reservationBean.resAmArray}">
+							<br></br>
 							<f:selectItem itemLabel="WI-FI $12.99 flat fee" itemValue="1" />
 							<f:selectItem itemLabel="Breakfast $8.99 per night" itemValue="2" />
 							<f:selectItem itemLabel="Parking $19.99 per night" itemValue="3" />
-						</h:selectManyCheckbox><br></br></td>
+						</h:selectManyCheckbox></td>
+				</tr>
+				<tr>
+					<td height='50'><h:commandButton
+							value="Book Reservation"
+							action="#{reservationBean.bookReservation}"
+							style="color:black; height: 30px; width:300px; margin-top:20px;" /></td>
 				</tr>
 			</table>
-			</h:form>
+		</h:form>
 	</ui:define>
 </ui:composition>

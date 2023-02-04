@@ -17,7 +17,7 @@ public class ReservationBean {
 	public ReservationAmenities reservationAmenities = new ReservationAmenities();
 	public String[] resAmArray;
 	
-	public String reservation() {
+	public String bookReservation() {
 		for(int i = 0; i < resAmArray.length; i++) {
 			reservationAmenities.setAmenityId(resAmArray[i]);
 			}
