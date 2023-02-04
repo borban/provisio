@@ -12,6 +12,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import provisio.db.dao.LoginDao;
+import provisio.db.dao.RegisterDao;
 import provisio.db.dao.ReservationDao;
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
@@ -23,8 +25,8 @@ public class ReservationBean {
 	private ReservationDao reservationDao = new ReservationDao();
 	public ReservationAmenities reservationAmenities = new ReservationAmenities();
 	public String[] resAmArray;
-	public java.util.Date reservationCheckInDate = new java.util.Date();
-	public java.util.Date reservationCheckOutDate = new java.util.Date();
+	public java.util.Date reservationCheckInDate = null;
+	public java.util.Date reservationCheckOutDate = null;
 	private static Map<String, Object> locationValue;
 	private static Map<String, Object> roomValue;
 	private static Map<String, Object> numOfGuestsValue;
@@ -57,11 +59,41 @@ public class ReservationBean {
 
 	private void setupReservation()
 	{
+		checkIfExistingCustomer();
 		convertDates();
 		calculateNumOfNights();
 		calculateAmountDue();
 		calculateLoyaltyPointsEarned();
-		reservation.setCustomerId(1);
+	}
+	
+	/**
+	 * Check if customer exists and if not, register their email with generic mock data.
+	 * 
+	 * Once registered, retrieve the ID of the newly created customer and add it to the reservation.
+	 */
+	private void checkIfExistingCustomer()
+	{
+		LoginDao customerDao = new LoginDao();
+		Customer customer = customerDao.getCustomerLogin(reservationEmail);
+		RegisterDao registerDao = new RegisterDao();
+		
+		if(customer.getCustomerId() != null && customer.getCustomerId() > 0)
+		{
+			reservation.setCustomerId(customer.getCustomerId());
+		}
+		else {
+			customer.setEmail(reservationEmail);
+			customer.setFirstName("Not registerd");
+			customer.setLastName("Not registerd");
+			customer.setPassword("None");
+			customer.setTotalLoyaltyPoints(0);
+			customer.setMemberStatus("Active");
+			
+			if(registerDao.addCustomer(customer)) {
+				reservation.setCustomerId(customerDao.getCustomerLogin(reservationEmail).getCustomerId());
+			}
+		}
+		
 	}
 
 	private void convertDates() {
