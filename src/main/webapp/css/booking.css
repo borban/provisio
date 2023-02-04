@@ -1,13 +1,20 @@
+/* IMPORT GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-h2 {
-	margin-top: 8%; 
+#book-your-vacation {
+	margin-top: 150px; 
 	text-align: center;
 	color: #623e2a;
+    margin-bottom: 50px;
+    font-family: 'Playfair Display', serif;
 }
 
-h3 {
+.gallery-title {
 	margin-top: 2%;
 	margin-left: 5%;
+	color: black;
+	font-family: 'Playfair Display', serif;
+	font-size: 20pt;
 }
 
 .card {
@@ -45,7 +52,6 @@ h3 {
     align-content: center;
 }
 
-
 figure {
     text-align: center;
 }
@@ -62,12 +68,6 @@ figure {
     text-align: center;
     flex-wrap: wrap;
 }
-
-* {
-  box-sizing: border-box;
-}
-
-
 
 #amenities {
     margin-left: auto;
@@ -101,6 +101,16 @@ figure {
     
   }
   
+  #bookingFormTitle {
+    margin-top: 5%;
+  	margin-left: 5%;
+  }
+  
   #bookingForm {
+  	margin-left: 5%;
   	margin-bottom: 300px;
   }
+  
+  td{
+    margin: 5px 5px 5px 0px;
+    }
