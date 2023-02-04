@@ -2,9 +2,6 @@ package provisio.ui.beans;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -30,7 +27,10 @@ public class ReservationBean {
 	private static Map<String, Object> locationValue;
 	private static Map<String, Object> roomValue;
 	private static Map<String, Object> numOfGuestsValue;
+	private static Map<String, Object> numOfNightsValue;
 	public String reservationEmail;
+	private static final BigDecimal NIGHTLY_RATE_1 = new BigDecimal(115.00);
+	private static final BigDecimal NIGHTLY_RATE_2 = new BigDecimal(150.00);
 
 	public String bookReservation() {
 		setupReservation();
@@ -61,7 +61,6 @@ public class ReservationBean {
 	{
 		checkIfExistingCustomer();
 		convertDates();
-		calculateNumOfNights();
 		calculateAmountDue();
 		calculateLoyaltyPointsEarned();
 	}
@@ -100,25 +99,17 @@ public class ReservationBean {
 		reservation.setCheckInDate(convertDate(reservationCheckInDate));
 		reservation.setCheckOutDate(convertDate(reservationCheckOutDate));
 	}
-
-	private void calculateNumOfNights() {
-		LocalDate resCheckInLocal = reservationCheckInDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate reservationCheckOutDate = reservationCheckInDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		reservation.setNumberOfNights(String.valueOf(ChronoUnit.DAYS.between(resCheckInLocal,reservationCheckOutDate)));
-	}
 	
 	private void calculateAmountDue() {
 		Long numOfGuests = Long.valueOf(reservation.getNumberOfGuests());
-		BigDecimal rate1 = new BigDecimal(115.00);
-		BigDecimal rate2 = new BigDecimal(150.00);
 		BigDecimal numOfNights = BigDecimal.valueOf(Long.valueOf(reservation.getNumberOfNights()));
 		
 		if(numOfGuests != null && numOfGuests < 3)
 		{
-			reservation.setAmountDue(numOfNights.multiply(rate1));
+			reservation.setAmountDue(numOfNights.multiply(NIGHTLY_RATE_1));
 		}
 		else {
-			reservation.setAmountDue(numOfNights.multiply(rate2));
+			reservation.setAmountDue(numOfNights.multiply(NIGHTLY_RATE_2));
 		}
 		
 	}
@@ -162,6 +153,15 @@ public class ReservationBean {
 		numOfGuestsValue.put("1 - 2 Guests", "1");
 		numOfGuestsValue.put("3 - 5 Guests", "3");
 	}
+	
+	static {
+		numOfNightsValue = new LinkedHashMap<String, Object>();
+		numOfNightsValue.put("One night", "1");
+		numOfNightsValue.put("Two nights", "2");
+		numOfNightsValue.put("Three nights", "3");
+		numOfNightsValue.put("Four nights", "4");
+		numOfNightsValue.put("Five or more nights", "5");
+	}
 
 	public Map<String, Object> getLocationValue() {
 		return locationValue;
@@ -173,6 +173,10 @@ public class ReservationBean {
 	
 	public Map<String, Object> getNumOfGuestsValue() {
 		return numOfGuestsValue;
+	}
+	
+	public Map<String, Object> getNumOfNightsValue() {
+		return numOfNightsValue;
 	}
 
 	public String[] getResAmArray() {

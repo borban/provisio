@@ -237,6 +237,18 @@
 						<td><h:message id="numberOfGuestsMsg" for="numberOfGuests" /></td>
 				</tr>
 				<tr>
+					<td><h:outputLabel for="numberOfNights"
+							value="Number of Nights: " /></td>
+					<td><h:selectOneMenu id="numberOfNights"
+							value="#{reservationBean.reservation.numberOfNights}"
+							style="width:150px" required="true">
+							<f:selectItem itemLabel="Select Number of Nights" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{reservationBean.numOfNightsValue}" />
+						</h:selectOneMenu></td>
+						<td><h:message id="numberOfNightsMsg" for="numberOfNights" /></td>
+				</tr>
+				<tr>
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
 					<td><h:selectOneMenu id="roomSizeSelection"
 							value="#{reservationBean.reservation.roomId}" style="width:150px" required="true">
