@@ -257,9 +257,8 @@
 				<tr>
 					<td><h:outputLabel for="addOnAmenities"
 							value="Add On Amenities: " /></td>
-					<td><h:selectManyCheckbox id="addOnAmenities"
-							value="#{reservationBean.resAmArray}">
-							<br></br>
+					<td><h:selectManyCheckbox id="addOnAmenities" converter="javax.faces.Integer"
+							value="#{reservationBean.resAmenitySelections}">
 							<f:selectItem itemLabel="WI-FI $12.99 flat fee" itemValue="1" />
 							<f:selectItem itemLabel="Breakfast $8.99 per night" itemValue="2" />
 							<f:selectItem itemLabel="Parking $19.99 per night" itemValue="3" />

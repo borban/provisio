@@ -6,9 +6,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import provisio.db.model.Hotel;
-import provisio.db.model.Reservation;
+import provisio.db.model.*;
 
 public class ReservationLookupDao {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
@@ -90,7 +91,7 @@ public class ReservationLookupDao {
 
 		return reservationHotel;
 	}
-	
+
 	public Integer lookupTotalLoyaltyPoints(Integer customerId) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -120,7 +121,7 @@ public class ReservationLookupDao {
 
 		return null;
 	}
-	
+
 	public String lookupRoomSize(Integer roomId) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -135,8 +136,7 @@ public class ReservationLookupDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "SELECT Room_Size FROM Room WHERE Room_Id = "
-							+ roomId;
+					String sql = "SELECT Room_Size FROM Room WHERE Room_Id = " + roomId;
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					if (rs.next()) {
@@ -150,31 +150,62 @@ public class ReservationLookupDao {
 
 		return null;
 	}
-	
+
 	public Integer lookupLastInsertedReservation() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
-			PreparedStatement ps = null;
-			Connection conn = null;
-			ResultSet rs = null;
+		PreparedStatement ps = null;
+		Connection conn = null;
+		ResultSet rs = null;
 
-			try {
-				conn = DriverManager.getConnection(DB_URL, USER, PASS);
-				if (conn != null) {
-					String sql = "SELECT Reservation_Id FROM Reservation ORDER BY Reservation_Id DESC LIMIT 1";
-					ps = conn.prepareStatement(sql);
-					rs = ps.executeQuery();
-					if (rs.next()) {
-						return rs.getInt("Reservation_Id");
-					}
+		try {
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			if (conn != null) {
+				String sql = "SELECT Reservation_Id FROM Reservation ORDER BY Reservation_Id DESC LIMIT 1";
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					return rs.getInt("Reservation_Id");
 				}
-			} catch (SQLException sqle) {
-				sqle.printStackTrace();
 			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
 
 		return null;
+	}
+
+	public List<ReservationAmenity> lookupReservationAmenities(Integer reservationId) {
+		List<ReservationAmenity> resAmList = new ArrayList<ReservationAmenity>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		PreparedStatement ps = null;
+		Connection conn = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			if (conn != null) {
+				String sql = "SELECT Amenity_Id FROM Reservation_Amenities WHERE Reservation_Id=" + reservationId;
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				ReservationAmenity resAm;
+				while (rs.next()) {
+					resAm = new ReservationAmenity();
+					resAm.setAmenityId(rs.getInt("Amenity_Id"));
+					resAmList.add(resAm);
+				}
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+
+		return resAmList;
 	}
 }

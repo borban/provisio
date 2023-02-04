@@ -2,7 +2,9 @@ package provisio.ui.beans;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
@@ -15,13 +17,14 @@ import provisio.db.dao.ReservationDao;
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
 
-@ManagedBean(name = "reservationBean", eager=true)
+@ManagedBean(name = "reservationBean", eager = true)
 @ViewScoped
 public class ReservationBean {
 	public Reservation reservation = new Reservation();
 	private ReservationDao reservationDao = new ReservationDao();
-	public ReservationAmenities reservationAmenities = new ReservationAmenities();
-	public String[] resAmArray;
+	private ReservationLookupDao resLookupDao = new ReservationLookupDao();
+	private LoginDao customerDao = new LoginDao();
+	public Integer[] resAmenitySelections;
 	public java.util.Date reservationCheckInDate = null;
 	public java.util.Date reservationCheckOutDate = null;
 	private static Map<String, Object> locationValue;
@@ -31,11 +34,19 @@ public class ReservationBean {
 	public String reservationEmail;
 	private static final BigDecimal NIGHTLY_RATE_1 = new BigDecimal(115.00);
 	private static final BigDecimal NIGHTLY_RATE_2 = new BigDecimal(150.00);
+	private static final Integer WIFI_AMENITY = 1;
+	private static final Integer BREAKFAST_AMENITY = 2;
+	private static final Integer PAKRING_AMENITY = 3;
+	private String WIFI_DESCRIPTION = "Wi-Fi";
+	private String BREAKFAST_DESCRIPTION = "Breakfast";
+	private String PARKING_DESCRIPTION = "Parking";
 
 	public String bookReservation() {
 		setupReservation();
 		if (reservationDao.addReservation(getReservation())) {
-			setupDataForSummaryPage();
+			Integer reservationId = resLookupDao.lookupLastInsertedReservation();
+			addAmenities(reservationId);
+			setupDataForSummaryPage(reservationId);
 			return "reservation-summary?faces-redirect=true";
 		} else {
 			System.out.println("Reservation insert failed");
@@ -43,81 +54,117 @@ public class ReservationBean {
 		}
 	}
 
-	private void setupDataForSummaryPage() {
-		ReservationLookupDao resLookupDao = new ReservationLookupDao();
-		Integer reservationId = resLookupDao.lookupLastInsertedReservation();
+	private void setupDataForSummaryPage(Integer reservationId) {
 		Reservation reservationResult = resLookupDao.lookupReservation(new Integer(reservationId), null, null);
 		Hotel reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
 		Integer customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(reservationResult.getCustomerId());
 		String reservationRoomSize = resLookupDao.lookupRoomSize(reservationResult.getRoomId());
-		
+		List<ReservationAmenity> reservationAmenities = resLookupDao
+				.lookupReservationAmenities(reservationId);
+		List<String> resAmDescriptions = new ArrayList<>();
+
+		for (ReservationAmenity resAmenity : reservationAmenities) {
+			if (resAmenity.getAmenityId() == 1) {
+				resAmDescriptions.add(WIFI_DESCRIPTION);
+			}
+
+			if (resAmenity.getAmenityId() == 2) {
+				resAmDescriptions.add(BREAKFAST_DESCRIPTION);
+			}
+
+			if (resAmenity.getAmenityId() == 3) {
+				resAmDescriptions.add(PARKING_DESCRIPTION);
+			}
+		}
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationResult", reservationResult);
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationHotel", reservationHotel);
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("customerTotalPoints", customerTotalPoints);
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationRoomSize", reservationRoomSize);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("customerTotalPoints",
+				customerTotalPoints);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationRoomSize",
+				reservationRoomSize);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("resAmDescriptions", resAmDescriptions);
 	}
 
-	private void setupReservation()
-	{
+	private void setupReservation() {
 		checkIfExistingCustomer();
 		convertDates();
 		calculateAmountDue();
 		calculateLoyaltyPointsEarned();
 	}
-	
+
+	private void addAmenities(Integer reservationId) {
+		ReservationAmenity reservationAmenity = new ReservationAmenity();
+
+		for (Integer amenity : resAmenitySelections) {
+			if (WIFI_AMENITY.equals(amenity)) {
+				reservationAmenity.setAmenityId(WIFI_AMENITY);
+				reservationAmenity.setReservationId(reservationId);
+				reservationDao.addReservationAmenity(reservationAmenity);
+			}
+
+			if (BREAKFAST_AMENITY.equals(amenity)) {
+				reservationAmenity.setAmenityId(BREAKFAST_AMENITY);
+				reservationAmenity.setReservationId(reservationId);
+				reservationDao.addReservationAmenity(reservationAmenity);
+			}
+
+			if (PAKRING_AMENITY.equals(amenity)) {
+				reservationAmenity.setAmenityId(PAKRING_AMENITY);
+				reservationAmenity.setReservationId(reservationId);
+				reservationDao.addReservationAmenity(reservationAmenity);
+			}
+		}
+	}
+
 	/**
-	 * Check if customer exists and if not, register their email with generic mock data.
+	 * Check if customer exists and if not, register their email with generic mock
+	 * data.
 	 * 
-	 * Once registered, retrieve the ID of the newly created customer and add it to the reservation.
+	 * Once registered, retrieve the ID of the newly created customer and add it to
+	 * the reservation.
 	 */
-	private void checkIfExistingCustomer()
-	{
-		LoginDao customerDao = new LoginDao();
+	private void checkIfExistingCustomer() {
 		Customer customer = customerDao.getCustomerLogin(reservationEmail);
 		RegisterDao registerDao = new RegisterDao();
-		
-		if(customer.getCustomerId() != null && customer.getCustomerId() > 0)
-		{
+
+		if (customer.getCustomerId() != null && customer.getCustomerId() > 0) {
 			reservation.setCustomerId(customer.getCustomerId());
-		}
-		else {
+		} else {
 			customer.setEmail(reservationEmail);
 			customer.setFirstName("Not registerd");
 			customer.setLastName("Not registerd");
 			customer.setPassword("None");
 			customer.setTotalLoyaltyPoints(0);
 			customer.setMemberStatus("Active");
-			
-			if(registerDao.addCustomer(customer)) {
+
+			if (registerDao.addCustomer(customer)) {
 				reservation.setCustomerId(customerDao.getCustomerLogin(reservationEmail).getCustomerId());
 			}
 		}
-		
+
 	}
 
 	private void convertDates() {
 		reservation.setCheckInDate(convertDate(reservationCheckInDate));
 		reservation.setCheckOutDate(convertDate(reservationCheckOutDate));
 	}
-	
+
 	private void calculateAmountDue() {
 		Long numOfGuests = Long.valueOf(reservation.getNumberOfGuests());
 		BigDecimal numOfNights = BigDecimal.valueOf(Long.valueOf(reservation.getNumberOfNights()));
-		
-		if(numOfGuests != null && numOfGuests < 3)
-		{
+
+		if (numOfGuests != null && numOfGuests < 3) {
 			reservation.setAmountDue(numOfNights.multiply(NIGHTLY_RATE_1));
-		}
-		else {
+		} else {
 			reservation.setAmountDue(numOfNights.multiply(NIGHTLY_RATE_2));
 		}
-		
+
 	}
-	
+
 	private void calculateLoyaltyPointsEarned() {
 		reservation.setLoyaltyPointsEarned("150");
 	}
-	
+
 	private Date convertDate(java.util.Date date) {
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		return sqlDate;
@@ -138,7 +185,7 @@ public class ReservationBean {
 		locationValue.put("Waldorf, MD", 11);
 		locationValue.put("Prior Lake, MN", 12);
 	}
-	
+
 	static {
 		roomValue = new LinkedHashMap<String, Object>();
 		roomValue.put("Double Full Beds", 1);
@@ -147,13 +194,13 @@ public class ReservationBean {
 		roomValue.put("King Suite", 4);
 
 	}
-	
+
 	static {
 		numOfGuestsValue = new LinkedHashMap<String, Object>();
 		numOfGuestsValue.put("1 - 2 Guests", "1");
 		numOfGuestsValue.put("3 - 5 Guests", "3");
 	}
-	
+
 	static {
 		numOfNightsValue = new LinkedHashMap<String, Object>();
 		numOfNightsValue.put("One night", "1");
@@ -170,21 +217,13 @@ public class ReservationBean {
 	public Map<String, Object> getRoomValue() {
 		return roomValue;
 	}
-	
+
 	public Map<String, Object> getNumOfGuestsValue() {
 		return numOfGuestsValue;
 	}
-	
+
 	public Map<String, Object> getNumOfNightsValue() {
 		return numOfNightsValue;
-	}
-
-	public String[] getResAmArray() {
-		return resAmArray;
-	}
-
-	public void setResAmArray(String[] resAmArray) {
-		this.resAmArray = resAmArray;
 	}
 
 	public Reservation getReservation() {
@@ -193,14 +232,6 @@ public class ReservationBean {
 
 	public void setReservation(Reservation res) {
 		this.reservation = res;
-	}
-
-	public ReservationAmenities getReservationAmenities() {
-		return reservationAmenities;
-	}
-
-	public void setReservationAmenities(ReservationAmenities resAm) {
-		this.reservationAmenities = resAm;
 	}
 
 	public java.util.Date getReservationCheckInDate() {
@@ -226,4 +257,13 @@ public class ReservationBean {
 	public void setReservationEmail(String reservationEmail) {
 		this.reservationEmail = reservationEmail;
 	}
+
+	public Integer[] getResAmenitySelections() {
+		return resAmenitySelections;
+	}
+
+	public void setResAmenitySelections(Integer[] resAmenitySelections) {
+		this.resAmenitySelections = resAmenitySelections;
+	}
+
 }

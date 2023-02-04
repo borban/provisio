@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import provisio.db.model.Reservation;
-import provisio.db.model.ReservationAmenities;
+import provisio.db.model.ReservationAmenity;
 
 
 public class ReservationDao {
@@ -60,7 +60,7 @@ public class ReservationDao {
 			
 	}
 	
-	public boolean addReservationAmenities(ReservationAmenities resAm) {
+	public boolean addReservationAmenity(ReservationAmenity resAm) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
@@ -75,12 +75,11 @@ public class ReservationDao {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
 				}
-				String sql2 = "INSERT INTO RESERVATION_AMENTITIES(Reservation_Amenity_Id, Amenity_Id, Reservation_Id, Quanity) VALUES(?,?,?,?)";
-				ps1 = conn.prepareStatement(sql2);
-				ps1.setLong(1,resAm.getResAmenityId());
-				ps1.setString(2, resAm.getAmenityId());
-				ps1.setLong(3, resAm.getReservationId());
-				ps1.setLong(4, resAm.getQuantity());
+				String sql2 = "INSERT INTO reservation_amenities(Amenity_Id, Reservation_Id, Quantity) VALUES(?,?,?)";
+				ps1 = conn.prepareStatement(sql2);;
+				ps1.setInt(1, resAm.getAmenityId());
+				ps1.setInt(2, resAm.getReservationId());
+				ps1.setInt(3, 1);
 				i = ps1.executeUpdate();
 				System.out.println("Reservation_Amenities Added Successfully");
 			

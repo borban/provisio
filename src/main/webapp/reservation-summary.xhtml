@@ -44,6 +44,13 @@
 							<td><h:outputText value="Amount Due: " /></td>
 							<td>#{flash.reservationResult.amountDue}</td>
 						</tr>
+						<tr>
+							<td><h:outputText value="Amenities: " /></td>
+							<ui:repeat value="#{flash.resAmDescriptions}" var="value">
+								<td>#{value}</td>
+								<br/>
+							</ui:repeat>
+						</tr>
 					</table>
 				</h:panelGroup>
 				<h:panelGroup>
@@ -97,12 +104,12 @@
 					</table>
 				</h:panelGroup>
 			</div>
-			<br/><br/>
+			<br />
+			<br />
 			<h:panelGroup>
 				<div class="provisio-row-2">
 					<h:button value="Modify Reservation" styleClass="button" outcome=""></h:button>
-					<h:button value="Cancel Reservation" styleClass="button"
-						outcome=""></h:button>
+					<h:button value="Cancel Reservation" styleClass="button" outcome=""></h:button>
 				</div>
 			</h:panelGroup>
 		</div>
