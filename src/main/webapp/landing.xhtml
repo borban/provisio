@@ -11,18 +11,27 @@
 	</h:head>
 	<ui:include src="/WEB-INF/common/header.xhtml" />
 	<div id="landing-container">
-		<div class="landing-row">
-			<h:button value="Book Now" styleClass="button" outcome="booking"></h:button>
-			<h:button value="Manage Reservations" styleClass="button"
-				outcome="reservation-lookup"></h:button>
-		</div>
-		<br /><br /><br /><br />
+		<h:panelGroup rendered="#{loginBean.customer.customerId != null}">
+			<div class="landing-row">
+				<h:button value="Book Now" styleClass="button" outcome="booking"></h:button>
+				<h:button value="Manage Reservations" styleClass="button"
+					outcome="reservation-lookup"></h:button>
+			</div>
+		</h:panelGroup>
+		<br />
+		<br />
+		<br />
+		<br />
 		<p>WELCOME TO</p>
 		<br />
 		<p id="provisio-title">Provisio</p>
-		<br /><br />
+		<br />
+		<br />
 		<p id="hotel-accomodations">Hotel Accomodations</p>
-		<br /><br /><br /><br />
+		<br />
+		<br />
+		<br />
+		<br />
 		<h:button id="learn-more" value="Learn More" styleClass="button"
 			outcome="about-us"></h:button>
 	</div>
