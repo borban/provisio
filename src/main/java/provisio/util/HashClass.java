@@ -3,6 +3,8 @@ package provisio.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/* Methods used to hash passwords from the registration and login forms */
+
 public class HashClass 
 {
     public static String hashValue(String HASH_THIS)
