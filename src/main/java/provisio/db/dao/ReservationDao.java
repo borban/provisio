@@ -10,6 +10,10 @@ import java.sql.Statement;
 import provisio.db.model.Reservation;
 import provisio.db.model.ReservationAmenity;
 
+/*Methods used to connect to the database, 
+ *add reservation to the database reservation table based on input from the reservation form,
+ *add amenities to the database reservation_amenities table based on reservation form selection,
+ *and get reservation data that was entered into the database reservation table*/
 
 public class ReservationDao {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
