@@ -1,5 +1,8 @@
 package provisio.db.model;
 
+/* Methods used to get and set resAmenityId, amenityId, reservationId, and quantity 
+ * based on amenities selected in the reservation form */
+
 public class ReservationAmenity {
 	private Integer resAmenityId;
 	private Integer amenityId;
