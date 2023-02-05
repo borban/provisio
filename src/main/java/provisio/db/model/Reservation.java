@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
+/* Methods used to get and set reservationID, customerId, hotelCode, roomId, checkInDate, checkOutDate, numberOfNights,
+ * numberOfGuests, amountDue, loyaltyPointsEarned, and amenities based on what was entered in the reservation form. */
+
 public class Reservation {
 	private Integer reservationId;
 	private Integer customerId;
