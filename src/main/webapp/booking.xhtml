@@ -5,7 +5,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
 	<ui:define name="title">Provisio - Booking</ui:define>
 
 	<ui:define name="content">
@@ -209,20 +208,23 @@
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.locationValue}" />
 						</h:selectOneMenu></td>
-						<td><h:message id="locationMsg" for="Location" /></td>
+					<td><h:message id="locationMsg" for="Location" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="CheckInDatePicker" value="Check-In Date: " /></td>
+					<td><h:outputLabel for="CheckInDatePicker"
+							value="Check-In Date: " /></td>
 					<td><p:datePicker id="CheckInDatePicker"
-							value="#{reservationBean.reservationCheckInDate}" showIcon="true" required="true"/></td>
-							<td><h:message id="checkInDateMsg" for="CheckInDatePicker" /></td>
+							value="#{reservationBean.reservationCheckInDate}" showIcon="true"
+							required="true" /></td>
+					<td><h:message id="checkInDateMsg" for="CheckInDatePicker" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="CheckOutDatePicker" value="Check-Out Date: " /></td>
+					<td><h:outputLabel for="CheckOutDatePicker"
+							value="Check-Out Date: " /></td>
 					<td><p:datePicker id="CheckOutDatePicker"
 							value="#{reservationBean.reservationCheckOutDate}"
-							showIcon="true" required="true"/></td>
-							<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
+							showIcon="true" required="true" /></td>
+					<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="numberOfGuests"
@@ -234,43 +236,40 @@
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.numOfGuestsValue}" />
 						</h:selectOneMenu></td>
-						<td><h:message id="numberOfGuestsMsg" for="numberOfGuests" /></td>
+					<td><h:message id="numberOfGuestsMsg" for="numberOfGuests" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="numberOfNights"
 							value="Number of Nights: " /></td>
 					<td><h:inputText id="numOfNightsInput"
-							value="#{reservationBean.reservation.numberOfNights}" required="true"
-							label="numOfNightsInput" title="Your email is required" /></td>
+							value="#{reservationBean.reservation.numberOfNights}"
+							required="true" label="numOfNightsInput"
+							title="Your email is required" /></td>
 					<td><h:message id="numOfNightsInputMsg" for="numOfNightsInput" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
 					<td><h:selectOneMenu id="roomSizeSelection"
-							value="#{reservationBean.reservation.roomId}" style="width:150px" required="true">
+							value="#{reservationBean.reservation.roomId}" style="width:150px"
+							required="true">
 							<f:selectItem itemLabel="Select Room Size" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.roomValue}" />
 						</h:selectOneMenu></td>
-						<td><h:message id="roomSizeSelectionMsg" for="roomSizeSelection" /></td>
+					<td><h:message id="roomSizeSelectionMsg"
+							for="roomSizeSelection" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="addOnAmenities"
 							value="Add On Amenities: " /></td>
-					<td><h:selectManyCheckbox id="addOnAmenities" converter="javax.faces.Integer"
+					<td><h:selectManyCheckbox id="addOnAmenities"
+							converter="javax.faces.Integer"
 							value="#{reservationBean.resAmenitySelections}">
 							<f:selectItem itemLabel="WI-FI $12.99 flat fee" itemValue="1" />
 							<f:selectItem itemLabel="Breakfast $8.99 per night" itemValue="2" />
 							<f:selectItem itemLabel="Parking $19.99 per night" itemValue="3" />
 						</h:selectManyCheckbox></td>
-						<td><h:message id="addOnAmenitiesMsg" for="addOnAmenities" /></td>
-				</tr>
-				<tr>
-					<td><h:outputText value="Email:" /></td>
-					<td><h:inputText id="reservationEmail"
-							value="#{reservationBean.reservationEmail}" required="true"
-							label="reservationEmail" title="Your email is required" /></td>
-					<td><h:message id="reservationEmailMsg" for="reservationEmail" /></td>
+					<td><h:message id="addOnAmenitiesMsg" for="addOnAmenities" /></td>
 				</tr>
 				<tr>
 					<td height='50'><h:commandButton value="Book Reservation"
