@@ -6,6 +6,10 @@ import javax.faces.bean.RequestScoped;
 import provisio.db.dao.RegisterDao;
 import provisio.db.model.Customer;
 
+/* Methods used to validate if customer already exists in db to prevent duplicate registration,
+ * re-direct to success_Registration and unsuccessfule_Registration pages based on validation results,
+ * and get and set customer.*/
+
 @ManagedBean(name = "registerBean")
 @RequestScoped
 public class RegisterBean {
