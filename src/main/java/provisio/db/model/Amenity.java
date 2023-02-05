@@ -2,6 +2,8 @@ package provisio.db.model;
 
 import java.math.BigDecimal;
 
+/* Methods used to get and set AmenityId, Description, and Price from the reservation form */
+
 public class Amenity {
 	private Long amenityId;
 	private String description;
