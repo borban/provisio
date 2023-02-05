@@ -36,7 +36,7 @@ public class ReservationBean {
 	private static final BigDecimal NIGHTLY_RATE_2 = new BigDecimal(150.00);
 	private static final Integer WIFI_AMENITY = 1;
 	private static final Integer BREAKFAST_AMENITY = 2;
-	private static final Integer PAKRING_AMENITY = 3;
+	private static final Integer PARKING_AMENITY = 3;
 	private String WIFI_DESCRIPTION = "Wi-Fi";
 	private String BREAKFAST_DESCRIPTION = "Breakfast";
 	private String PARKING_DESCRIPTION = "Parking";
@@ -111,8 +111,8 @@ public class ReservationBean {
 				reservationDao.addReservationAmenity(reservationAmenity);
 			}
 
-			if (PAKRING_AMENITY.equals(amenity)) {
-				reservationAmenity.setAmenityId(PAKRING_AMENITY);
+			if (PARKING_AMENITY.equals(amenity)) {
+				reservationAmenity.setAmenityId(PARKING_AMENITY);
 				reservationAmenity.setReservationId(reservationId);
 				reservationDao.addReservationAmenity(reservationAmenity);
 			}
