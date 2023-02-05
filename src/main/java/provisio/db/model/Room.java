@@ -1,5 +1,7 @@
 package provisio.db.model;
 
+/* Methods used to get and set roomId, roomSize, and hotelCode based on selection from the reservation form */
+
 public class Room {
 	private Long roomId;
 	private String roomSize;
