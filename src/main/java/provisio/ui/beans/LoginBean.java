@@ -8,6 +8,12 @@ import provisio.db.dao.LoginDao;
 import provisio.db.model.Customer;
 import provisio.util.HashClass;
 
+/*Methods used to get get customer email and password from the login form, 
+ *validate if the email entered exists in the db, 
+ *validate if the password entered is valid, 
+ *redirect to login or login error pages based on validation,
+ *and invalidate session upon logout.*/
+
 @ManagedBean(name = "loginBean", eager = true)
 @SessionScoped
 public class LoginBean {
