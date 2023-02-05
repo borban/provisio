@@ -8,6 +8,10 @@ import java.sql.SQLException;
 
 import provisio.db.model.Customer;
 
+/*Methods used to get customer login data, 
+ *connect to the database, 
+ *and return customer data based on user name entered during login*/
+
 public class LoginDao {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
 	static final String USER = "provisio";
