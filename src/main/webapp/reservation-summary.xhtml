@@ -5,14 +5,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<ui:define name="title">Provisio - Reservation Summary</ui:define>
-
 	<ui:define name="content">
 		<div class="container">
-			<h1 style="color: #623e2a;">Reservation Summary</h1>
-			<br />
-			<h2 style="color: #623e2a;">Reservation ID:
-				#{flash.reservationResult.reservationId}</h2>
-			<br />
+			<h:panelGroup rendered="#{reservationBean.reservation.reservationId != null}">
+				<h1 style="color: #623e2a;">Reservation Summary</h1>
+				<br />
+				<h2 style="color: #623e2a;">Reservation ID:
+					#{reservationBean.reservation.reservationId}</h2>
+				<br />
+			</h:panelGroup>
+
+			<h:panelGroup rendered="#{reservationBean.reservation.reservationId == null}">
+				<h1 style="color: #623e2a;">Reservation Confirmation</h1>
+				<br />
+			</h:panelGroup>
 			<div class="provisio-row-3">
 				<h:panelGroup>
 					<table frame="box" style="padding: 20px; width: 350px;">
@@ -22,35 +28,35 @@
 						</tr>
 						<tr>
 							<td><h:outputText value="Check In Date: " /></td>
-							<td>#{flash.reservationResult.checkInDate}</td>
+							<td>#{reservationBean.reservation.checkInDate}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Check Out Date: " /></td>
-							<td>#{flash.reservationResult.checkOutDate}</td>
+							<td>#{reservationBean.reservation.checkOutDate}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Number of Nights: " /></td>
-							<td>#{flash.reservationResult.numberOfNights}</td>
+							<td>#{reservationBean.reservation.numberOfNights}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Number of Guests: " /></td>
-							<td>#{flash.reservationResult.numberOfGuests}</td>
+							<td>#{reservationBean.reservation.numberOfGuests}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Room Size: " /></td>
-							<td>#{flash.reservationRoomSize}</td>
+							<td>#{reservationBean.reservationRoomSize}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Amount Due: " /></td>
-							<td>#{flash.reservationResult.amountDue}</td>
+							<td>#{reservationBean.reservation.amountDue}</td>
 						</tr>
-						<tr>
-							<td><h:outputText value="Amenities: " /></td>
-							<ui:repeat value="#{flash.resAmDescriptions}" var="value">
-								<td>#{value}</td>
-								<br/>
-							</ui:repeat>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td><h:outputText value="Amenities: " /></td> -->
+<!-- 							<ui:repeat value="#{flash.resAmDescriptions}" var="value"> -->
+<!-- 								<td>#{value}</td> -->
+<!-- 								<br /> -->
+<!-- 							</ui:repeat> -->
+<!-- 						</tr> -->
 					</table>
 				</h:panelGroup>
 				<h:panelGroup>
@@ -60,27 +66,27 @@
 						</tr>
 						<tr>
 							<td><h:outputText value="Name: " /></td>
-							<td>#{flash.reservationHotel.name}</td>
+							<td>#{reservationBean.reservationHotel.name}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Address: " /></td>
-							<td>#{flash.reservationHotel.address}</td>
+							<td>#{reservationBean.reservationHotel.address}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="City: " /></td>
-							<td>#{flash.reservationHotel.city}</td>
+							<td>#{reservationBean.reservationHotel.city}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="State: " /></td>
-							<td>#{flash.reservationHotel.state}</td>
+							<td>#{reservationBean.reservationHotel.state}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Zip: " /></td>
-							<td>#{flash.reservationHotel.zip}</td>
+							<td>#{reservationBean.reservationHotel.zip}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Phone: " /></td>
-							<td>#{flash.reservationHotel.phoneNumber}</td>
+							<td>#{reservationBean.reservationHotel.phoneNumber}</td>
 						</tr>
 					</table>
 				</h:panelGroup>
@@ -91,24 +97,23 @@
 						</tr>
 						<tr>
 							<td><h:outputText value="Customer ID: " /></td>
-							<td>#{flash.reservationResult.customerId}</td>
+							<td>#{reservationBean.customer.customerId}</td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Loyalty Points Earned: " /></td>
-							<td>#{flash.reservationResult.loyaltyPointsEarned}</td>
+							<td>#{reservationBean.reservation.loyaltyPointsEarned}</td>
 						</tr>
-						<tr>
-							<td><h:outputText value="Total Loyalty Points: " /></td>
-							<td>#{flash.customerTotalPoints}</td>
-						</tr>
+												<tr>
+													<td><h:outputText value="Total Loyalty Points: " /></td>
+													<td>#{reservationBean.customerTotalPoints}</td>
+												</tr>
 					</table>
 				</h:panelGroup>
 			</div>
-			<br />
-			<br />
+			<br /> <br />
 			<h:panelGroup>
 				<div class="provisio-row-2">
-					<h:button value="Modify Reservation" styleClass="button" outcome=""></h:button>
+					<h:button value="Submit Reservation" styleClass="button" outcome=""></h:button>
 					<h:button value="Cancel Reservation" styleClass="button" outcome=""></h:button>
 				</div>
 			</h:panelGroup>

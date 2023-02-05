@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -18,8 +20,11 @@ import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
 
 @ManagedBean(name = "reservationBean", eager = true)
-@ViewScoped
+@SessionScoped
 public class ReservationBean {
+	@ManagedProperty(value = "#{loginBean.customer}")
+	Customer customer;
+	
 	public Reservation reservation = new Reservation();
 	private ReservationDao reservationDao = new ReservationDao();
 	private ReservationLookupDao resLookupDao = new ReservationLookupDao();
@@ -40,56 +45,53 @@ public class ReservationBean {
 	private String WIFI_DESCRIPTION = "Wi-Fi";
 	private String BREAKFAST_DESCRIPTION = "Breakfast";
 	private String PARKING_DESCRIPTION = "Parking";
-
+	Hotel reservationHotel;
+	Integer customerTotalPoints;
+	String reservationRoomSize;
+	
 	public ReservationBean() {
 
 	}
 
 	public String bookReservation() {
 		setupReservation();
-		if (reservationDao.addReservation(getReservation())) {
-			Integer reservationId = resLookupDao.lookupLastInsertedReservation();
-			addAmenities(reservationId);
-			setupDataForSummaryPage(reservationId);
-			return "reservation-summary?faces-redirect=true";
-		} else {
-			System.out.println("Reservation insert failed");
-			return "";
-		}
+//		if (reservationDao.addReservation(getReservation())) {
+//			Integer reservationId = resLookupDao.lookupLastInsertedReservation();
+//			addAmenities(reservationId);
+//			setupDataForSummaryPage(reservationId);
+//			return "reservation-summary?faces-redirect=true";
+//		} else {
+//			System.out.println("Reservation insert failed");
+//			return "";
+//		}
+		return "reservation-summary";
 	}
 
 	private void setupDataForSummaryPage(Integer reservationId) {
-		Reservation reservationResult = resLookupDao.lookupReservation(new Integer(reservationId), null, null);
-		Hotel reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
-		Integer customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(reservationResult.getCustomerId());
-		String reservationRoomSize = resLookupDao.lookupRoomSize(reservationResult.getRoomId());
-		List<ReservationAmenity> reservationAmenities = resLookupDao.lookupReservationAmenities(reservationId);
-		List<String> resAmDescriptions = new ArrayList<>();
-
-		for (ReservationAmenity resAmenity : reservationAmenities) {
-			if (resAmenity.getAmenityId() == 1) {
-				resAmDescriptions.add(WIFI_DESCRIPTION);
-			}
-
-			if (resAmenity.getAmenityId() == 2) {
-				resAmDescriptions.add(BREAKFAST_DESCRIPTION);
-			}
-
-			if (resAmenity.getAmenityId() == 3) {
-				resAmDescriptions.add(PARKING_DESCRIPTION);
-			}
-		}
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationResult", reservationResult);
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationHotel", reservationHotel);
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("customerTotalPoints",
-				customerTotalPoints);
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationRoomSize",
-				reservationRoomSize);
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("resAmDescriptions", resAmDescriptions);
+		
+//		List<ReservationAmenity> reservationAmenities = resLookupDao.lookupReservationAmenities(reservationId);
+//		List<String> resAmDescriptions = new ArrayList<>();
+//
+//		for (ReservationAmenity resAmenity : reservationAmenities) {
+//			if (resAmenity.getAmenityId() == 1) {
+//				resAmDescriptions.add(WIFI_DESCRIPTION);
+//			}
+//
+//			if (resAmenity.getAmenityId() == 2) {
+//				resAmDescriptions.add(BREAKFAST_DESCRIPTION);
+//			}
+//
+//			if (resAmenity.getAmenityId() == 3) {
+//				resAmDescriptions.add(PARKING_DESCRIPTION);
+//			}
+		//}
 	}
 
 	private void setupReservation() {
-		checkIfExistingCustomer();
+		
+		reservationHotel = resLookupDao.lookupHotel(reservation.getHotelCode());
+		customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(customer.getCustomerId());
+		reservationRoomSize = resLookupDao.lookupRoomSize(reservation.getRoomId());
 		convertDates();
 		calculateAmountDue();
 		calculateLoyaltyPointsEarned();
@@ -101,50 +103,22 @@ public class ReservationBean {
 		for (Integer amenity : resAmenitySelections) {
 			if (WIFI_AMENITY.equals(amenity)) {
 				reservationAmenity.setAmenityId(WIFI_AMENITY);
-				reservationAmenity.setReservationId(reservationId);
-				reservationDao.addReservationAmenity(reservationAmenity);
+				//reservationAmenity.setReservationId(reservationId);
+				//reservationDao.addReservationAmenity(reservationAmenity);
 			}
 
 			if (BREAKFAST_AMENITY.equals(amenity)) {
 				reservationAmenity.setAmenityId(BREAKFAST_AMENITY);
-				reservationAmenity.setReservationId(reservationId);
-				reservationDao.addReservationAmenity(reservationAmenity);
+				//reservationAmenity.setReservationId(reservationId);
+				//reservationDao.addReservationAmenity(reservationAmenity);
 			}
 
 			if (PAKRING_AMENITY.equals(amenity)) {
 				reservationAmenity.setAmenityId(PAKRING_AMENITY);
-				reservationAmenity.setReservationId(reservationId);
-				reservationDao.addReservationAmenity(reservationAmenity);
+				//reservationAmenity.setReservationId(reservationId);
+				//reservationDao.addReservationAmenity(reservationAmenity);
 			}
 		}
-	}
-
-	/**
-	 * Check if customer exists and if not, register their email with generic mock
-	 * data.
-	 * 
-	 * Once registered, retrieve the ID of the newly created customer and add it to
-	 * the reservation.
-	 */
-	private void checkIfExistingCustomer() {
-		Customer customer = customerDao.getCustomerLogin(reservationEmail);
-		RegisterDao registerDao = new RegisterDao();
-
-		if (customer.getCustomerId() != null && customer.getCustomerId() > 0) {
-			reservation.setCustomerId(customer.getCustomerId());
-		} else {
-			customer.setEmail(reservationEmail);
-			customer.setFirstName("Not registerd");
-			customer.setLastName("Not registerd");
-			customer.setPassword("None");
-			customer.setTotalLoyaltyPoints(0);
-			customer.setMemberStatus("Active");
-
-			if (registerDao.addCustomer(customer)) {
-				reservation.setCustomerId(customerDao.getCustomerLogin(reservationEmail).getCustomerId());
-			}
-		}
-
 	}
 
 	private void convertDates() {
@@ -268,5 +242,39 @@ public class ReservationBean {
 	public void setResAmenitySelections(Integer[] resAmenitySelections) {
 		this.resAmenitySelections = resAmenitySelections;
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Hotel getReservationHotel() {
+		return reservationHotel;
+	}
+
+	public void setReservationHotel(Hotel reservationHotel) {
+		this.reservationHotel = reservationHotel;
+	}
+
+	public Integer getCustomerTotalPoints() {
+		return customerTotalPoints;
+	}
+
+	public void setCustomerTotalPoints(Integer customerTotalPoints) {
+		this.customerTotalPoints = customerTotalPoints;
+	}
+
+	public String getReservationRoomSize() {
+		return reservationRoomSize;
+	}
+
+	public void setReservationRoomSize(String reservationRoomSize) {
+		this.reservationRoomSize = reservationRoomSize;
+	}
+	
+	
 
 }
