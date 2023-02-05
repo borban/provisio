@@ -1,5 +1,7 @@
 package provisio.db.model;
 
+/* Methods used to get and set hotelCode, name, address, city, state, zip, and phoneNumber */
+
 public class Hotel {
 	private Long hotelCode;
 	private String name;
