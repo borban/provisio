@@ -9,6 +9,10 @@ import java.sql.SQLException;
 import provisio.db.model.Customer;
 import provisio.util.HashClass;
 
+/*Methods used to connect to the database, 
+ *add customer to the database customer table based on input from the registration form,
+ *and get customer data that was entered into the database customer table*/
+
 public class RegisterDao {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
 	static final String USER = "provisio";
