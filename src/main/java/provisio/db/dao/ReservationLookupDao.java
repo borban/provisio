@@ -11,6 +11,10 @@ import java.util.List;
 
 import provisio.db.model.*;
 
+/*Methods used to connect to the database, 
+ *look up / query a reservation based on the reservation ID,
+ *look up / query the hotel, room size, amenities, and loyalty points for display to the user*/
+
 public class ReservationLookupDao {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
 	static final String USER = "provisio";
