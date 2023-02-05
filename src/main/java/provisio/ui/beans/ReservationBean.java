@@ -15,6 +15,12 @@ import provisio.db.dao.ReservationDao;
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
 
+/* Methods used to re-direct the customer to the reservation summary page to submit or cancel the reservation,
+ * re-direct the customer back to the reservation page if they click cancel,
+ * calculate amount due and loyalty points,
+ * convert date,
+ * and get and set variable values based on input from the reservation form*/
+
 @ManagedBean(name = "reservationBean", eager = true)
 @SessionScoped
 public class ReservationBean {
