@@ -10,6 +10,10 @@ import javax.faces.context.FacesContext;
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
 
+/* Methods used to get and set variable values based on reservation ID entered in the manage reservation page,
+ * search for reservation,
+ * and re-direct the user to the reservation confirmation page*/
+
 @ManagedBean(name = "reservationLookupBean")
 @ViewScoped
 public class ReservationLookupBean {
