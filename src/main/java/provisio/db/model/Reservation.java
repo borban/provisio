@@ -14,7 +14,7 @@ public class Reservation {
 	private String numberOfNights;
 	private String numberOfGuests;
 	private BigDecimal amountDue;
-	private String loyaltyPointsEarned;
+	private Integer loyaltyPointsEarned;
 	private List<ReservationAmenity> amenities;
 
 	public Integer getReservationId() {
@@ -89,11 +89,11 @@ public class Reservation {
 		this.amountDue = amountDue;
 	}
 
-	public String getLoyaltyPointsEarned() {
+	public Integer getLoyaltyPointsEarned() {
 		return loyaltyPointsEarned;
 	}
 
-	public void setLoyaltyPointsEarned(String loyaltyPointsEarned) {
+	public void setLoyaltyPointsEarned(Integer loyaltyPointsEarned) {
 		this.loyaltyPointsEarned = loyaltyPointsEarned;
 	}
 

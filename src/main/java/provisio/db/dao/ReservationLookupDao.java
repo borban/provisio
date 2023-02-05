@@ -44,7 +44,7 @@ public class ReservationLookupDao {
 						reservation.setNumberOfNights(rs.getString("Number_Of_Nights"));
 						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
-						reservation.setLoyaltyPointsEarned(rs.getString("Loyalty_Points_Earned"));
+						reservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));
 						reservation.setCheckInDate(rs.getDate("Check_In_Date"));
 						reservation.setCheckOutDate(rs.getDate("Check_Out_Date"));
 					}

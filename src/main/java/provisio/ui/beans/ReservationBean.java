@@ -10,11 +10,7 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
-import provisio.db.dao.LoginDao;
-import provisio.db.dao.RegisterDao;
 import provisio.db.dao.ReservationDao;
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
@@ -24,11 +20,10 @@ import provisio.db.model.*;
 public class ReservationBean {
 	@ManagedProperty(value = "#{loginBean.customer}")
 	Customer customer;
-	
+
 	public Reservation reservation = new Reservation();
 	private ReservationDao reservationDao = new ReservationDao();
 	private ReservationLookupDao resLookupDao = new ReservationLookupDao();
-	private LoginDao customerDao = new LoginDao();
 	public Integer[] resAmenitySelections;
 	public java.util.Date reservationCheckInDate = null;
 	public java.util.Date reservationCheckOutDate = null;
@@ -36,7 +31,6 @@ public class ReservationBean {
 	private static Map<String, Object> roomValue;
 	private static Map<String, Object> numOfGuestsValue;
 	private static Map<String, Object> numOfNightsValue;
-	public String reservationEmail;
 	private static final BigDecimal NIGHTLY_RATE_1 = new BigDecimal(115.00);
 	private static final BigDecimal NIGHTLY_RATE_2 = new BigDecimal(150.00);
 	private static final Integer WIFI_AMENITY = 1;
@@ -48,77 +42,87 @@ public class ReservationBean {
 	Hotel reservationHotel;
 	Integer customerTotalPoints;
 	String reservationRoomSize;
-	
-	public ReservationBean() {
+	List<String> resAmDescriptions;
 
+	public ReservationBean() {
 	}
 
-	public String bookReservation() {
+	public String reviewBooking() {
 		setupReservation();
-//		if (reservationDao.addReservation(getReservation())) {
-//			Integer reservationId = resLookupDao.lookupLastInsertedReservation();
-//			addAmenities(reservationId);
-//			setupDataForSummaryPage(reservationId);
-//			return "reservation-summary?faces-redirect=true";
-//		} else {
-//			System.out.println("Reservation insert failed");
-//			return "";
-//		}
 		return "reservation-summary";
 	}
 
-	private void setupDataForSummaryPage(Integer reservationId) {
-		
-//		List<ReservationAmenity> reservationAmenities = resLookupDao.lookupReservationAmenities(reservationId);
-//		List<String> resAmDescriptions = new ArrayList<>();
-//
-//		for (ReservationAmenity resAmenity : reservationAmenities) {
-//			if (resAmenity.getAmenityId() == 1) {
-//				resAmDescriptions.add(WIFI_DESCRIPTION);
-//			}
-//
-//			if (resAmenity.getAmenityId() == 2) {
-//				resAmDescriptions.add(BREAKFAST_DESCRIPTION);
-//			}
-//
-//			if (resAmenity.getAmenityId() == 3) {
-//				resAmDescriptions.add(PARKING_DESCRIPTION);
-//			}
-		//}
+	public String bookReservation() {
+		if (reservationDao.addReservation(getReservation())) {
+			Integer reservationId = resLookupDao.lookupLastInsertedReservation();
+			reservation.setReservationId(reservationId);
+			addAmenities(reservationId);
+			return "reservation-confirmation?faces-redirect=true";
+		} else {
+			System.out.println("Reservation insert failed");
+			return "";
+		}
+	}
+
+	public String cancel() {
+		return "booking?faces-redirect=true";
 	}
 
 	private void setupReservation() {
-		
+		reservation.setCustomerId(customer.getCustomerId());
 		reservationHotel = resLookupDao.lookupHotel(reservation.getHotelCode());
 		customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(customer.getCustomerId());
 		reservationRoomSize = resLookupDao.lookupRoomSize(reservation.getRoomId());
 		convertDates();
 		calculateAmountDue();
 		calculateLoyaltyPointsEarned();
+		populateAmenitiesDescription();
+	}
+
+	private void populateAmenitiesDescription() {
+		resAmDescriptions = new ArrayList<>();
+		for (Integer amenity : resAmenitySelections) {
+			if (WIFI_AMENITY.equals(amenity)) {
+				resAmDescriptions.add(WIFI_DESCRIPTION);
+			}
+
+			if (BREAKFAST_AMENITY.equals(amenity)) {
+				resAmDescriptions.add(BREAKFAST_DESCRIPTION);
+			}
+
+			if (PARKING_AMENITY.equals(amenity)) {
+				resAmDescriptions.add(PARKING_DESCRIPTION);
+			}
+		}
 	}
 
 	private void addAmenities(Integer reservationId) {
 		ReservationAmenity reservationAmenity = new ReservationAmenity();
+		Integer numOfNights = Integer.valueOf(reservation.getNumberOfNights());
+		List<ReservationAmenity> resAm = new ArrayList<>();
 
 		for (Integer amenity : resAmenitySelections) {
 			if (WIFI_AMENITY.equals(amenity)) {
 				reservationAmenity.setAmenityId(WIFI_AMENITY);
-				//reservationAmenity.setReservationId(reservationId);
-				//reservationDao.addReservationAmenity(reservationAmenity);
+				reservationAmenity.setQuantity(1);
 			}
 
 			if (BREAKFAST_AMENITY.equals(amenity)) {
 				reservationAmenity.setAmenityId(BREAKFAST_AMENITY);
-				//reservationAmenity.setReservationId(reservationId);
-				//reservationDao.addReservationAmenity(reservationAmenity);
+				reservationAmenity.setQuantity(numOfNights);
 			}
 
 			if (PARKING_AMENITY.equals(amenity)) {
 				reservationAmenity.setAmenityId(PARKING_AMENITY);
-				//reservationAmenity.setReservationId(reservationId);
-				//reservationDao.addReservationAmenity(reservationAmenity);
+				reservationAmenity.setQuantity(numOfNights);
 			}
+
+			reservationAmenity.setReservationId(reservationId);
+			reservationDao.addReservationAmenity(reservationAmenity);
+			resAm.add(reservationAmenity);
 		}
+		
+		reservation.setAmenities(resAm);
 	}
 
 	private void convertDates() {
@@ -129,17 +133,38 @@ public class ReservationBean {
 	private void calculateAmountDue() {
 		Long numOfGuests = Long.valueOf(reservation.getNumberOfGuests());
 		BigDecimal numOfNights = BigDecimal.valueOf(Long.valueOf(reservation.getNumberOfNights()));
+		BigDecimal roomCost;
+		BigDecimal amenityCost = new BigDecimal(0);
 
 		if (numOfGuests != null && numOfGuests < 3) {
-			reservation.setAmountDue(numOfNights.multiply(NIGHTLY_RATE_1));
+			roomCost = numOfNights.multiply(NIGHTLY_RATE_1);
 		} else {
-			reservation.setAmountDue(numOfNights.multiply(NIGHTLY_RATE_2));
+			roomCost = numOfNights.multiply(NIGHTLY_RATE_2);
 		}
 
+		if (resAmenitySelections != null) {
+			for (Integer amenity : resAmenitySelections) {
+				if (WIFI_AMENITY.equals(amenity)) {
+					amenityCost.add(new BigDecimal(12.99));
+				}
+
+				if (BREAKFAST_AMENITY.equals(amenity)) {
+					amenityCost.add(new BigDecimal(8.99).multiply(numOfNights));
+				}
+
+				if (PARKING_AMENITY.equals(amenity)) {
+					amenityCost.add(new BigDecimal(19.99).multiply(numOfNights));
+				}
+			}
+		}
+
+		reservation.setAmountDue(roomCost.add(amenityCost));
 	}
 
 	private void calculateLoyaltyPointsEarned() {
-		reservation.setLoyaltyPointsEarned("150");
+		Integer numOfNights = Integer.valueOf(reservation.getNumberOfNights());
+		Integer points = numOfNights * 150;
+		reservation.setLoyaltyPointsEarned(points);
 	}
 
 	private Date convertDate(java.util.Date date) {
@@ -227,14 +252,6 @@ public class ReservationBean {
 		this.reservationCheckOutDate = reservationCheckOutDate;
 	}
 
-	public String getReservationEmail() {
-		return reservationEmail;
-	}
-
-	public void setReservationEmail(String reservationEmail) {
-		this.reservationEmail = reservationEmail;
-	}
-
 	public Integer[] getResAmenitySelections() {
 		return resAmenitySelections;
 	}
@@ -274,7 +291,13 @@ public class ReservationBean {
 	public void setReservationRoomSize(String reservationRoomSize) {
 		this.reservationRoomSize = reservationRoomSize;
 	}
-	
-	
+
+	public List<String> getResAmDescriptions() {
+		return resAmDescriptions;
+	}
+
+	public void setResAmDescriptions(List<String> resAmDescriptions) {
+		this.resAmDescriptions = resAmDescriptions;
+	}
 
 }

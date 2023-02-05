@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="title">Provisio - Reservation Summary</ui:define>
+	<ui:define name="content">
+		<div class="container">
+			<h:panelGroup>
+				<h1 style="color: #623e2a;">Reservation Confirmation</h1>
+				<br />
+				<h2 style="color: #623e2a;">Reservation ID:
+					#{reservationBean.reservation.reservationId}</h2>
+				<br />
+			</h:panelGroup>
+			<div class="provisio-row-3">
+				<h:panelGroup>
+					<table frame="box" style="padding: 20px; width: 350px;">
+						<tr>
+							<th><h:outputText style="color: #623e2a;"
+									value="Reservation" /></th>
+						</tr>
+						<tr>
+							<td><h:outputText value="Check In Date: " /></td>
+							<td>#{reservationBean.reservation.checkInDate}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Check Out Date: " /></td>
+							<td>#{reservationBean.reservation.checkOutDate}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Number of Nights: " /></td>
+							<td>#{reservationBean.reservation.numberOfNights}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Number of Guests: " /></td>
+							<td>#{reservationBean.reservation.numberOfGuests}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Room Size: " /></td>
+							<td>#{reservationBean.reservationRoomSize}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Amount Due: " /></td>
+							<td>#{reservationBean.reservation.amountDue}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Amenities: " /></td>
+							<ui:repeat value="#{reservationBean.resAmDescriptions}"
+								var="value">
+								<td>#{value}</td>
+								<br />
+							</ui:repeat>
+						</tr>
+					</table>
+				</h:panelGroup>
+				<h:panelGroup>
+					<table frame="box" style="padding: 20px; width: 350px;">
+						<tr>
+							<th><h:outputText style="color: #623e2a;" value="Hotel" /></th>
+						</tr>
+						<tr>
+							<td><h:outputText value="Name: " /></td>
+							<td>#{reservationBean.reservationHotel.name}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Address: " /></td>
+							<td>#{reservationBean.reservationHotel.address}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="City: " /></td>
+							<td>#{reservationBean.reservationHotel.city}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="State: " /></td>
+							<td>#{reservationBean.reservationHotel.state}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Zip: " /></td>
+							<td>#{reservationBean.reservationHotel.zip}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Phone: " /></td>
+							<td>#{reservationBean.reservationHotel.phoneNumber}</td>
+						</tr>
+					</table>
+				</h:panelGroup>
+				<h:panelGroup>
+					<table frame="box" style="padding: 20px; width: 350px;">
+						<tr>
+							<th><h:outputText style="color: #623e2a;" value="Customer" /></th>
+						</tr>
+						<tr>
+							<td><h:outputText value="Customer ID: " /></td>
+							<td>#{reservationBean.reservation.customerId}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Loyalty Points Earned: " /></td>
+							<td>#{reservationBean.reservation.loyaltyPointsEarned}</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Total Loyalty Points: " /></td>
+							<td>#{reservationBean.customerTotalPoints}</td>
+						</tr>
+					</table>
+				</h:panelGroup>
+			</div>
+			<br /> <br />
+		</div>
+	</ui:define>
+</ui:composition>

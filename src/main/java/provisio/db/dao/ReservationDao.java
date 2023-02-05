@@ -41,7 +41,7 @@ public class ReservationDao {
 					ps.setString(6, res.getNumberOfNights());
 					ps.setString(7, res.getNumberOfGuests());
 					ps.setBigDecimal(8, res.getAmountDue());
-					ps.setString(9, res.getLoyaltyPointsEarned());
+					ps.setInt(9, res.getLoyaltyPointsEarned());
 					i = ps.executeUpdate();
 					System.out.println("Reservation Added Successfully");
 				}
@@ -127,7 +127,7 @@ public class ReservationDao {
 						customerReservation.setNumberOfNights(rs.getString("Number_Of_Nights"));
 						customerReservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						customerReservation.setAmountDue(rs.getBigDecimal("Amount_Due"));
-						customerReservation.setLoyaltyPointsEarned(rs.getString("Loyalty_Points_Earned"));
+						customerReservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));
 					}
 				}
 			} catch (SQLException sqle) {
