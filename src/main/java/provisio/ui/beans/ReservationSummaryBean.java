@@ -9,5 +9,5 @@ public class ReservationSummaryBean {
 
 	public ReservationSummaryBean() {
 	}
-
+	
 }

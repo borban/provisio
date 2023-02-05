@@ -106,14 +106,12 @@
 				</div>
 				<br />
 				<br />
-				<h:panelGroup rendered="#{reservationBean.reservation.reservationId == null}">
-					<div class="provisio-row-2">
-						<h:commandButton value="Submit Booking"
-							action="#{reservationBean.bookReservation}" styleClass="button" />
-						<h:commandButton value="Cancel" action="#{reservationBean.cancel}"
-							styleClass="button" />
-					</div>
-				</h:panelGroup>
+				<div class="provisio-row-2">
+					<h:commandButton value="Submit Booking"
+						action="#{reservationBean.bookReservation}" styleClass="button" />
+					<h:commandButton value="Cancel" action="#{reservationBean.cancel}"
+						styleClass="button" />
+				</div>
 			</h:form>
 		</div>
 	</ui:define>

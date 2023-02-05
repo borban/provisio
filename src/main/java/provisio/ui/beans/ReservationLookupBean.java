@@ -53,13 +53,7 @@ public class ReservationLookupBean {
 				}
 			}
 			
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationResult", reservationResult);
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationHotel", reservationHotel);
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("customerTotalPoints", customerTotalPoints);
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("reservationRoomSize", reservationRoomSize);
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("resAmDescriptions", resAmDescriptions);
-			
-			return "reservation-summary?faces-redirect=true";
+			return "reservation-confirmation?faces-redirect=true";
 		}
 		
 		return "";
