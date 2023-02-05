@@ -134,8 +134,8 @@ public class ReservationBean {
 			reservation.setCustomerId(customer.getCustomerId());
 		} else {
 			customer.setEmail(reservationEmail);
-			customer.setFirstName("Not registerd");
-			customer.setLastName("Not registerd");
+			customer.setFirstName("Not registered");
+			customer.setLastName("Not registered");
 			customer.setPassword("None");
 			customer.setTotalLoyaltyPoints(0);
 			customer.setMemberStatus("Active");
