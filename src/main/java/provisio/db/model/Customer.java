@@ -1,5 +1,7 @@
 package provisio.db.model;
 
+/* Methods used to get and set customerID, email, firstName, lastName, password, totalLoyaltyPoints, and memberStatus */
+
 public class Customer {
 	private Integer customerId;
 	private String email;
