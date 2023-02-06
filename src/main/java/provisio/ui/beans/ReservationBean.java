@@ -1,6 +1,7 @@
 package provisio.ui.beans;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -140,38 +141,31 @@ public class ReservationBean {
 		Long numOfGuests = Long.valueOf(reservation.getNumberOfGuests());
 		BigDecimal numOfNights = BigDecimal.valueOf(Long.valueOf(reservation.getNumberOfNights()));
 		BigDecimal roomCost;
-		BigDecimal amenityCost = new BigDecimal(0);
-		BigDecimal totalCost = new BigDecimal(0);
+		BigDecimal amenityCost = new BigDecimal(0).setScale(2, RoundingMode.HALF_UP);
 
 		if (numOfGuests != null && numOfGuests < 3) {
-			roomCost = numOfNights.multiply(NIGHTLY_RATE_1).setScale(2, BigDecimal.ROUND_DOWN);
+			roomCost = numOfNights.multiply(NIGHTLY_RATE_1);
 		} else {
-			roomCost = numOfNights.multiply(NIGHTLY_RATE_2).setScale(2, BigDecimal.ROUND_DOWN);
+			roomCost = numOfNights.multiply(NIGHTLY_RATE_2);
 		}
 
 		if (resAmenitySelections != null) {
 			for (Integer amenity : resAmenitySelections) {
 				if (WIFI_AMENITY.equals(amenity)) {
-					BigDecimal wifiPrice = new BigDecimal(12.99).setScale(2, BigDecimal.ROUND_DOWN);
-					totalCost = totalCost.add(wifiPrice).setScale(2, BigDecimal.ROUND_DOWN);				
+					amenityCost = amenityCost.add(new BigDecimal(12.99));
 				}
 
 				if (BREAKFAST_AMENITY.equals(amenity)) {
-					BigDecimal breakfastPrice = new BigDecimal(8.99).setScale(2, BigDecimal.ROUND_DOWN);
-					amenityCost = numOfNights.multiply(breakfastPrice).setScale(2, BigDecimal.ROUND_DOWN);
-					totalCost = totalCost.add(amenityCost).setScale(2, BigDecimal.ROUND_DOWN);;
+					amenityCost =amenityCost.add(new BigDecimal(8.99).multiply(numOfNights));
 				}
 
 				if (PARKING_AMENITY.equals(amenity)) {
-					BigDecimal parkingPrice = new BigDecimal(19.99).setScale(2, BigDecimal.ROUND_DOWN);
-					amenityCost = numOfNights.multiply(parkingPrice).setScale(2, BigDecimal.ROUND_DOWN);
-					totalCost = totalCost.add(amenityCost).setScale(2, BigDecimal.ROUND_DOWN);
+					amenityCost =amenityCost.add(new BigDecimal(19.99).multiply(numOfNights));
 				}
 			}
 		}
-		
-		totalCost = totalCost.add(roomCost).setScale(2, BigDecimal.ROUND_DOWN);
-		reservation.setAmountDue(totalCost);
+
+		reservation.setAmountDue(roomCost.add(amenityCost.setScale(2, RoundingMode.HALF_UP)));
 	}
 
 	private void calculateLoyaltyPointsEarned() {
