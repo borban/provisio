@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.*;
@@ -25,6 +25,9 @@ public class ReservationLookupBean {
 	private String BREAKFAST_DESCRIPTION = "Breakfast";
 	private String PARKING_DESCRIPTION = "Parking";
 	
+	@ManagedProperty(value = "#{reservationBean}")
+	ReservationBean reservationBean;
+	
 	public ReservationLookupBean() {
 	}
 
@@ -33,9 +36,17 @@ public class ReservationLookupBean {
 			ReservationLookupDao resLookupDao = new ReservationLookupDao();
 			
 			Reservation reservationResult = resLookupDao.lookupReservation(new Integer(getReservationId()), null, null);
+			reservationBean.setReservation(reservationResult);
+			
 			Hotel reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
+			reservationBean.setReservationHotel(reservationHotel);
+			
 			Integer customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(reservationResult.getCustomerId());
+			reservationBean.setCustomerTotalPoints(customerTotalPoints);
+			
 			String reservationRoomSize = resLookupDao.lookupRoomSize(reservationResult.getRoomId());
+			reservationBean.setReservationRoomSize(reservationRoomSize);
+			
 			List<ReservationAmenity> reservationAmenities = resLookupDao.lookupReservationAmenities(new Integer(getReservationId()));
 			List<String> resAmDescriptions = new ArrayList<>();
 			
@@ -56,6 +67,7 @@ public class ReservationLookupBean {
 					resAmDescriptions.add(PARKING_DESCRIPTION);
 				}
 			}
+			reservationBean.setResAmDescriptions(resAmDescriptions);
 			
 			return "reservation-confirmation?faces-redirect=true";
 		}
@@ -86,6 +98,14 @@ public class ReservationLookupBean {
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public ReservationBean getReservationBean() {
+		return reservationBean;
+	}
+
+	public void setReservationBean(ReservationBean reservationBean) {
+		this.reservationBean = reservationBean;
 	}
 
 }
