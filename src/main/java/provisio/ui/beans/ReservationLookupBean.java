@@ -20,60 +20,70 @@ public class ReservationLookupBean {
 	public Integer reservationId;
 	public String lastName;
 	public String emailAddress;
-	
+
 	private String WIFI_DESCRIPTION = "Wi-Fi";
 	private String BREAKFAST_DESCRIPTION = "Breakfast";
 	private String PARKING_DESCRIPTION = "Parking";
-	
+
 	@ManagedProperty(value = "#{reservationBean}")
 	ReservationBean reservationBean;
-	
+
 	public ReservationLookupBean() {
 	}
 
 	public String search() {
+
+		ReservationLookupDao resLookupDao = new ReservationLookupDao();
+
+		Reservation reservationResult = null;
+
 		if (reservationId != null) {
-			ReservationLookupDao resLookupDao = new ReservationLookupDao();
-			
-			Reservation reservationResult = resLookupDao.lookupReservation(new Integer(getReservationId()), null, null);
+			reservationResult = resLookupDao.lookupReservationById(new Integer(getReservationId()));
+		}
+
+		if (reservationResult == null && lastName != null) {
+			reservationResult = resLookupDao.lookupReservationByLastName(lastName);
+		}
+		
+		if ((reservationResult == null || (reservationResult != null && reservationResult.getReservationId() == null)) && emailAddress != null) {
+			reservationResult = resLookupDao.lookupReservationByEmailAddress(emailAddress);
+		}
+
+		if (reservationResult != null) {
+
 			reservationBean.setReservation(reservationResult);
-			
+
 			Hotel reservationHotel = resLookupDao.lookupHotel(reservationResult.getHotelCode());
 			reservationBean.setReservationHotel(reservationHotel);
-			
+
 			Integer customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(reservationResult.getCustomerId());
 			reservationBean.setCustomerTotalPoints(customerTotalPoints);
-			
+
 			String reservationRoomSize = resLookupDao.lookupRoomSize(reservationResult.getRoomId());
 			reservationBean.setReservationRoomSize(reservationRoomSize);
-			
-			List<ReservationAmenity> reservationAmenities = resLookupDao.lookupReservationAmenities(new Integer(getReservationId()));
+
+			List<ReservationAmenity> reservationAmenities = resLookupDao
+					.lookupReservationAmenities(reservationResult.getReservationId());
 			List<String> resAmDescriptions = new ArrayList<>();
-			
-			for(ReservationAmenity resAmenity : reservationAmenities)
-			{
-				if(resAmenity.getAmenityId() == 1)
-				{
+
+			for (ReservationAmenity resAmenity : reservationAmenities) {
+				if (resAmenity.getAmenityId() == 1) {
 					resAmDescriptions.add(WIFI_DESCRIPTION);
 				}
-				
-				if(resAmenity.getAmenityId() == 2)
-				{
+
+				if (resAmenity.getAmenityId() == 2) {
 					resAmDescriptions.add(BREAKFAST_DESCRIPTION);
 				}
-				
-				if(resAmenity.getAmenityId() == 3)
-				{
+
+				if (resAmenity.getAmenityId() == 3) {
 					resAmDescriptions.add(PARKING_DESCRIPTION);
 				}
 			}
 			reservationBean.setResAmDescriptions(resAmDescriptions);
-			
-			return "reservation-confirmation?faces-redirect=true";
 		}
 		
-		return "";
-		
+		return "reservation-confirmation?faces-redirect=true";
+
 	}
 
 	public Integer getReservationId() {
