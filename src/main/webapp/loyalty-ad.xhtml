@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<link rel="stylesheet" href="css/loyalty.css" />
-	<div class="container">
-		<div id="loyalty-ad-title">
-			<h1>Loyalty</h1>
-		</div>
 
-		<div id="loyalty-ad">
-			<div class="loyalty-ad-content">
-				<div>
-					<img src="images/Loyalty_1.jpg" alt="friends drinking tea" />
-					<table frame="box" style="padding: 20px; display: flex;">
-						<tr>
-							<td>
-								<h3 style="color: #623e2a;">Provisio Members Club</h3>
-								<p style="color: #623e2a;">Special membership privileges and
-									perks:
-								<ul style="color: #623e2a;">
-									<li>Free wine and beer on Saturdays</li>
-									<li>Earn loyalty points for each stay</li>
-									<li>Use points for free nights, gift cards, miles, and
-										gas.</li>
-								</ul>
-								</p>
-							</td>
-						</tr>
-					</table>
+	<ui:define name="title">Provisio - Loyalty</ui:define>
 
-				</div>
-				<div>
-					<img src="images/Loyalty_2.jpg" alt="suitcase" />
-					<table frame="box" style="padding: 20px;">
-						<tr>
-							<td>
-								<h3 style="color: #623e2a;">Earn 150 points/Night</h3>
-								<p style="color: #623e2a;">We value loyalty, so we are
-									giving you 150 loyalty points per night at any of our
-									locations.</p>
-							</td>
-						</tr>
-					</table>
+	<ui:define name="content">
+		<link rel="stylesheet" href="css/loyalty.css" />
+		<div class="container">
+			<div id="loyalty-title">
+				<h1>Loyalty</h1>
+			</div>
+
+			<div id="loyalty-ad">
+				<div class="loyalty-ad-content">
+					<div>
+						<img src="images/Loyalty_1.jpg" alt="friends drinking tea" />
+						<table frame="box" style="padding: 20px; display: flex;">
+							<tr>
+								<td>
+									<h3 style="color: #623e2a;">Provisio Members Club</h3>
+									<p style="color: #623e2a;">Special membership privileges
+										and perks:
+									<ul style="color: #623e2a;">
+										<li>Free wine and beer on Saturdays</li>
+										<li>Earn loyalty points for each stay</li>
+										<li>Use points for free nights, gift cards, miles, and
+											gas.</li>
+									</ul>
+									</p>
+								</td>
+							</tr>
+						</table>
+
+					</div>
+					<div>
+						<img src="images/Loyalty_2.jpg" alt="suitcase" />
+						<table frame="box" style="padding: 20px;">
+							<tr>
+								<td>
+									<h3 style="color: #623e2a;">Earn 150 points/Night</h3>
+									<p style="color: #623e2a;">We value loyalty, so we are
+										giving you 150 loyalty points per night at any of our
+										locations.</p>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</ui:define>
 </ui:composition>

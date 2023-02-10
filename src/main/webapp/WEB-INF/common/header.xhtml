@@ -1,15 +1,30 @@
-<div id="header">
-	<div id="header-logo">
-		<a href="landing.xhtml"><img src="images\Logo.jpg"
-			alt="Company Logo"></img></a>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<div id="header">
+		<div id="header-logo">
+			<a href="landing.xhtml"><img src="images\Logo.jpg"
+				alt="Company Logo"></img></a>
+		</div>
+		<!-- end of header-logo -->
+		<div id="navbar">
+			<a href="about-us.xhtml">About Us</a> <a href="contact-us.xhtml">Contact
+				Us</a> <a href="locations.xhtml">Locations</a>
+			<c:choose>
+				<c:when test="#{loginBean.customer.customerId == null}">
+					<a href="loyalty-ad.xhtml">Loyalty</a>
+				</c:when>
+				<c:otherwise>
+					<a href="loyalty-tracking.xhtml">Loyalty</a>
+				</c:otherwise>
+			</c:choose>
+			<a href="login.xhtml">Login</a>
+			<c:if test="#{loginBean.customer.customerId == null}">
+				<a href="register.xhtml">Register</a>
+			</c:if>
+		</div>
 	</div>
-	<!-- end of header-logo -->
-	<div id="navbar">
-		<a href="about-us.xhtml">About Us</a>
-		<a href="contact-us.xhtml">Contact Us</a>
-		<a href="locations.xhtml">Locations</a>
-		<a href="loyalty.xhtml">Loyalty</a>
-		<a href="login.xhtml">Login</a>
-		<a href="register.xhtml">Register</a>
-	</div>
-</div>
+</ui:composition>
