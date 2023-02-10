@@ -13,7 +13,7 @@
 						<th><h2 style="color: #623e2a;">Register</h2></th>
 					</tr>
 					<tr>
-						<td><h:outputText value="First Name:" /></td>
+						<td><h:outputText value="First Name" /></td>
 						<td><h:inputText id="firstname"
 								value="#{registerBean.customer.firstName}" required="true"
 								label="firstname" title="Your first name is required">
@@ -22,21 +22,21 @@
 						<td><h:message id="firstnameMessage" for="firstname" /></td>
 					</tr>
 					<tr>
-						<td><h:outputText value="Last Name:" /></td>
+						<td><h:outputText value="Last Name" /></td>
 						<td><h:inputText id="lastname"
 								value="#{registerBean.customer.lastName}" required="true"
 								label="lastname" title="Your last name is required" /></td>
 						<td><h:message id="lastNameMsg" for="lastname" /></td>
 					</tr>
 					<tr>
-						<td><h:outputText value="Email:" /></td>
+						<td><h:outputText value="Email" /></td>
 						<td><h:inputText id="email"
 								value="#{registerBean.customer.email}" required="true"
 								label="email" title="Your email is required" /></td>
 						<td><h:message id="emailMsg" for="email" /></td>
 					</tr>
 					<tr>
-						<td><h:outputText value="Password :" /></td>
+						<td><h:outputText value="Password" /></td>
 						<td><h:inputSecret id="password"
 								value="#{registerBean.customer.password}" required="true"
 								label="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
