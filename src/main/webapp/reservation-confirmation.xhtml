@@ -7,18 +7,21 @@
 	<ui:define name="title">Provisio - Reservation Confirmation</ui:define>
 	<ui:define name="content">
 		<div class="container">
-			<h:panelGroup rendered="#{reservationBean.reservation.reservationId != null}">
+			<h:panelGroup
+				rendered="#{reservationBean.reservation.reservationId != null}">
 				<h1 style="color: #623e2a;">Reservation Confirmation</h1>
 				<br />
 				<h2 style="color: #623e2a;">Reservation ID:
 					#{reservationBean.reservation.reservationId}</h2>
 				<br />
 			</h:panelGroup>
-			<h:panelGroup rendered="#{reservationBean.reservation.reservationId == null}">
+			<h:panelGroup
+				rendered="#{reservationBean.reservation.reservationId == null}">
 				<h1 style="color: #623e2a;">No Reservation Found</h1>
 			</h:panelGroup>
 			<div class="provisio-row-3">
-				<h:panelGroup rendered="#{reservationBean.reservation.reservationId != null}">
+				<h:panelGroup
+					rendered="#{reservationBean.reservation.reservationId != null}">
 					<table frame="box" style="padding: 20px; width: 350px;">
 						<tr>
 							<th><h:outputText style="color: #623e2a;"
@@ -58,7 +61,8 @@
 						</tr>
 					</table>
 				</h:panelGroup>
-				<h:panelGroup rendered="#{reservationBean.reservation.reservationId != null}">
+				<h:panelGroup
+					rendered="#{reservationBean.reservation.reservationId != null}">
 					<table frame="box" style="padding: 20px; width: 350px;">
 						<tr>
 							<th><h:outputText style="color: #623e2a;" value="Hotel" /></th>
@@ -89,7 +93,8 @@
 						</tr>
 					</table>
 				</h:panelGroup>
-				<h:panelGroup rendered="#{reservationBean.reservation.reservationId != null}">
+				<h:panelGroup
+					rendered="#{reservationBean.reservation.reservationId != null}">
 					<table frame="box" style="padding: 20px; width: 350px;">
 						<tr>
 							<th><h:outputText style="color: #623e2a;" value="Customer" /></th>
@@ -109,6 +114,11 @@
 					</table>
 				</h:panelGroup>
 			</div>
+			<h:form>
+				<p>
+					<h:commandLink value="back" action="reservation-lookup" />
+				</p>
+			</h:form>
 			<br /> <br />
 		</div>
 	</ui:define>
