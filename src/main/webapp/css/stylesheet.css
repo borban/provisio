@@ -230,3 +230,11 @@ button:hover {
 	font-size: 12px;
 	
 }
+
+.heading{
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    font-family: 'Playfair Display', serif;
+    color: #623e2a;
+}
