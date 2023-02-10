@@ -1,0 +1,48 @@
+/* IMPORT GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+#locations-title {
+	margin-top: 150px; 
+	text-align: center;
+	color: #623e2a;
+    margin-bottom: 30px;
+    font-family: 'Playfair Display', serif;
+}
+
+#locations {
+	margin-left: auto;
+	margin-right: auto;
+    background-color:#efebe5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    grid-template-columns: 30% 30% 30%;
+    grid-area: auto;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-bottom: 300px;
+}
+
+.Hotel-name{
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	font-family: 'Playfair Display', serif;
+	text-align: center;
+	padding-top: 30px;
+}
+
+.Hotel-info{
+	font-size: 20px;
+	color: black;
+	font-family: 'Playfair Display', serif;
+	text-align: center;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+
+.location-column {
+	padding: 20px;
+	
+}

@@ -1,13 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="/WEB-INF/templates/provisio-template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" 
->
-   <ui:define name="title">Provisio - Locations</ui:define>
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="title">Provisio - Locations</ui:define>
 
-    <ui:define name="content">
-        Provisio - Locations
-    </ui:define>
+	<ui:define name="content">
+        
+        <link rel="stylesheet" type="text/css" href="css/locations.css" />
+		<div id="top"></div>
+
+		<div id="locations-title">
+			<h1>Locations</h1>
+		</div>
+		
+        <div id="locations-container">
+        <div id="locations">
+        
+        <div class ="location-column">
+        <h:form>
+			<h:dataTable value="#{HotelDao.gethotelList1()}" var="h"
+				class="table table-striped table-hover table-bordered">
+				<h:column>
+					<p class = "Hotel-name">
+					<h:outputText value="#{h.name}" />
+					</p>
+					<p class = "Hotel-info">
+					<h:outputText value="#{h.address}"/>
+					<br></br>
+					<h:outputText value="#{h.city}" />, 
+					<h:outputText value="#{h.state}" />, 
+					<h:outputText value="#{h.zip}" />
+					<br></br>
+					<h:outputText value="#{h.phoneNumber}" />
+					</p>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		</div>
+		
+		<div class ="location-column">
+		<h:form>
+			<h:dataTable value="#{HotelDao.gethotelList2()}" var="h"
+				class="table table-striped table-hover table-bordered">
+				<h:column>
+				    <p class = "Hotel-name">
+					<h:outputText value="#{h.name}" />
+					</p>
+					<p class = "Hotel-info">
+					<h:outputText value="#{h.address}"/>
+					<br></br>
+					<h:outputText value="#{h.city}" />, 
+					<h:outputText value="#{h.state}" />, 
+					<h:outputText value="#{h.zip}" />
+					<br></br>
+					<h:outputText value="#{h.phoneNumber}" />
+					</p>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		</div>
+		
+		<div class ="location-column">
+		<h:form>
+			<h:dataTable value="#{HotelDao.gethotelList3()}" var="h"
+				class="table table-striped table-hover table-bordered">
+				<h:column>
+				    <p class = "Hotel-name">
+					<h:outputText value="#{h.name}" />
+					</p>
+					<p class = "Hotel-info">
+					<h:outputText value="#{h.address}"/>
+					<br></br>
+					<h:outputText value="#{h.city}" />, 
+					<h:outputText value="#{h.state}" />, 
+					<h:outputText value="#{h.zip}" />
+					<br></br>
+					<h:outputText value="#{h.phoneNumber}" />
+					</p>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		</div>
+		</div>
+		</div>
+
+	</ui:define>
 </ui:composition>
