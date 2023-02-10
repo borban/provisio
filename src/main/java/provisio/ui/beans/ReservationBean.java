@@ -69,8 +69,18 @@ public class ReservationBean {
 			System.out.println("Reservation insert failed");
 			return "";
 		}
+		
+		
 	}
 
+	public void reset() {
+		reservation = new Reservation();
+		reservationCheckInDate = null;
+		reservationCheckOutDate = null;
+		resAmenitySelections = null;
+		
+	}
+	
 	public String cancel() {
 		return "booking?faces-redirect=true";
 	}
