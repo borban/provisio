@@ -27,6 +27,9 @@ public class ReservationLookupBean {
 
 	@ManagedProperty(value = "#{reservationBean}")
 	ReservationBean reservationBean;
+	
+	@ManagedProperty(value = "#{loginBean.customer}")
+	Customer customer;
 
 	public ReservationLookupBean() {
 	}
@@ -38,7 +41,7 @@ public class ReservationLookupBean {
 		Reservation reservationResult = null;
 
 		if (reservationId != null) {
-			reservationResult = resLookupDao.lookupReservationById(new Integer(getReservationId()));
+			reservationResult = resLookupDao.lookupReservationById(new Integer(getReservationId()), customer.getCustomerId());
 		}
 
 		if (reservationResult == null && lastName != null) {
@@ -118,4 +121,11 @@ public class ReservationLookupBean {
 		this.reservationBean = reservationBean;
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }

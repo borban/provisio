@@ -22,7 +22,7 @@ public class ReservationLookupDao {
 	private Reservation reservation = new Reservation();
 	private Hotel reservationHotel = new Hotel();
 
-	public Reservation lookupReservationById(Integer reservationId) {
+	public Reservation lookupReservationById(Integer reservationId, Integer customerId) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
@@ -37,7 +37,7 @@ public class ReservationLookupDao {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
 					String sql = "SELECT Reservation_Id, Customer_Id, Hotel_Code, Room_Id, Number_Of_Nights, Number_Of_Guests, Amount_Due,Loyalty_Points_Earned, Check_In_Date, Check_Out_Date FROM Reservation WHERE Reservation_Id = "
-							+ reservationId;
+							+ reservationId + " AND Customer_Id=" + customerId;
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					if (rs.next()) {
