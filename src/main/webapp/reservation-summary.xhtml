@@ -109,8 +109,9 @@
 				<div class="provisio-row-2">
 					<h:commandButton value="Submit Booking"
 						action="#{reservationBean.bookReservation}" styleClass="button" />
-					<h:commandButton value="Cancel" action="#{reservationBean.cancel}"
-						styleClass="button" />
+					<h:commandButton value="Cancel" action="#{reservationBean.cancel}" styleClass="button">
+					<f:actionListener binding="#{reservationBean.reset()}" />
+					</h:commandButton>
 				</div>
 			</h:form>
 		</div>
