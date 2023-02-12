@@ -10,8 +10,6 @@
 	<ui:define name="content">
 		<link rel="stylesheet" type="text/css" href="css/booking.css" />
 		<div id="top"></div>
-		
-		
 
 		<div id="book-your-vacation">
 			<h1>Book your Vacation</h1>
@@ -217,7 +215,12 @@
 							value="Check-In Date: " /></td>
 					<td><p:datePicker id="CheckInDatePicker"
 							value="#{reservationBean.reservationCheckInDate}" showIcon="true"
-							required="true" /></td>
+							required="true" navigator="true" 
+							mindate="#{reservationBean.todayDate}"
+							maxdate="#{reservationBean.reservationCheckOutDate}">
+							<p:ajax event="dateSelect" update="CheckOutDatePicker"
+								/>
+						</p:datePicker></td>
 					<td><h:message id="checkInDateMsg" for="CheckInDatePicker" /></td>
 				</tr>
 				<tr>
@@ -225,7 +228,10 @@
 							value="Check-Out Date: " /></td>
 					<td><p:datePicker id="CheckOutDatePicker"
 							value="#{reservationBean.reservationCheckOutDate}"
-							showIcon="true" required="true" /></td>
+							showIcon="true" required="true" navigator="true"
+							mindate="#{reservationBean.reservationCheckInDate}">
+							<p:ajax event="dateSelect" update="CheckOutDatePicker"/>
+						</p:datePicker></td>
 					<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
 				</tr>
 				<tr>
@@ -240,15 +246,17 @@
 						</h:selectOneMenu></td>
 					<td><h:message id="numberOfGuestsMsg" for="numberOfGuests" /></td>
 				</tr>
+				<!-- Removed numberOfNights field
 				<tr>
 					<td><h:outputLabel for="numberOfNights"
 							value="Number of Nights: " /></td>
 					<td><h:inputText id="numOfNightsInput"
 							value="#{reservationBean.reservation.numberOfNights}"
 							required="true" label="numOfNightsInput"
-							title="Your email is required" /></td>
+							title="Your email is required" />	</td>
 					<td><h:message id="numOfNightsInputMsg" for="numOfNightsInput" /></td>
 				</tr>
+				-->
 				<tr>
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
 					<td><h:selectOneMenu id="roomSizeSelection"
@@ -282,7 +290,6 @@
 							style="color:black; height: 30px; width:300px; margin-top:20px;" /></td>
 				</tr>
 			</table>
-			
 		</h:form>
 	</ui:define>
 </ui:composition>

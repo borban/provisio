@@ -3,11 +3,12 @@ package provisio.ui.beans;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.time.ZoneId;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -50,6 +51,13 @@ public class ReservationBean {
 	Integer customerTotalPoints;
 	String reservationRoomSize;
 	List<String> resAmDescriptions;
+	LocalDate today = LocalDate.now();
+	java.util.Date todayDate = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	
+
+	public void setTodayDate(java.util.Date todayDate) {
+		this.todayDate = todayDate;
+	}
 
 	public ReservationBean() {
 	}
@@ -69,10 +77,8 @@ public class ReservationBean {
 			System.out.println("Reservation insert failed");
 			return "";
 		}
-		
-		
 	}
-
+	
 	public void reset() {
 		reservation = new Reservation();
 		reservationCheckInDate = null;
@@ -80,7 +86,7 @@ public class ReservationBean {
 		resAmenitySelections = null;
 		
 	}
-	
+
 	public String cancel() {
 		return "booking?faces-redirect=true";
 	}
@@ -91,6 +97,7 @@ public class ReservationBean {
 		customerTotalPoints = resLookupDao.lookupTotalLoyaltyPoints(customer.getCustomerId());
 		reservationRoomSize = resLookupDao.lookupRoomSize(reservation.getRoomId());
 		convertDates();
+		calculatenumOfNightsValue();
 		calculateAmountDue();
 		calculateLoyaltyPointsEarned();
 		populateAmenitiesDescription();
@@ -177,6 +184,17 @@ public class ReservationBean {
 
 		reservation.setAmountDue(roomCost.add(amenityCost.setScale(2, RoundingMode.HALF_UP)));
 	}
+	
+	private void calculatenumOfNightsValue() {
+		
+		java.util.Date d1 = reservation.getCheckInDate();
+		java.util.Date d2 = reservation.getCheckOutDate();
+
+		long diff = d2.getTime() - d1.getTime();
+		Integer diffDays = Integer.valueOf((int) (diff / (1000 * 60 * 60 * 24)));
+		
+		reservation.setNumberOfNights(diffDays);
+	}
 
 	private void calculateLoyaltyPointsEarned() {
 		Integer numOfNights = Integer.valueOf(reservation.getNumberOfNights());
@@ -187,6 +205,10 @@ public class ReservationBean {
 	private Date convertDate(java.util.Date date) {
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		return sqlDate;
+	}
+	
+	public java.util.Date getTodayDate() {
+	    return todayDate;
 	}
 
 	static {
@@ -259,6 +281,10 @@ public class ReservationBean {
 
 	public void setReservationCheckInDate(java.util.Date reservationCheckInDate) {
 		this.reservationCheckInDate = reservationCheckInDate;
+	
+		if(reservationCheckOutDate.before(reservationCheckInDate)) {
+			reservationCheckOutDate = reservationCheckInDate;
+		}
 	}
 
 	public java.util.Date getReservationCheckOutDate() {
@@ -267,6 +293,10 @@ public class ReservationBean {
 
 	public void setReservationCheckOutDate(java.util.Date reservationCheckOutDate) {
 		this.reservationCheckOutDate = reservationCheckOutDate;
+		
+		if(reservationCheckOutDate.before(reservationCheckInDate)) {
+			reservationCheckOutDate = reservationCheckInDate;
+		}
 	}
 
 	public Integer[] getResAmenitySelections() {

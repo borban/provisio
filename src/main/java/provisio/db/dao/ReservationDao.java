@@ -42,7 +42,7 @@ public class ReservationDao {
 					ps.setInt(3, res.getRoomId());
 					ps.setDate(4, res.getCheckInDate());
 					ps.setDate(5, res.getCheckOutDate());
-					ps.setString(6, res.getNumberOfNights());
+					ps.setInt(6, res.getNumberOfNights()); //changed type to int.
 					ps.setString(7, res.getNumberOfGuests());
 					ps.setBigDecimal(8, res.getAmountDue());
 					ps.setInt(9, res.getLoyaltyPointsEarned());
@@ -128,7 +128,7 @@ public class ReservationDao {
 						customerReservation.setRoomId(rs.getInt("Room_Id"));
 						customerReservation.setCheckInDate(rs.getDate("Check_In_Date"));
 						customerReservation.setCheckOutDate(rs.getDate("Check_Out_Date"));
-						customerReservation.setNumberOfNights(rs.getString("Number_Of_Nights"));
+						customerReservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); //Changed from String to int
 						customerReservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						customerReservation.setAmountDue(rs.getBigDecimal("Amount_Due"));
 						customerReservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));

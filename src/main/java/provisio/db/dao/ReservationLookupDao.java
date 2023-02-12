@@ -45,7 +45,7 @@ public class ReservationLookupDao {
 						reservation.setCustomerId(rs.getInt("Customer_Id"));
 						reservation.setHotelCode(rs.getInt("Hotel_Code"));
 						reservation.setRoomId(rs.getInt("Room_Id"));
-						reservation.setNumberOfNights(rs.getString("Number_Of_Nights"));
+						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); //changed from string to int
 						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
 						reservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));
@@ -88,7 +88,7 @@ public class ReservationLookupDao {
 						reservation.setCustomerId(rs.getInt("Customer_Id"));
 						reservation.setHotelCode(rs.getInt("Hotel_Code"));
 						reservation.setRoomId(rs.getInt("Room_Id"));
-						reservation.setNumberOfNights(rs.getString("Number_Of_Nights"));
+						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); // changed from string to int
 						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
 						reservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));
@@ -131,7 +131,7 @@ public class ReservationLookupDao {
 						reservation.setCustomerId(rs.getInt("Customer_Id"));
 						reservation.setHotelCode(rs.getInt("Hotel_Code"));
 						reservation.setRoomId(rs.getInt("Room_Id"));
-						reservation.setNumberOfNights(rs.getString("Number_Of_Nights"));
+						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); //changed from string to int
 						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
 						reservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));

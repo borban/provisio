@@ -14,7 +14,7 @@ public class Reservation {
 	private Integer roomId;
 	private Date checkInDate;
 	private Date checkOutDate;
-	private String numberOfNights;
+	private Integer numberOfNights;
 	private String numberOfGuests;
 	private BigDecimal amountDue;
 	private Integer loyaltyPointsEarned;
@@ -68,12 +68,12 @@ public class Reservation {
 		this.checkOutDate = checkOutDate;
 	}
 
-	public String getNumberOfNights() {
+	public Integer getNumberOfNights() {
 		return numberOfNights;
 	}
 
-	public void setNumberOfNights(String numberOfNights) {
-		this.numberOfNights = numberOfNights;
+	public void setNumberOfNights(Integer diffDays) {
+		this.numberOfNights = diffDays;
 	}
 
 	public String getNumberOfGuests() {
