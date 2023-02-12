@@ -45,7 +45,7 @@ public class ReservationLookupDao {
 						reservation.setCustomerId(rs.getInt("Customer_Id"));
 						reservation.setHotelCode(rs.getInt("Hotel_Code"));
 						reservation.setRoomId(rs.getInt("Room_Id"));
-						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); //changed from string to int
+						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); // changed from string to int
 						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
 						reservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));
@@ -60,10 +60,54 @@ public class ReservationLookupDao {
 
 		return reservation;
 	}
-	
+
+	public List<Reservation> lookupReservationsByCustomerId(Integer customerId) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		List<Reservation> reservations = null;
+		
+		if (customerId != null) {
+			PreparedStatement ps = null;
+			Connection conn = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+					String sql = "SELECT Reservation_Id, Customer_Id, Hotel_Code, Room_Id, Number_Of_Nights, Number_Of_Guests, Amount_Due,Loyalty_Points_Earned, Check_In_Date, Check_Out_Date FROM Reservation WHERE Customer_Id = "
+							+ customerId + " LIMIT 5";
+					ps = conn.prepareStatement(sql);
+					rs = ps.executeQuery();
+					reservations = new ArrayList<>();
+					reservation = new Reservation();
+					while (rs.next()) {
+						reservation.setReservationId(rs.getInt("Reservation_Id"));
+						reservation.setCustomerId(rs.getInt("Customer_Id"));
+						reservation.setHotelCode(rs.getInt("Hotel_Code"));
+						reservation.setRoomId(rs.getInt("Room_Id"));
+						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); // changed from string to int
+						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
+						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
+						reservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));
+						reservation.setCheckInDate(rs.getDate("Check_In_Date"));
+						reservation.setCheckOutDate(rs.getDate("Check_Out_Date"));
+						reservations.add(reservation);
+					}
+				}
+			} catch (SQLException sqle) {
+				sqle.printStackTrace();
+			}
+		}
+
+		return reservations;
+	}
+
 	public Reservation lookupReservationByLastName(String lastName) {
 		Integer customerId = lookupCustomerIdByLastName(lastName);
-		
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
@@ -77,7 +121,7 @@ public class ReservationLookupDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					
+
 					String sql = "SELECT Reservation_Id, Customer_Id, Hotel_Code, Room_Id, Number_Of_Nights, Number_Of_Guests, Amount_Due,Loyalty_Points_Earned, Check_In_Date, Check_Out_Date FROM Reservation WHERE Customer_Id = "
 							+ customerId;
 					ps = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -103,10 +147,10 @@ public class ReservationLookupDao {
 
 		return reservation;
 	}
-	
+
 	public Reservation lookupReservationByEmailAddress(String emailAddress) {
 		Integer customerId = lookupCustomerIdByEmailAddress(emailAddress);
-		
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
@@ -120,7 +164,7 @@ public class ReservationLookupDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					
+
 					String sql = "SELECT Reservation_Id, Customer_Id, Hotel_Code, Room_Id, Number_Of_Nights, Number_Of_Guests, Amount_Due,Loyalty_Points_Earned, Check_In_Date, Check_Out_Date FROM Reservation WHERE Customer_Id = "
 							+ customerId;
 					ps = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -131,7 +175,7 @@ public class ReservationLookupDao {
 						reservation.setCustomerId(rs.getInt("Customer_Id"));
 						reservation.setHotelCode(rs.getInt("Hotel_Code"));
 						reservation.setRoomId(rs.getInt("Room_Id"));
-						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); //changed from string to int
+						reservation.setNumberOfNights(rs.getInt("Number_Of_Nights")); // changed from string to int
 						reservation.setNumberOfGuests(rs.getString("Number_Of_Guests"));
 						reservation.setAmountDue(new BigDecimal(rs.getString("Amount_Due")));
 						reservation.setLoyaltyPointsEarned(rs.getInt("Loyalty_Points_Earned"));
@@ -146,7 +190,7 @@ public class ReservationLookupDao {
 
 		return reservation;
 	}
-	
+
 	public Integer lookupCustomerIdByLastName(String lastName) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -161,8 +205,7 @@ public class ReservationLookupDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "SELECT Customer_Id FROM Customer WHERE Last_Name LIKE '"
-							+ lastName + "'";
+					String sql = "SELECT Customer_Id FROM Customer WHERE Last_Name LIKE '" + lastName + "'";
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					if (rs.next()) {
@@ -176,7 +219,7 @@ public class ReservationLookupDao {
 
 		return null;
 	}
-	
+
 	public Integer lookupCustomerIdByEmailAddress(String emailAddress) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -191,8 +234,7 @@ public class ReservationLookupDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "SELECT Customer_Id FROM Customer WHERE Email = '"
-							+ emailAddress.trim() + "'";
+					String sql = "SELECT Customer_Id FROM Customer WHERE Email = '" + emailAddress.trim() + "'";
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					if (rs.next()) {

@@ -24,6 +24,7 @@ public class LoginBean {
 		Customer dbCustomerLogin = loginDao.getCustomerLogin(customer.getEmail());
 		if (isValidMember(dbCustomerLogin)) {
 			customer.setFirstName(dbCustomerLogin.getFirstName());
+			customer.setLastName(dbCustomerLogin.getLastName());
 			customer.setCustomerId(dbCustomerLogin.getCustomerId());
 			customer.setEmail(dbCustomerLogin.getEmail());
 			customer.setTotalLoyaltyPoints(dbCustomerLogin.getTotalLoyaltyPoints());
