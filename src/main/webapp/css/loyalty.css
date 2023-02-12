@@ -3,7 +3,7 @@
 	url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 	;
 
-.loyalty-ad-content {
+.loyalty-content {
 	display: flex;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 20px;
@@ -11,23 +11,19 @@
 	margin: 0 auto;
 }
 
-.loyalty-ad-content>div {
+.loyalty-content>div {
 	padding: 20px;
 	width: 80%;
 }
 
-.loyalty-ad-content>div>img {
+.loyalty-content>div>img {
 	width: 100%;
 	height: auto;
 	margin-bottom: 15px;
 	height: auto;
 }
 
-.loyalty-ad-content>div>table {
-	height: 200px;
-}
-
-#loyalty-ad {
+#loyalty-position {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #efebe5;

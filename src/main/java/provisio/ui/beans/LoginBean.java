@@ -25,6 +25,8 @@ public class LoginBean {
 		if (isValidMember(dbCustomerLogin)) {
 			customer.setFirstName(dbCustomerLogin.getFirstName());
 			customer.setCustomerId(dbCustomerLogin.getCustomerId());
+			customer.setEmail(dbCustomerLogin.getEmail());
+			customer.setTotalLoyaltyPoints(dbCustomerLogin.getTotalLoyaltyPoints());
 			return "login";
 		} else
 			return "login_error";
