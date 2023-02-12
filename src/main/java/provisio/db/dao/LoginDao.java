@@ -32,7 +32,7 @@ public class LoginDao {
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 				if (conn != null) {
-					String sql = "SELECT First_Name, Email, Password, Customer_Id from CUSTOMER WHERE Email = '" + username + "'";
+					String sql = "SELECT First_Name, Email, Password, Customer_Id, Total_Loyalty_Points from CUSTOMER WHERE Email = '" + username + "'";
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					if(rs.next()) {
@@ -40,6 +40,7 @@ public class LoginDao {
 						customerLogin.setEmail(rs.getString("Email"));
 						customerLogin.setPassword(rs.getString("Password"));
 						customerLogin.setCustomerId(rs.getInt("Customer_Id"));
+						customerLogin.setTotalLoyaltyPoints(rs.getInt("Total_Loyalty_Points"));
 					}
 				}
 			} catch (SQLException sqle) {

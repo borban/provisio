@@ -11,6 +11,66 @@
 		<div class="container">
 			<div id="loyalty-title">
 				<h1>Loyalty Points Tracking</h1>
+				<h2>Welcome #{loginBean.customer.firstName}</h2>
+			</div>
+
+			<div id="loyalty-position">
+				<div class="loyalty-content">
+					<div>
+						<table frame="box" style="padding: 20px; display: flex;">
+							<tr>
+								<td>
+									<h3 style="color: #623e2a;">#{loginBean.customer.totalLoyaltyPoints}
+										pts</h3>
+								</td>
+							</tr>
+							<tr>
+								<td colspan='1' height='50'><h:commandButton
+										value="Redeem Points" action="#{loginBean.login}"
+										style="color:black; height: 30px; width:150px; margin-top:20px;" /></td>
+								<td colspan='1' height='50'><h:commandButton
+										value="Buy Points" action="#{loginBean.login}"
+										style="color:black; height: 30px; width:150px; margin-top:20px;" /></td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table frame="box" style="padding: 20px; display: flex;">
+							<tr>
+								<td>
+									<h3 style="color: #623e2a;">Customer Name: #{loginBean.customer.firstName} #{loginBean.customer.lastName}</h3>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+				<div class="loyalty-content">
+					<div>
+						<table frame="box" style="padding: 20px; display: flex;">
+							<tr>
+								<td>
+									<h3 style="color: #623e2a;">Ways to Redeem your points</h3>
+									<ul style="color: #623e2a;">
+										<li>Points for Gas</li>
+										<li>Redeem for free nights</li>
+										<li>Buy Gift Cards</li>
+										<li>Points for miles</li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table frame="box" style="padding: 20px; display: flex;">
+							<tr>
+								<td>
+									<h3 style="color: #623e2a;">Reservation Summary</h3>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</ui:define>
