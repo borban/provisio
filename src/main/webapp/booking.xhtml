@@ -203,7 +203,7 @@
 					<td><h:outputLabel for="Location" value="Location: " /></td>
 					<td><h:selectOneMenu id="Location"
 							value="#{reservationBean.reservation.hotelCode}"
-							style="width:150px" required="true">
+							style="width:200px" required="true">
 							<f:selectItem itemLabel="Select Location" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.locationValue}" />
@@ -214,6 +214,7 @@
 					<td><h:outputLabel for="CheckInDatePicker"
 							value="Check-In Date: " /></td>
 					<td><p:datePicker id="CheckInDatePicker"
+					        class="datepicker"
 							value="#{reservationBean.reservationCheckInDate}" showIcon="true"
 							required="true" navigator="true" 
 							mindate="#{reservationBean.todayDate}"
@@ -227,6 +228,7 @@
 					<td><h:outputLabel for="CheckOutDatePicker"
 							value="Check-Out Date: " /></td>
 					<td><p:datePicker id="CheckOutDatePicker"
+					        class="datepicker"
 							value="#{reservationBean.reservationCheckOutDate}"
 							showIcon="true" required="true" navigator="true"
 							mindate="#{reservationBean.reservationCheckInDate}">
@@ -239,7 +241,7 @@
 							value="Number of Guests: " /></td>
 					<td><h:selectOneMenu id="numberOfGuests"
 							value="#{reservationBean.reservation.numberOfGuests}"
-							style="width:150px" required="true">
+							style="width:200px" required="true">
 							<f:selectItem itemLabel="Select Number of Guests" itemValue=""
 								noSelectionOption="true" />
 							<f:selectItems value="#{reservationBean.numOfGuestsValue}" />
@@ -260,7 +262,7 @@
 				<tr>
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
 					<td><h:selectOneMenu id="roomSizeSelection"
-							value="#{reservationBean.reservation.roomId}" style="width:150px"
+							value="#{reservationBean.reservation.roomId}" style="width:200px"
 							required="true">
 							<f:selectItem itemLabel="Select Room Size" itemValue=""
 								noSelectionOption="true" />
