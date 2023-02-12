@@ -238,8 +238,11 @@ public class ReservationBean {
 
 	static {
 		numOfGuestsValue = new LinkedHashMap<String, Object>();
-		numOfGuestsValue.put("1 - 2 Guests", "1");
-		numOfGuestsValue.put("3 - 5 Guests", "3");
+		numOfGuestsValue.put("1 Guest", "1");
+		numOfGuestsValue.put("2 Guests", "2");
+		numOfGuestsValue.put("3 Guests", "3");
+		numOfGuestsValue.put("4 Guests", "4");
+		numOfGuestsValue.put("5 Guests", "5");
 	}
 
 	static {
