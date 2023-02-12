@@ -16,15 +16,16 @@
 			<c:choose>
 				<c:when test="#{loginBean.customer.customerId == null}">
 					<a href="loyalty-ad.xhtml">Loyalty</a>
+					<a href="login.xhtml">Login</a>
+					<a href="register.xhtml">Register</a>
 				</c:when>
 				<c:otherwise>
+				    <a href="booking.xhtml">Book a Reservation</a>
+					<a href="reservation-lookup.xhtml">Manage Reservations</a>
 					<a href="loyalty-tracking.xhtml">Loyalty</a>
+					<a href="login.xhtml">Logout</a>
 				</c:otherwise>
 			</c:choose>
-			<a href="login.xhtml">Login</a>
-			<c:if test="#{loginBean.customer.customerId == null}">
-				<a href="register.xhtml">Register</a>
-			</c:if>
 		</div>
 	</div>
 </ui:composition>
