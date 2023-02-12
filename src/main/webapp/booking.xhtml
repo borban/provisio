@@ -230,7 +230,7 @@
 							value="#{reservationBean.reservationCheckOutDate}"
 							showIcon="true" required="true" navigator="true"
 							mindate="#{reservationBean.reservationCheckInDate}">
-							<p:ajax event="dateSelect" update="CheckOutDatePicker"/>
+							<p:ajax event="dateSelect" update="CheckInDatePicker"/>
 						</p:datePicker></td>
 					<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
 				</tr>
