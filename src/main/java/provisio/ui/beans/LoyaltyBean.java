@@ -2,6 +2,7 @@ package provisio.ui.beans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -21,9 +22,14 @@ public class LoyaltyBean {
 	
 	public LoyaltyBean() {
 	}
+	
+	@PostConstruct
+	public void init() {
+		customerReservations = reservationLookupDao.lookupReservationsByCustomerId(customer.getCustomerId());
+	}
 
 	public List<Reservation> getCustomerReservations() {
-		return reservationLookupDao.lookupReservationsByCustomerId(customer.getCustomerId());
+		return customerReservations;
 	}
 
 	public void setCustomerReservations(List<Reservation> customerReservations) {
