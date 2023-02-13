@@ -33,71 +33,66 @@
 			</table>
 
 
-			<div>
-				<table frame="box" style="padding: 20px; display: flex;">
-					<tr>
-						<td><h3 style="color: #623e2a;">Customer Name:
-								#{loginBean.customer.firstName} #{loginBean.customer.lastName}</h3></td>
-					</tr>
-					<tr>
-						<td><h4 style="color: #623e2a;">Customer ID:
-								#{loginBean.customer.customerId}</h4></td>
-					</tr>
-					<tr>
-						<td><ul style="color: #623e2a;">
-								<li>50% Bonus Points</li>
-								<li>Early check-in / late check-out</li>
-								<li>Reserved parking</li>
-							</ul></td>
-					</tr>
-				</table>
-			</div>
-
-
-			<div>
-				<table frame="box" style="padding: 20px; display: flex;">
-					<tr>
-						<td>
-							<h3 style="color: #623e2a;">Ways to Redeem your points</h3>
-							<ul style="color: #623e2a;">
-								<li>Points for Gas</li>
-								<li>Redeem for free nights</li>
-								<li>Buy Gift Cards</li>
-								<li>Points for miles</li>
-							</ul>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div>
-				<table frame="box" style="padding: 20px; display: flex;">
-					<tr>
-						<td>
-							<h3 style="color: #623e2a;">Reservation Summary</h3>
-						</td>
-					</tr>
-					<tr>
-						<td><h:form>
-								<p:dataTable value="#{loyaltyBean.customerReservations}"
-									var="reservation"
-									class="table table-striped table-hover table-bordered">
-									<p:column headerText="Reservation ID">
-										<h:outputText value="#{reservation.reservationId}" />
-									</p:column>
-									<p:column headerText="Check In Date">
-										<h:outputText value="#{reservation.checkInDate}" />
-									</p:column>
-									<p:column headerText="Check Out Date">
-										<h:outputText value="#{reservation.checkOutDate}" />
-									</p:column>
-									<p:column headerText="Loyalty Points Earned">
-										<h:outputText value="#{reservation.loyaltyPointsEarned}" />
-									</p:column>
-								</p:dataTable>
-							</h:form></td>
-					</tr>
-				</table>
-			</div>
+			<table frame="box" style="padding: 20px; display: flex;">
+				<tr>
+					<td><h3 style="color: #623e2a;">Customer Name:
+							#{loginBean.customer.firstName} #{loginBean.customer.lastName}</h3></td>
+				</tr>
+				<tr>
+					<td><h4 style="color: #623e2a;">Customer ID:
+							#{loginBean.customer.customerId}</h4></td>
+				</tr>
+				<tr>
+					<td><ul style="color: #623e2a;">
+							<li>50% Bonus Points</li>
+							<li>Early check-in / late check-out</li>
+							<li>Reserved parking</li>
+						</ul></td>
+				</tr>
+			</table>
+			<table frame="box" style="padding: 20px; display: flex;">
+				<tr>
+					<td>
+						<h3 style="color: #623e2a;">Ways to Redeem your points</h3>
+						<ul style="color: #623e2a;">
+							<li>Points for Gas</li>
+							<li>Redeem for free nights</li>
+							<li>Buy Gift Cards</li>
+							<li>Points for miles</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+			<table frame="box" style="padding: 20px; display: flex;">
+				<tr>
+					<td>
+						<h3 style="color: #623e2a;">Reservation Summary</h3>
+					</td>
+				</tr>
+				<tr>
+					<td><h:form>
+							<p:dataTable value="#{loyaltyBean.customerReservations}"
+								var="reservation"
+								class="table table-striped table-hover table-bordered">
+								<p:column headerText="Reservation ID">
+									<h:outputText value="#{reservation.reservationId}" />
+								</p:column>
+								<p:column headerText="Location">
+									<h:outputText value="#{loyaltyBean.findLocation(reservation.hotelCode)}" />
+								</p:column>
+								<p:column headerText="Check In Date">
+									<h:outputText value="#{reservation.checkInDate}" />
+								</p:column>
+								<p:column headerText="Check Out Date">
+									<h:outputText value="#{reservation.checkOutDate}" />
+								</p:column>
+								<p:column headerText="Loyalty Points Earned">
+									<h:outputText value="#{reservation.loyaltyPointsEarned}" />
+								</p:column>
+							</p:dataTable>
+						</h:form></td>
+				</tr>
+			</table>
 		</div>
 	</ui:define>
 </ui:composition>

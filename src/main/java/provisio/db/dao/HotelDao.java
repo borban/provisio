@@ -26,16 +26,8 @@ public class HotelDao {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/provisio";
 	static final String USER = "provisio";
 	static final String PASS = "provisio";
-	private DataSource ds;
 
 	public HotelDao(){
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mkyongdb");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public List<Hotel> gethotelList1() { 
@@ -155,5 +147,39 @@ public class HotelDao {
 			System.out.println("Database query error");
 		}
 		return hotelList;
+	}
+	
+	public Hotel findHotelByHotelCode(Integer hotelCode)
+	{
+		Hotel hotel = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			PreparedStatement ps = null;
+			Connection conn = null;
+			ResultSet rs = null;
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			if (conn != null) {
+				String sql = "SELECT * from HOTEL where Hotel_Code = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, hotelCode);
+				rs = ps.executeQuery();
+				
+				while (rs.next()) {
+					hotel = new Hotel();
+					hotel.setName(rs.getString("Name"));
+				} 
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("Database query error");
+		}
+		return hotel;
 	}
 }
