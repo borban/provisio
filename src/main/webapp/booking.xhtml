@@ -213,26 +213,24 @@
 				<tr>
 					<td><h:outputLabel for="CheckInDatePicker"
 							value="Check-In Date: " /></td>
-					<td><p:datePicker id="CheckInDatePicker" 
-					        class="datepicker" showIcon="true"
-							value="#{reservationBean.reservationCheckInDate}" 
-							required="true" navigator="true" 
+					<td><p:datePicker id="CheckInDatePicker" class="datepicker"
+							showIcon="true" value="#{reservationBean.reservationCheckInDate}"
+							required="true" navigator="true"
 							mindate="#{reservationBean.todayDate}"
 							maxdate="#{reservationBean.reservationCheckOutDate}">
-							<p:ajax event="dateSelect" update="CheckOutDatePicker"
-								/>
+							<p:ajax event="dateSelect" update="CheckOutDatePicker" />
 						</p:datePicker></td>
 					<td><h:message id="checkInDateMsg" for="CheckInDatePicker" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="CheckOutDatePicker"
 							value="Check-Out Date: " /></td>
-					<td><p:datePicker id="CheckOutDatePicker"
-					        class="datepicker" showIcon="true"
+					<td><p:datePicker id="CheckOutDatePicker" class="datepicker"
+							showIcon="true"
 							value="#{reservationBean.reservationCheckOutDate}"
 							required="true" navigator="true"
 							mindate="#{reservationBean.reservationCheckInDate}">
-							<p:ajax event="dateSelect" update="CheckInDatePicker"/>
+							<p:ajax event="dateSelect" update="CheckInDatePicker" />
 						</p:datePicker></td>
 					<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
 				</tr>
@@ -248,7 +246,7 @@
 						</h:selectOneMenu></td>
 					<td><h:message id="numberOfGuestsMsg" for="numberOfGuests" /></td>
 				</tr>
-<<<<<<< HEAD
+				
 				<!-- Removed numberOfNights field
 				<tr>
 					<td><h:outputLabel for="numberOfNights"
@@ -260,10 +258,8 @@
 					<td><h:message id="numOfNightsInputMsg" for="numOfNightsInput" /></td>
 				</tr>
 				-->
-				<tr style="margin-top: 10px;">
-=======
+				
 				<tr>
->>>>>>> branch 'master' of https://github.com/borban/provisio.git
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
 					<td><h:selectOneMenu id="roomSizeSelection"
 							value="#{reservationBean.reservation.roomId}" style="width:200px"
