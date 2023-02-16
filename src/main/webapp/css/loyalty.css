@@ -23,6 +23,10 @@
 	height: auto;
 }
 
+.loyalty-ad-content>div>table {
+	height: 200px;
+}
+
 #loyalty-position {
 	margin-left: auto;
 	margin-right: auto;
@@ -30,14 +34,14 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	grid-template-columns: 30% 30% 30%;
+	grid-template-columns: 50% 50%;
 	grid-area: auto;
 	text-align: center;
 	flex-wrap: wrap;
 }
 
 #loyalty-title {
-	margin-top: 100px;
+	margin-top: 150px;
 	text-align: center;
 	color: #623e2a;
 	margin-bottom: 30px;

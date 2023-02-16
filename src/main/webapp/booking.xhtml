@@ -213,9 +213,9 @@
 				<tr>
 					<td><h:outputLabel for="CheckInDatePicker"
 							value="Check-In Date: " /></td>
-					<td><p:datePicker id="CheckInDatePicker"
-					        class="datepicker"
-							value="#{reservationBean.reservationCheckInDate}" showIcon="true"
+					<td><p:datePicker id="CheckInDatePicker" 
+					        class="datepicker" showIcon="true"
+							value="#{reservationBean.reservationCheckInDate}" 
 							required="true" navigator="true" 
 							mindate="#{reservationBean.todayDate}"
 							maxdate="#{reservationBean.reservationCheckOutDate}">
@@ -228,15 +228,15 @@
 					<td><h:outputLabel for="CheckOutDatePicker"
 							value="Check-Out Date: " /></td>
 					<td><p:datePicker id="CheckOutDatePicker"
-					        class="datepicker"
+					        class="datepicker" showIcon="true"
 							value="#{reservationBean.reservationCheckOutDate}"
-							showIcon="true" required="true" navigator="true"
+							required="true" navigator="true"
 							mindate="#{reservationBean.reservationCheckInDate}">
 							<p:ajax event="dateSelect" update="CheckInDatePicker"/>
 						</p:datePicker></td>
 					<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
 				</tr>
-				<tr>
+				<tr style="margin-top: 10px;">
 					<td><h:outputLabel for="numberOfGuests"
 							value="Number of Guests: " /></td>
 					<td><h:selectOneMenu id="numberOfGuests"
@@ -259,7 +259,7 @@
 					<td><h:message id="numOfNightsInputMsg" for="numOfNightsInput" /></td>
 				</tr>
 				-->
-				<tr>
+				<tr style="margin-top: 10px;">
 					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
 					<td><h:selectOneMenu id="roomSizeSelection"
 							value="#{reservationBean.reservation.roomId}" style="width:200px"
@@ -271,7 +271,7 @@
 					<td><h:message id="roomSizeSelectionMsg"
 							for="roomSizeSelection" /></td>
 				</tr>
-				<tr>
+				<tr style="margin-top: 10px;">
 					<td><h:outputLabel for="addOnAmenities"
 							value="Add On Amenities: " /></td>
 					<td><h:selectManyCheckbox id="addOnAmenities"

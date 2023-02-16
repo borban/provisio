@@ -1,12 +1,14 @@
 /* IMPORT GOOGLE FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+	;
 
 #book-your-vacation {
-	margin-top: 150px; 
+	margin-top: 150px;
 	text-align: center;
 	color: #623e2a;
-    margin-bottom: 50px;
-    font-family: 'Playfair Display', serif;
+	margin-bottom: 50px;
+	font-family: 'Playfair Display', serif;
 }
 
 .gallery-title {
@@ -18,98 +20,402 @@
 }
 
 .card {
-    background-color: #efebe5;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    width: fit-content;
-    margin:5px;
+	background-color: #efebe5;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	width: fit-content;
+	margin: 5px;
 }
 
 .card-title {
-    margin-bottom: 10px;
-    text-align: center;
-    font-family: 'Oswald', Verdana, Arial, sans-serif;
-    text-align: center;
-    font-size: 12pt;
-    color: black;
+	margin-bottom: 10px;
+	text-align: center;
+	font-family: 'Oswald', Verdana, Arial, sans-serif;
+	text-align: center;
+	font-size: 12pt;
+	color: black;
 }
 
 .card-content {
-    padding: 2px 2px;
-
+	padding: 2px 2px;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
 }
 
 .roomImg {
-    width: 300px;
-    height: auto;
-    display: flex;
-    margin: auto;
-    text-align: center;
-    align-content: center;
+	width: 300px;
+	height: auto;
+	display: flex;
+	margin: auto;
+	text-align: center;
+	align-content: center;
 }
 
 figure {
-    text-align: center;
+	text-align: center;
 }
 
 #rooms {
 	margin-left: auto;
 	margin-right: auto;
-    background-color:#efebe5;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    grid-template-columns: 20% 20% 20% 20%;
-    grid-area: auto;
-    text-align: center;
-    flex-wrap: wrap;
+	background-color: #efebe5;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	grid-template-columns: 20% 20% 20% 20%;
+	grid-area: auto;
+	text-align: center;
+	flex-wrap: wrap;
 }
 
 #amenities {
-    margin-left: auto;
+	margin-left: auto;
 	margin-right: auto;
-    background-color:#efebe5;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    grid-template-columns: 20% 20% 20% 20%;
-    grid-area: auto;
-    text-align: center;
-    flex-wrap: wrap;
+	background-color: #efebe5;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	grid-template-columns: 20% 20% 20% 20%;
+	grid-area: auto;
+	text-align: center;
+	flex-wrap: wrap;
 }
 
 .amenityImg {
-    width: 300px;
-    height: auto;
-    display: flex;
-    text-align: center;
-    align-content: center;
+	width: 300px;
+	height: auto;
+	display: flex;
+	text-align: center;
+	align-content: center;
 }
 
 .top {
-    margin-top: 5%;
-    text-decoration: none;
-    text-align: center;
-    padding: 10px;
-    font-family: sans-serif;
-    color: black;
-    font-size: 20pt;
+	margin-top: 5%;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px;
+	font-family: sans-serif;
+	color: black;
+	font-size: 20pt;
+}
+
+#bookingFormTitle {
+	margin-top: 5%;
+}
+
+#bookingForm {
+	margin-left: 5%;
+	margin-bottom: 300px;
+}
+
+td {
+	margin: 5px 5px 5px 0px;
+}
+
+element.style {
+	display: block;
+	position: absolute;
+	z-index: 1003;
+	min-width: 198.667px;
+	transform-origin: center bottom;
+	top: 5335.38px;
+	left: 0px;
+}
+
+/******************Datepicker *********************/
+body .ui-widget {
+	text-decoration: none;
+	background: #ffffff; /**white**/
+	color: black;
+	border: 1px solid black;
+}
+
+.ui-widget hover {
+	color: black;
+}
+
+body .ui-datepicker {
+	background: #ffffff;
+	border: 1px solid black;
+	color: #623e2a; /**brown**/
+	width: auto;
+	margin-left: 100px;
+	z-index: 1000;
+}
+
+body .ui-datepicker .ui-datepicker-group {
+	background: #ffffff; /**white**/
+}
+
+body .ui-datepicker.ui-input-overlay {
+	border: 0 none;
+}
+
+body .ui-icon {
+	font-size: 1rem;
+	display: inline-block;
+	vertical-align: baseline;
+	margin: 0;
+	position: static;
+	text-indent: 0;
+	overflow: visible;
+	background-repeat: no-repeat;
+}
+
+body .ui-widget-overlay {
+	-webkit-animation-name: modal-in;
+	animation-name: modal-in;
+	animation-duration: 0.4s;
+	animation-timing-function: cubic-bezier(0.05, 0.74, 0.2, 0.99);
+	animation-fill-mode: forwards;
+}
+
+body .ui-helper-reset {
+	line-height: normal;
+}
+
+body .ui-state-disabled {
+	opacity: 0.6;
+}
+
+body .ui-widget-overlay {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+body .ui-button {
+	top: 9;
+	background: white;
+	color: black;
+	border: 1px solid black;
+	outline: 0 none;
+	border-radius: 4px;
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+		box-shadow 0.2s;
+    height: 20px;
+}
+
+body .ui-button.ui-state-hover {
+	background: #623e2a; /**brown**/
+	border-color: #623e2a; /**brown**/
+	color: #ffffff;
+}
+
+body .ui-button.ui-state-focus {
+	outline: 0 none;
+	outline-offset: 0;
+	box-shadow: 0 0 0 0.1em black;
+}
+
+body .ui-button.ui-state-active, body .ui-button.ui-state-down {
+	background: #623e2a; /**brown**/
+	border-color: #623e2a; /**brown**/
+	color: #ffffff;
+}
+
+body .ui-button.ui-button-outlined {
+	background-color: transparent;
+	color: #623e2a; /**brown**/
+	border: 1px solid;
+}
+
+body .ui-button.ui-button-outlined.ui-state-hover {
+	background-color: #623e2a; /**brown**/
+	color: #623e2a; /**brown**/
+	border: 1px solid;
+}
+
+body .ui-button.ui-button-outlined.ui-state-active, body .ui-button.ui-button-outlined.ui-state-down
+	{
+	background: #623e2a;
+	color: #623e2a;
+	border: 1px solid;
+}
+
+body .ui-inputfield.ui-state-hover {
+	border-color: black;
+}
+
+body .ui-inputfield.ui-state-focus {
+	border-color: black;
+	outline: 0 none;
+	box-shadow: 0 0 0 0.1em black;
+}
+
+body .ui-tree .ui-tree-filter-container .ui-inputfield {
+      padding: 0px;
+      width: 100%;
+      padding-left: 1px; }
+
+body .ui-inputfield {
+  width: 163px;;
+  height: 20px;
+  color: black;
+  background: #ffffff;
+  border: 1px solid black;
+  outline: 0 none;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none; }
+ 
+
+body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today a {
+        background: transparent;
+        color: black;
+        font-weight: 600;
+        border: 0 none; }
+        body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today a:hover {
+          background: #e9ecef;
+          border-color: transparent; }
+        body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today a.ui-state-active {
+          background: #E3F2FD;
+          color: #495057;
+          border: 0 none; }
+
+          
+         body .ui-button.ui-button-text-only .ui-button-text {
+    padding: 0; }
+  body .ui-button.ui-button-text-icon-left .ui-button-text {
+    padding: 0; }
+  body .ui-button.ui-button-text-icon-left .ui-icon {
+    position: absolute;
+  }
+  body .ui-button.ui-button-text-icon-right .ui-button-text {
+    padding: 0; }
+  body .ui-button.ui-button-text-icon-right .ui-icon {
+    position: absolute;
+  }
+  body .ui-button.ui-button-icon-only {
+    width: 2.357rem; }
+    body .ui-button.ui-button-icon-only .ui-button-text {
+      padding: 0.5rem; }
+    body .ui-button.ui-button-icon-only .ui-icon {
+      position: absolute; }
+  body .ui-button.ui-button-raised {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+  body .ui-button.rounded-button {
+    border-radius: 2rem; }
+    body .ui-button.rounded-button.ui-button-icon-only {
+      border-radius: 50%;
+      height: 2.357rem; }
+  body .ui-button .ui-icon-triangle-1-s {
+    font-family: 'primeicons' !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none; }
+    body .ui-button .ui-icon-triangle-1-s:before {
+      content: ""; }
+/** 
     
-  }
-  
-  #bookingFormTitle {
-    margin-top: 5%;
-  }
-  
-  #bookingForm {
-  	margin-left: 5%;
-  	margin-bottom: 300px;
-  }
-  
-  td{
-    margin: 5px 5px 5px 0px;
-    }
+    
+    
+    
+    
+   body .ui-button {
+  background: #2196F3;
+  color: #ffffff;
+  border: 1px solid #2196F3;
+  margin: 0;
+  outline: 0 none;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s; }
+  body .ui-button.ui-state-hover {
+    background: #0d89ec;
+    border-color: #0d89ec;
+    color: #ffffff; }
+  body .ui-button.ui-state-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2em #a6d5fa; }
+  body .ui-button.ui-state-active, body .ui-button.ui-state-down {
+    background: #0b7ad1;
+    border-color: #0b7ad1;
+    color: #ffffff; }
+  body .ui-button.ui-button-outlined {
+    background-color: transparent;
+    color: #2196F3;
+    border: 1px solid; }
+    body .ui-button.ui-button-outlined.ui-state-hover {
+      background: rgba(33, 150, 243, 0.04);
+      color: #2196F3;
+      border: 1px solid; }
+    body .ui-button.ui-button-outlined.ui-state-active, body .ui-button.ui-button-outlined.ui-state-down {
+      background: rgba(33, 150, 243, 0.16);
+      color: #2196F3;
+      border: 1px solid; }
+    body .ui-button.ui-button-outlined.ui-button-plain {
+      color: #6c757d;
+      border-color: #6c757d; }
+      body .ui-button.ui-button-outlined.ui-button-plain.ui-state-hover {
+        background: #e9ecef;
+        color: #6c757d; }
+      body .ui-button.ui-button-outlined.ui-button-plain.ui-state-active, body .ui-button.ui-button-outlined.ui-button-plain.ui-state-down {
+        background: #dee2e6;
+        color: #6c757d; }
+  body .ui-button.ui-button-flat {
+    background-color: transparent;
+    color: #2196F3;
+    border-color: transparent; }
+    body .ui-button.ui-button-flat.ui-state-hover {
+      background: rgba(33, 150, 243, 0.04);
+      color: #2196F3;
+      border-color: transparent; }
+    body .ui-button.ui-button-flat.ui-state-active, body .ui-button.ui-button-flat.ui-state-down {
+      background: rgba(33, 150, 243, 0.16);
+      color: #2196F3;
+      border-color: transparent; }
+    body .ui-button.ui-button-flat.ui-button-plain {
+      color: #6c757d; }
+      body .ui-button.ui-button-flat.ui-button-plain.ui-state-hover {
+        background: #e9ecef;
+        color: #6c757d; }
+      body .ui-button.ui-button-flat.ui-button-plain.ui-state-active, body .ui-button.ui-button-flat.ui-button-plain.ui-state-down {
+        background: #dee2e6;
+        color: #6c757d; }
+  body .ui-button.ui-button-text-only .ui-button-text {
+    padding: 0.5rem 1rem; }
+  body .ui-button.ui-button-text-icon-left .ui-button-text {
+    padding: 0.5rem 1rem 0.5rem 2rem; }
+  body .ui-button.ui-button-text-icon-left .ui-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -0.5rem;
+    left: 0.5rem; }
+  body .ui-button.ui-button-text-icon-right .ui-button-text {
+    padding: 0.5rem 2rem 0.5rem 1rem; }
+  body .ui-button.ui-button-text-icon-right .ui-icon {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-top: -0.5rem;
+    right: 0.5rem; }
+  body .ui-button.ui-button-icon-only {
+    width: 2.357rem; }
+    body .ui-button.ui-button-icon-only .ui-button-text {
+      padding: 0.5rem; }
+    body .ui-button.ui-button-icon-only .ui-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -0.5rem;
+      margin-left: -0.5rem; }
+  body .ui-button.ui-button-raised {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+  body .ui-button.rounded-button {
+    border-radius: 2rem; }
+    body .ui-button.rounded-button.ui-button-icon-only {
+      border-radius: 50%;
+      height: 2.357rem; }
+  body .ui-button .ui-icon-triangle-1-s {
+    font-family: 'primeicons' !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none; }
+    body .ui-button .ui-icon-triangle-1-s:before {
+      content: ""; }
+**/
