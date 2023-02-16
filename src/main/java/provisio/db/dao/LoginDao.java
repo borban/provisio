@@ -43,6 +43,8 @@ public class LoginDao {
 						customerLogin.setCustomerId(rs.getInt("Customer_Id"));
 						customerLogin.setTotalLoyaltyPoints(rs.getInt("Total_Loyalty_Points"));
 					}
+                                    
+                                    conn.close();
 				}
 			} catch (SQLException sqle) {
 				sqle.printStackTrace();
