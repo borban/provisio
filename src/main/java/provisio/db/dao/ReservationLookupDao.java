@@ -82,8 +82,8 @@ public class ReservationLookupDao {
 					ps = conn.prepareStatement(sql);
 					rs = ps.executeQuery();
 					reservations = new ArrayList<>();
-					reservation = new Reservation();
 					while (rs.next()) {
+						reservation = new Reservation();
 						reservation.setReservationId(rs.getInt("Reservation_Id"));
 						reservation.setCustomerId(rs.getInt("Customer_Id"));
 						reservation.setHotelCode(rs.getInt("Hotel_Code"));
