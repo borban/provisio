@@ -26,6 +26,7 @@
 						<br></br>
 						<p class="book-now-button" style="text-align:center;">
 							<h:button value="Book now" styleClass="button" outcome="booking" rendered="#{loginBean.customer.customerId !=null}"></h:button>
+                                                        <h:button value="Login to Book" styleClass="button" outcome="login" rendered="#{loginBean.customer.customerId ==null}"></h:button>
 						</p>
 					</div>
 
