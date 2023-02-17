@@ -46,7 +46,7 @@ public class LoginBean{
 
 	private boolean isValidMember(Customer dbCustomerLogin) {
 		if (dbCustomerLogin.getEmail() != null) {
-			return customer.getEmail().equals(dbCustomerLogin.getEmail())
+			return customer.getEmail().equalsIgnoreCase(dbCustomerLogin.getEmail())
 					&& HashClass.hashValue(customer.getPassword()).equals(dbCustomerLogin.getPassword());
 		}
 

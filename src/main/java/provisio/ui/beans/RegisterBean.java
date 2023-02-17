@@ -31,7 +31,7 @@ public class RegisterBean {
 	
 	private boolean doesExist(Customer dbCustomerRegister) {
 		if (dbCustomerRegister.getEmail() != null) {
-			return customer.getEmail().equals(dbCustomerRegister.getEmail());
+			return customer.getEmail().equalsIgnoreCase(dbCustomerRegister.getEmail());
 		}
 		// TODO Auto-generated method stub
 		return false;
