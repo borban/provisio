@@ -197,7 +197,7 @@
 		<h:form id="bookingForm" style="margin-top: 5%;">
 			<table frame="box" style="padding: 20px;">
 				<tr>
-					<th><h2 style="color: #623e2a;">Reservation Form</h2></th>
+					<th><h2 id= "bookingFormTitle">Reservation Form</h2></th>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="Location" value="Location: " /></td>
@@ -211,9 +211,9 @@
 					<td><h:message id="locationMsg" for="Location" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="CheckInDatePicker"
+					<td style ="padding-top: 15px;"><h:outputLabel for="CheckInDatePicker"
 							value="Check-In Date: " /></td>
-					<td><p:datePicker id="CheckInDatePicker" class="datepicker"
+					<td style ="padding-top: 5px;"><p:datePicker id="CheckInDatePicker" class="datepicker"
 							showIcon="true" value="#{reservationBean.reservationCheckInDate}"
 							required="true" navigator="true"
 							mindate="#{reservationBean.todayDate}"
@@ -223,9 +223,9 @@
 					<td><h:message id="checkInDateMsg" for="CheckInDatePicker" /></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="CheckOutDatePicker"
+					<td style ="padding-top: 15px;"><h:outputLabel for="CheckOutDatePicker"
 							value="Check-Out Date: " /></td>
-					<td><p:datePicker id="CheckOutDatePicker" class="datepicker"
+					<td style ="padding-top: 5px;"><p:datePicker id="CheckOutDatePicker" class="datepicker"
 							showIcon="true"
 							value="#{reservationBean.reservationCheckOutDate}"
 							required="true" navigator="true"
@@ -234,10 +234,10 @@
 						</p:datePicker></td>
 					<td><h:message id="checkOutDateMsg" for="CheckOutDatePicker" /></td>
 				</tr>
-				<tr style="margin-top: 10px;">
-					<td><h:outputLabel for="numberOfGuests"
+				<tr>
+					<td style="padding-top: 15px;"><h:outputLabel for="numberOfGuests"
 							value="Number of Guests: " /></td>
-					<td><h:selectOneMenu id="numberOfGuests"
+					<td style="padding-top: 15px;"><h:selectOneMenu id="numberOfGuests"
 							value="#{reservationBean.reservation.numberOfGuests}"
 							style="width:200px" required="true">
 							<f:selectItem itemLabel="Select Number of Guests" itemValue=""
@@ -260,8 +260,8 @@
 				-->
 				
 				<tr>
-					<td><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
-					<td><h:selectOneMenu id="roomSizeSelection"
+					<td style="padding-top: 15px;"><h:outputLabel for="roomSizeSelection" value="Room Size: " /></td>
+					<td style="padding-top: 15px;"><h:selectOneMenu id="roomSizeSelection"
 							value="#{reservationBean.reservation.roomId}" style="width:200px"
 							required="true">
 							<f:selectItem itemLabel="Select Room Size" itemValue=""
@@ -271,10 +271,10 @@
 					<td><h:message id="roomSizeSelectionMsg"
 							for="roomSizeSelection" /></td>
 				</tr>
-				<tr style="margin-top: 10px;">
-					<td><h:outputLabel for="addOnAmenities"
+				<tr>
+					<td style="padding-top: 15px;"><h:outputLabel for="addOnAmenities"
 							value="Add On Amenities: " /></td>
-					<td><h:selectManyCheckbox id="addOnAmenities"
+					<td style="padding-top: 15px;"><h:selectManyCheckbox id="addOnAmenities"
 							converter="javax.faces.Integer"
 							value="#{reservationBean.resAmenitySelections}">
 							<f:selectItem itemLabel="WI-FI $12.99 flat fee" itemValue="1" />
