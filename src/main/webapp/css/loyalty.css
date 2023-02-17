@@ -38,3 +38,12 @@
 	grid-area: auto;
 	text-align: center;
 	flex-wrap: wrap;
+}
+
+#loyalty-title {
+	margin-top: 150px;
+	text-align: center;
+	color: #623e2a;
+	margin-bottom: 30px;
+	font-family: 'Playfair Display', serif;
+}

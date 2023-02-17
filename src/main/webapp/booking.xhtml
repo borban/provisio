@@ -285,8 +285,12 @@
 				</tr>
 				<tr>
 					<td height='50'><h:commandButton value="Book Reservation"
-							action="#{reservationBean.reviewBooking}"
-							style="color:black; height: 30px; width:300px; margin-top:20px;" /></td>
+							action="#{reservationBean.reviewBooking}" rendered="#{loginBean.customer.customerId !=null}"
+							style="color:black; height: 30px; width:300px; margin-top:20px;" />
+							<h:button value="Login to Complete your reservation" 
+							outcome="login" rendered="#{loginBean.customer.customerId ==null}" 
+							style="color:black; height: 30px; width:300px; margin-top:20px;" />
+							</td>
 					<td height='50'><h:commandButton value="Reset"
 							action="#{reservationBean.reset}"
 							style="color:black; height: 30px; width:300px; margin-top:20px;" /></td>
