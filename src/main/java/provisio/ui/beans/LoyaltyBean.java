@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 import provisio.db.dao.HotelDao;
 import provisio.db.dao.ReservationLookupDao;
 import provisio.db.model.Customer;
+import provisio.db.model.Hotel;
 import provisio.db.model.Reservation;
 
 @ManagedBean(name = "loyaltyBean")
@@ -32,7 +33,8 @@ public class LoyaltyBean {
 	
 	public String findLocation(Integer hotelCode)
 	{
-		return hotelDao.findHotelByHotelCode(hotelCode).getName();
+		Hotel hotel = hotelDao.findHotelByHotelCode(hotelCode);
+		return hotel.getName() + " - " + hotel.getAddress();
 	}
 
 	public List<Reservation> getCustomerReservations() {

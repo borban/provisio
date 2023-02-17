@@ -173,6 +173,7 @@ public class HotelDao {
 				while (rs.next()) {
 					hotel = new Hotel();
 					hotel.setName(rs.getString("Name"));
+					hotel.setAddress(rs.getString("Address"));
 				} 
 			}
 		}catch(Exception e)
