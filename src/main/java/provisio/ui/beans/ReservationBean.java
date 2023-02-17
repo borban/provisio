@@ -49,6 +49,7 @@ public class ReservationBean {
 	private String PARKING_DESCRIPTION = "Parking";
 	Hotel reservationHotel;
 	Integer customerTotalPoints;
+	Integer newPointsTotal;
 	String reservationRoomSize;
 	List<String> resAmDescriptions;
 	LocalDate today = LocalDate.now();
@@ -68,10 +69,12 @@ public class ReservationBean {
 	}
 
 	public String bookReservation() {
+		reservation.setReservationId(null);
 		if (reservationDao.addReservation(getReservation())) {
 			Integer reservationId = resLookupDao.lookupLastInsertedReservation();
 			reservation.setReservationId(reservationId);
 			addAmenities(reservationId);
+			reservationDao.addReservationLoyaltyPoints(getCustomer());
 			return "reservation-confirmation?faces-redirect=true";
 		} else {
 			System.out.println("Reservation insert failed");
@@ -100,6 +103,7 @@ public class ReservationBean {
 		calculatenumOfNightsValue();
 		calculateAmountDue();
 		calculateLoyaltyPointsEarned();
+		calculateTotalLoyaltyPoints();
 		populateAmenitiesDescription();
 	}
 
@@ -148,7 +152,14 @@ public class ReservationBean {
 
 		reservation.setAmenities(resAm);
 	}
-
+	
+	private void calculateTotalLoyaltyPoints() {
+		Integer pointsEarned = Integer.valueOf(reservation.getLoyaltyPointsEarned());
+		newPointsTotal = Integer.valueOf(pointsEarned + getCustomerTotalPoints());
+		setNewPointsTotal(newPointsTotal);
+		customer.setTotalLoyaltyPoints(newPointsTotal);
+	}
+		
 	private void convertDates() {
 		reservation.setCheckInDate(convertDate(reservationCheckInDate));
 		reservation.setCheckOutDate(convertDate(reservationCheckOutDate));
@@ -348,6 +359,14 @@ public class ReservationBean {
 
 	public void setResAmDescriptions(List<String> resAmDescriptions) {
 		this.resAmDescriptions = resAmDescriptions;
+	}
+
+	public Integer getNewPointsTotal() {
+		return newPointsTotal;
+	}
+
+	public void setNewPointsTotal(Integer newPointsTotal) {
+		this.newPointsTotal = newPointsTotal;
 	}
 
 }

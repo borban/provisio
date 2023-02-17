@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import provisio.db.model.Customer;
 import provisio.db.model.Reservation;
 import provisio.db.model.ReservationAmenity;
 
@@ -48,6 +49,42 @@ public class ReservationDao {
 					ps.setInt(9, res.getLoyaltyPointsEarned());
 					i = ps.executeUpdate();
 					System.out.println("Reservation Added Successfully");
+				}
+			}catch (SQLException e) {
+				System.out.println(e);
+				} finally {
+					try {
+				conn.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+					}
+			}
+		}
+		return i > 0;
+			
+	}
+	
+	public boolean addReservationLoyaltyPoints(Customer customer) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		int i = 0;
+		if (customer.getCustomerId() != null) {
+			PreparedStatement ps = null;
+			Connection conn = null;
+			try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				if (conn != null) {
+					String sql = "UPDATE CUSTOMER SET Total_Loyalty_Points = ? WHERE Customer_Id =?";
+					ps = conn.prepareStatement(sql);
+					ps.setInt(1, customer.getTotalLoyaltyPoints());
+					ps.setInt(2, customer.getCustomerId());
+					
+					i = ps.executeUpdate();
+					System.out.println("Reservation Loyalty Points Added Successfully");
 				}
 			}catch (SQLException e) {
 				System.out.println(e);
