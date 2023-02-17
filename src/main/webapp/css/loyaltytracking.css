@@ -1,0 +1,137 @@
+/* IMPORT GOOGLE FONTS */
+@import
+url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    color: #623e2a;
+}
+
+.loyalty-first-row, .loyalty-second-row{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.loyalty-first-row{
+    margin-bottom: 20px;
+}
+
+.loyalty-first-row ul, .loyalty-second-row ul{
+    list-style: none;
+}
+
+.loyalty-second-row{
+
+}
+
+.button {
+    background-color: #ffffff;
+    color: #623e2a;
+    border: none;
+    text-decoration: none;
+    display: inline;
+    padding: 5px 20px;
+    text-align: center;
+    max-width: 40%;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: .8rem
+}
+
+
+.button:active {
+    background-color: #623e2a;
+    color: #f4f1ed;
+}
+
+
+.button:hover {
+    background-color: #623e2a;
+    color: #f4f1ed;
+}
+
+.btn-group{
+    text-align: center;
+    gap: 10px;
+    width: fit-content;
+}
+
+.border{
+    border: 1px solid #623e2a;
+}
+
+
+table, tr, th, td{
+    border: 2px solid #623e2a;
+}
+
+th, td{
+    padding: 5px;
+}
+
+table{
+    border-collapse: collapse;
+    font-size: .8rem;
+    width: 100%;
+}
+
+/* Utitlites */
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.bullets{
+    list-style-type: disc;
+}
+
+.p-10{
+    padding: 10px;
+}
+
+.p-20{
+    padding: 20px;
+}
+
+.p-30{
+    padding: 30px;
+}
+
+.p-40{
+    padding: 40px;
+}
+
+.p-50{
+    padding: 50px;
+}
+
+.container-wide{
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 300px;
+}
+
+.loyalty-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loyalty-content img{
+    width: 100%;
+}
+
+.loyalty-div{
+    width: 90%;
+    margin: 0 auto;
+    
+}
+
+#loyalty-title{
+    font-family: 'Playfair Display', serif;
+}
