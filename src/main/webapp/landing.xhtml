@@ -11,13 +11,13 @@
 	</h:head>
 	<ui:include src="/WEB-INF/common/header.xhtml" />
 	<div id="landing-container">
-		<h:panelGroup rendered="#{loginBean.customer.customerId != null}">
 			<div class="landing-row">
-				<h:button value="Book Now" styleClass="button" outcome="booking"></h:button>
+			    <h:button value="Book Now" styleClass="button" outcome="booking"></h:button>
+			    <h:panelGroup rendered="#{loginBean.customer.customerId != null}">
 				<h:button value="Manage Reservations" styleClass="button"
 					outcome="reservation-lookup"></h:button>
+					</h:panelGroup>
 			</div>
-		</h:panelGroup>
 		<br />
 		<br />
 		<br />
