@@ -3,93 +3,97 @@
 
 p, address{
    font-size: 0.9rem;
+   color: #623e2a;
 }
 
-.heading{
-    text-align: center;
-    margin-top: 150px;
+.heading {
+	text-align: center;
+    margin-bottom: 2%;
     margin-bottom: 50px;
     font-family: 'Playfair Display', serif;
     color: #623e2a;
 }
 
-.about-us-content{
-	position: flex;
+body {
+	margin: 0;
+	padding: 0;
+	
+}
+
+.about-us-content {
+	display: flex;
 	flex-wrap: wrap;
-	margin-left: auto;
-	margin-right: auto;
 	width: 70%;
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 30px;
-    margin-bottom: 300px;
-    background-color: #efebe5;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    padding: 2% 2%;
-    align-items: center;
-    justify-content: center;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	margin: 0 auto 300px auto;
+}
+.about-us-content h2{
+    margin-bottom: 20px;
+    color: #623e2a;
+}
+.about-us-summary {
+	flex-basis: 50%;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.about-us-img {
+	flex-basis: 50%;
+	text-align: center;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		flex-direction: column;
+	}
+	.summary, .image {
+		flex-basis: 100%;
+	}
 }
 
 .about-us-content:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
 }
 
-.about-us-content img{
-    max-width: 400px;
-    min-width: 200px;
-    height: auto;
-    position: flex;
-    flex-wrap: wrap;
+.book-now-button {
+	margin-top: 20px;
 }
-
-#about-us-summary {
-	padding-top: auto;
-	padding-bottom: auto;
-	color: black;
-	font-family: 'Playfair Display', serif;
-	position: flex;
-	flex-wrap: wrap;
-}
-
-.book-now-button{
-    margin-top: 20px;
-}
-
-
 
 /* Utitlites */
-
-.text-center{
-    text-align: center;
+.text-center {
+	text-align: center;
 }
 
-.text-right{
-    text-align: right;
+.text-right {
+	text-align: right;
 }
-
 
 .button {
-    background-color: #ffffff;
-    color: #623e2a;
-    border: none;
-    margin-left: auto;
-    margin-right: auto;
-    text-decoration: none;
-    display: inline-block;
-    padding: 5px 20px;
-    width: 50%;
-    text-align: center;
+	background-color: #ffffff;
+	color: #623e2a;
+	border: none;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: none;
+	display: inline-block;
+	padding: 5px 20px;
+	width: 100%;
+	text-align: center;
 }
-
 
 .button:active {
-    background-color: #623e2a;
-    color: #f4f1ed;
+	background-color: #623e2a;
+	color: #f4f1ed;
 }
 
-
 .button:hover {
-    background-color: #623e2a;
-    color: #f4f1ed;
+	background-color: #623e2a;
+	color: #f4f1ed;
 }
