@@ -27,6 +27,8 @@ p, address{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     padding: 2% 2%;
+    align-items: center;
+    justify-content: center;
 }
 
 .about-us-content:hover {
@@ -54,39 +56,7 @@ p, address{
     margin-top: 20px;
 }
 
-.contact-us-content{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    width: 80%;
-    margin: 0 auto;
-}
 
-.contact-us-content > div{
-    border: 1px solid #623e2a;
-    padding: 20px;
-}
-
-.contact-us-content h3{
-    margin-bottom: 30px;
-}
-
-.contact-info{
-    display: flex;
-    flex-direction: row;
-    gap:10px;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.contact-info img{
-    width: 15px;
-}
-
-.contact-info a{
-    text-decoration: none;
-    color: #623e2a;
-}
 
 /* Utitlites */
 
