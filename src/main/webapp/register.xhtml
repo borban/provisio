@@ -19,21 +19,27 @@
 								label="firstname" title="Your first name is required">
 								<f:ajax event="keyup" update="userNameMsg" />
 							</h:inputText></td>
-						<td><h:message id="firstnameMessage" for="firstname" /></td>
+					</tr>
+					<tr>
+					    <td colspan='2'><h:message id="firstnameMessage" for="firstname" style="color:red; font-size: 8pt;"/></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Last Name" /></td>
 						<td><h:inputText id="lastname"
 								value="#{registerBean.customer.lastName}" required="true"
 								label="lastname" title="Your last name is required" /></td>
-						<td><h:message id="lastNameMsg" for="lastname" /></td>
+					</tr>
+					<tr>
+						<td colspan='2'><h:message id="lastNameMsg" for="lastname" style="color:red; font-size: 8pt;"/></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Email" /></td>
 						<td><h:inputText id="email"
 								value="#{registerBean.customer.email}" required="true"
 								label="email" title="Your email is required" /></td>
-						<td><h:message id="emailMsg" for="email" /></td>
+					</tr>
+					<tr>
+						<td colspan='2'><h:message id="emailMsg" for="email" style="color:red; font-size: 8pt;"/></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Password" /></td>
@@ -45,8 +51,10 @@
 								<f:ajax update="passwordMsg" event="keyup" />
 								<f:validateRegex pattern="^(?=.*[a-z])(?=.*[A-Z]).{8,}$" />
 							</h:inputSecret></td>
-						<td><h:message id="passwordMsg" for="password"
-								style="color:red" /></td>
+					</tr>
+					<tr>
+						<td colspan='2'><h:message id="passwordMsg" for="password"
+								style="color:red; font-size: 8pt;" /></td>
 
 					</tr>
 					<tr>
