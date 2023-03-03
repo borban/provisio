@@ -9,16 +9,13 @@
 		<div id="header-logo">
 			<a href="landing.xhtml"><img src="images\Logo.jpg"
 				alt="Company Logo"></img></a>
-				<h:panelGroup rendered="#{loginBean.customer.customerId != null}">
-				<br></br>
-				<h3 style="margin: 20px 0px;">Hello, #{loginBean.customer.firstName}!</h3>
-			</h:panelGroup>
 		</div>
 		<!-- end of header-logo -->
 		
 		<div id="navbar">
-			<a href="about-us.xhtml">About Us</a> <a href="contact-us.xhtml">Contact
-				Us</a> <a href="locations.xhtml">Locations</a>
+			<a href="about-us.xhtml">About Us</a> 
+			<a href="contact-us.xhtml">Contact Us</a> 
+			<a href="locations.xhtml">Locations</a>
 			<c:choose>
 				<c:when test="#{loginBean.customer.customerId == null}">
 					<a href="loyalty-ad.xhtml">Loyalty</a>

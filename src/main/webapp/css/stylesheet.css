@@ -30,7 +30,7 @@
 	width: 100%;
 	height: auto;
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto;
 	z-index: 10;
 	
 }
@@ -69,7 +69,8 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;
-	vertical-align: middle;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 #navbar a {
