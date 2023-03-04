@@ -24,38 +24,6 @@ body{
 
 }
 
-.button {
-    background-color: #ffffff;
-    color: #623e2a;
-    border: none;
-    text-decoration: none;
-    display: inline;
-    padding: 5px 20px;
-    text-align: center;
-    max-width: 40%;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: .8rem
-}
-
-
-.button:active {
-    background-color: #623e2a;
-    color: #f4f1ed;
-}
-
-
-.button:hover {
-    background-color: #623e2a;
-    color: #f4f1ed;
-}
-
-.btn-group{
-    text-align: center;
-    gap: 10px;
-    width: fit-content;
-}
-
 .border{
     border: 1px solid #623e2a;
 }
@@ -134,4 +102,10 @@ table{
 
 #loyalty-title{
     font-family: 'Playfair Display', serif;
+}
+
+@media screen and (max-width: 863px){
+    .loyalty-first-row, .loyalty-second-row{
+        grid-template-columns: 1fr;
+    }
 }
